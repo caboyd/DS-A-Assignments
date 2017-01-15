@@ -4,7 +4,7 @@ Date: Dec 1, 2015
 Description: Binary search tree implementation
 */
 
-#include "BinarySearchTree.cpp"
+#include "BinarySearchTreeTemplate.cpp"
 #include <iostream>
 using namespace std;
 
