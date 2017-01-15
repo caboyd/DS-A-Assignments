@@ -3,16 +3,12 @@
 #include <iomanip>
 #include <cstdlib>
 
-class NoTreeExcpetion {};
+BinaryTree::BinaryTree():root(0), totalDepth(0)
+{};
 
 BinaryTree::~BinaryTree()
 {
-	if (root)
-	{
-		deleteTree(root);
-		delete root;
-		root = 0;
-	}
+	deleteTree();
 }
 
 void BinaryTree::deleteTree()
@@ -30,17 +26,13 @@ void BinaryTree::verboseDeleteTree()
 	if (root)
 	{
 		verboseDeleteTree(root);
-		std::cout << "\nRoot node with key " << root->getKey() << " has been deleted.\n\n";
+		std::cout << "\nRoot node with key " << root->getKey();
+		std::cout << " has been deleted.\n\n";
 		delete root;
 		root = 0;
 		printPostOrder();
-		std::cout << "This binary Tree has deleted every node.\n";
+		std::cout << "This binary Tree has deleted every node.\n\n";
 	}
-}
-
-bool BinaryTree::isMember(int key) const
-{
-	return isMember(key, root);
 }
 
 void BinaryTree::insert(int key)
@@ -75,32 +67,6 @@ void BinaryTree::printPostOrder() const
 
 
 //Helper fucntions
-
-bool BinaryTree::isMember(int key, TreeNode *tree) const
-{
-	bool exists = false;
-	if (tree->getKey() == key)
-	{
-		return true;
-	}
-	else if (tree->getLeft())
-	{
-		if (isMember(key, tree->getLeft()))
-		{
-			exists = true;
-		}
-
-	}
-	else if (tree->getRight())
-	{
-		if (isMember(key, tree->getRight()))
-		{
-			exists = true;
-		}
-	}
-	return exists;
-}
-
 void BinaryTree::insert(int key, TreeNode *tree, int depth)
 {
 	depth++;
@@ -108,6 +74,8 @@ void BinaryTree::insert(int key, TreeNode *tree, int depth)
 	{
 		throw NoTreeExcpetion();
 	}
+
+	//Randomly choose which side of the tree to place the new node
 	if (getRandomBool())
 	{
 		if (tree->getLeft())
@@ -192,7 +160,8 @@ void BinaryTree::verboseDeleteTree(TreeNode* tree)
 	if (tree->getLeft())
 	{
 		verboseDeleteTree(tree->getLeft());
-		std::cout << "\nNode with key " << tree->getLeft()->getKey() << " has been deleted.\n\n";
+		std::cout << "\nNode with key " << tree->getLeft()->getKey();
+		std::cout << " has been deleted.\n\n";
 		delete tree->getLeft();
 		tree->setLeft(0);
 		printPostOrder();
@@ -200,7 +169,8 @@ void BinaryTree::verboseDeleteTree(TreeNode* tree)
 	if (tree->getRight())
 	{
 		verboseDeleteTree(tree->getRight());
-		std::cout << "\nNode with key " << tree->getRight()->getKey() << " has been deleted.\n\n";
+		std::cout << "\nNode with key " << tree->getRight()->getKey();
+		std::cout << " has been deleted.\n\n";
 		delete tree->getRight();
 		tree->setRight(0);
 		printPostOrder();

@@ -5,6 +5,7 @@ Description: Binary search tree implementation
 */
 
 #include "BinaryTree.h"
+#include "BinarySearchTree.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -16,18 +17,39 @@ int main()
 	srand(time(0));
 
 	//Test Showing Binary Tree deleting all nodes properly
-	BinaryTree b;
-	for (int i = 0; i < 8; i++)
 	{
-		b.insert(i);
+		cout << "Test Binary Tree:\n\n";
+		BinaryTree *b = new BinaryTree;
+		for (int i = 0; i < 6; i++)
+		{
+			b->insert(i);
+		}
+		b->printPostOrder();
+		cout << "\nTotal depth is " << b->getTotalDepth() << "\n\n";
+		cout << "Deleting Binary Tree:";
+		b->verboseDeleteTree();
+		delete b;
 	}
-	b.printPostOrder();
-
-	b.verboseDeleteTree();
-
-	cout << "BINARY TREES:\n\n";
 
 
+	//Test Showing Binary Search Tree deleting all nodes properly
+	{
+		cout << "Test Binary Search Tree:\n\n";
+		BinarySearchTree *b = new BinarySearchTree;
+		for (int i = 0; i < 6; i++)
+		{
+			bool inserted = false;
+			while (inserted == false)
+			{
+				inserted = b->insert(rand());
+			}
+		}
+		b->printPostOrder();
+		cout << "\nTotal depth is " << b->getTotalDepth() << "\n\n";
+		cout << "Deleting Search Binary Tree:";
+		b->verboseDeleteTree();
+		delete b;
+	}
 
 	return 0;
 
