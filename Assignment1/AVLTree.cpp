@@ -1,11 +1,14 @@
 #include "AVLTree.h"
+#include <iostream>
+#include <iomanip>
+#include <cassert>
 
-AVLTree::AVLTree():root(0),totalDepth(0)
+AVLTree::AVLTree() :root(0), totalDepth(0)
 {}
 
 AVLTree::~AVLTree()
 {
-	deleteTree(root);
+	deleteTree();
 }
 
 int AVLTree::getTotalDepth()
@@ -27,25 +30,50 @@ bool AVLTree::insert(int key)
 }
 
 void AVLTree::deleteTree()
-{}
-
+{
+	if (root)
+	{
+		deleteTree(root);
+		delete root;
+		root = 0;
+	}
+}
 void AVLTree::verboseDeleteTree()
-{}
+{
+	if (root)
+	{
+		verboseDeleteTree(root);
+		std::cout << "\nRoot node with key " << root->getKey();
+		std::cout << " has been deleted.\n\n";
+		delete root;
+		root = 0;
+		printPostOrder();
+		std::cout << "This AVL Tree has deleted every node.\n";
+	}
+}
+
+
 
 void AVLTree::printPostOrder()
-{}
+{
+	if (root == 0)
+	{
+		std::cout << "AVL Tree is empty.\n\n";
+	}
+	else
+	{
+		postOrder(root, 0);
+	}
+}
 
-bool AVLTree::insert(int key, TreeNode * tree, int depth)
+
+bool AVLTree::insert(int key, TreeNode * &tree, int depth)
 {
 	depth++;
 	bool inserted = false;
-	//If a Node with this key exists
-	if (key == tree->getKey())
-	{
-		return false;
-	}	
+
 	//If key is smaller than current node, insert on left side
-	else if (key < tree->getKey())
+	if (key < tree->getKey())
 	{
 		//add to left child if empty
 		if (tree->getLeft() == 0)
@@ -56,14 +84,17 @@ bool AVLTree::insert(int key, TreeNode * tree, int depth)
 		}
 		else
 		{
-			inserted = insert(key, tree->getLeft(), depth);
+			inserted = insert(key, tree->getLeftA(), depth);
 		}
 		if (inserted)
 		{
+			assert(tree->getLeft());
 			//Calculate height difference
-			if ((tree->getLeft()->getHeight() 
-				- tree->getRight()->getHeight()) == 2)
+			//Rotate if left is deeper than right
+			if (getHeightDifference(tree->getLeft(), tree->getRight()) == 2)
 			{
+				//If rotation occurs tree will lose 1 depth
+				totalDepth--;
 				if (key < tree->getLeft()->getKey())
 				{
 					llRotation(tree);
@@ -87,20 +118,25 @@ bool AVLTree::insert(int key, TreeNode * tree, int depth)
 		}
 		else
 		{
-			inserted = insert(key, tree->getRight(), depth);
+			inserted = insert(key, tree->getRightA(), depth);
 		}
 		if (inserted)
 		{
+			assert(tree->getRight());
 			//Calculate height difference
-			if ((tree->getRight()->getHeight()
-				- tree->getLeft()->getHeight()) == 2)
+			//Rotate if right is deeper than left
+			if (getHeightDifference(tree->getLeft(), tree->getRight()) == -2)
 			{
-				if (key > tree->getLeft()->getKey())
+				//If rotation occurs tree will lose 1 depth
+				totalDepth--;
+				if (key > tree->getRight()->getKey())
 				{
+
 					rrRotation(tree);
 				}
 				else
 				{
+
 					rlRotation(tree);
 				}
 			}
@@ -117,11 +153,12 @@ bool AVLTree::insert(int key, TreeNode * tree, int depth)
 	{
 		fixHeight(tree);
 	}
+
 	return inserted;
 
 }
 
-void AVLTree::llRotation(TreeNode * tree)
+void AVLTree::llRotation(TreeNode * &tree)
 {
 	TreeNode *leftSubTree = tree->getLeft();
 	tree->setLeft(leftSubTree->getRight());
@@ -132,7 +169,7 @@ void AVLTree::llRotation(TreeNode * tree)
 	tree = leftSubTree;
 }
 
-void AVLTree::rrRotation(TreeNode * tree)
+void AVLTree::rrRotation(TreeNode * &tree)
 {
 	TreeNode *rightSubTree = tree->getRight();
 	tree->setRight(rightSubTree->getLeft());
@@ -143,30 +180,107 @@ void AVLTree::rrRotation(TreeNode * tree)
 	tree = rightSubTree;
 }
 
-void AVLTree::lrRotation(TreeNode * tree)
+void AVLTree::lrRotation(TreeNode * &tree)
 {
-	rrRotation(tree->getLeft());
-
+	rrRotation(tree->getLeftA());
+	llRotation(tree);
 }
 
-void AVLTree::rlRotation(TreeNode * tree)
-{}
+void AVLTree::rlRotation(TreeNode * &tree)
+{
+	llRotation(tree->getRightA());
+	rrRotation(tree);
+}
 
 void AVLTree::postOrder(TreeNode * tree, int indent)
-{}
+{
+	if (tree)
+	{
+		if (tree->getRight())
+		{
+			postOrder(tree->getRight(), indent + 4);
+		}
+		if (indent)
+		{
+			std::cout << std::setw(indent) << ' ';
+		}
+		if (tree->getRight()) std::cout << " /\n" << std::setw(indent) << ' ';
+		std::cout << tree->getKey() << "\n ";
+		if (tree->getLeft())
+		{
+			std::cout << std::setw(indent) << ' ' << " \\\n";
+			postOrder(tree->getLeft(), indent + 4);
+		}
+	}
+}
 
 void AVLTree::verboseDeleteTree(TreeNode * tree)
-{}
+{
+	assert(tree);
+	if (tree->getLeft())
+	{
+		verboseDeleteTree(tree->getLeft());
+		std::cout << "\nNode with key " << tree->getLeft()->getKey();
+		std::cout << " has been deleted.\n\n";
+		delete tree->getLeft();
+		//Set deleted subtrees back to NULL
+		tree->setLeft(0);
+		printPostOrder();
+	}
+	if (tree->getRight())
+	{
+		verboseDeleteTree(tree->getRight());
+		std::cout << "\nNode with key " << tree->getRight()->getKey();
+		std::cout << " has been deleted.\n\n";
+		delete tree->getRight();
+		//Set deleted subtrees back to NULL
+		tree->setRight(0);
+		printPostOrder();
+	}
+}
 
 void AVLTree::deleteTree(TreeNode * tree)
-{}
+{
+	assert(tree);
+	if (tree->getLeft())
+	{
+		deleteTree(tree->getLeft());
+		delete tree->getLeft();
+		//Set deleted subtrees back to NULL
+		tree->setLeft(0);
+	}
+	if (tree->getRight())
+	{
+		deleteTree(tree->getRight());
+		delete tree->getRight();
+		//Set deleted subtrees back to NULL
+		tree->setRight(0);
+	}
+}
 
 void AVLTree::fixHeight(TreeNode* tree)
 {
-	int leftTreeHeight = tree->getLeft()->getHeight();
-	int rightTreeHeight = tree->getRight()->getHeight();
-	int tempMaxHeight = leftTreeHeight >= rightTreeHeight ?
-		leftTreeHeight : rightTreeHeight;
+	//Ternary to get height if not NULL. NULL has -1 height
+	int leftTreeHeight = tree->getLeft() ? tree->getLeft()->getHeight(): -1;
+	int rightTreeHeight = tree->getRight() ? tree->getRight()->getHeight(): -1;
+
+	//get max height of left and right sub trees
+	int tempMaxHeight = max(leftTreeHeight, rightTreeHeight);
+	//Add 1 to height for current tree level
 	tempMaxHeight += 1;
-	tree->setHeight = tempMaxHeight;
+	tree->setHeight(tempMaxHeight);
+}
+
+int AVLTree::getHeightDifference(TreeNode * left, TreeNode * right)
+{
+	//Ternary to get TreeNode height, NULL TreeNode has -1 height
+	int leftHeight = left ? left->getHeight() : -1;
+	int rightHeight = right ? right->getHeight() : -1;
+	return leftHeight - rightHeight;
+}
+
+
+int AVLTree::max(int a, int b)
+{
+	return (a > b ? a : b);
 }

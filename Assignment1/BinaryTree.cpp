@@ -57,7 +57,7 @@ void BinaryTree::printPostOrder() const
 {
 	if (root == 0)
 	{
-		std::cout << "Binary Search Tree is empty.\n\n";
+		std::cout << "Binary Tree is empty.\n\n";
 	}
 	else
 	{

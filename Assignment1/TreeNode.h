@@ -1,5 +1,7 @@
 #pragma once
 
+//TreeNode class that is used in BinaryTree.h BinarySearchTree.h and AVLTree.h
+
 class TreeNode {
 private:
 	int key;
@@ -24,11 +26,16 @@ public:
 		this->right = right;
 	}
 
+	//Getters and Setters
 	int getKey()const { return key; }
-	TreeNode* getLeft() { return left; }
-	TreeNode* getRight() { return right; }
 	int getHeight() { return height; }
 
+	TreeNode* getLeft() { return left; }
+	TreeNode* getRight() { return right; }
+	//Returns Address of pointer which is required for AVL rotations
+	TreeNode*& getLeftA() { return left; }
+	TreeNode*& getRightA() { return right; }
+	
 	void setKey(int k) { key = k; }
 	void setLeft(TreeNode *left) { this->left = left; }
 	void setRight(TreeNode *right) { this->right = right; }

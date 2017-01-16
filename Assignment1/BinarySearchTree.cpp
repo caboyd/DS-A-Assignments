@@ -4,7 +4,6 @@
 #include <iostream>
 #include <iomanip>
 #include <cassert>
-using namespace std;
 
 
 BinarySearchTree::BinarySearchTree():root(0),totalDepth(0)
@@ -99,13 +98,14 @@ bool BinarySearchTree::insert(int key, TreeNode *tree, int depth)
 			return insert(key, tree->getRight(), depth);
 		}
 	}
+	return false;
 }
 
 void BinarySearchTree::printPostOrder()
 {
 	if (root == 0)
 	{
-		cout << "Binary Search Tree is empty.\n\n";
+		std::cout << "Binary Search Tree is empty.\n\n";
 	}
 	else
 	{
