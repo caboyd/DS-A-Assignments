@@ -21,14 +21,12 @@
   <ItemGroup>
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BinarySearchTree.cpp" />
-    <ClCompile Include="BinarySearchTreeTemplate.cpp" />
     <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BinarySearchTree.h" />
-    <ClInclude Include="BinarySearchTreeTemplate.h" />
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="TreeNode.h" />
   </ItemGroup>

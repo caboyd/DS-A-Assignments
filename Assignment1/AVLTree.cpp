@@ -11,7 +11,7 @@ AVLTree::~AVLTree()
 	deleteTree();
 }
 
-int AVLTree::getTotalDepth()
+int AVLTree::getTotalDepth() const
 {
 	return totalDepth;
 }
@@ -58,7 +58,7 @@ void AVLTree::verboseDeleteTree()
 
 
 
-void AVLTree::printPostOrder()
+void AVLTree::printPostOrder() const
 {
 	if (root == 0)
 	{
@@ -212,7 +212,7 @@ void AVLTree::rlRotation(TreeNode * &tree)
 
 
 
-void AVLTree::postOrder(TreeNode * tree, int indent)
+void AVLTree::postOrder(TreeNode * tree, int indent) const
 {
 	if (tree)
 	{
@@ -298,7 +298,7 @@ void AVLTree::fixHeight(TreeNode* tree)
 	tree->setHeight(tempMaxHeight);
 }
 
-int AVLTree::getHeightDifference(TreeNode * left, TreeNode * right)
+int AVLTree::getHeightDifference(TreeNode * left, TreeNode * right) const
 {
 	//Ternary to get TreeNode height, NULL TreeNode has -1 height
 	int leftHeight = left ? left->getHeight() : -1;
@@ -307,7 +307,7 @@ int AVLTree::getHeightDifference(TreeNode * left, TreeNode * right)
 }
 
 
-int AVLTree::max(int a, int b)
+int AVLTree::max(int a, int b) const
 {
 	return (a > b ? a : b);
 }

@@ -1,10 +1,15 @@
 #pragma once
 #include "TreeNode.h"
 
+//Binary Search Tree Data Structure
+
 class BinarySearchTree
 {
 private:
 	TreeNode* root;
+
+	//Total Depth of all nodes in the tree. Value is
+	//updated when nodes are inserted
 	int totalDepth;
 public:
 	//Default Constructor
@@ -14,7 +19,7 @@ public:
 	~BinarySearchTree();
 
 	//Returns total depth of tree nodes
-	int getTotalDepth();
+	int getTotalDepth() const;
 
 	//Insert into tree using key
 	//Returns false if item not inserted
@@ -27,13 +32,17 @@ public:
 	void verboseDeleteTree();
 	//Prints items in a tree
 	//Far left item is the root
-	void printPostOrder();
+	void printPostOrder() const;
 
-
-	//Helper fucntions
 private:
+	//Helper fucntions
+	//recursive insert into tree, updates tree total depth
 	bool insert(int key, TreeNode* tree, int depth);
-	void postOrder(TreeNode* tree, int indent);
+
+	//Recursive print tree in post order
+	void postOrder(TreeNode* tree, int indent) const;
+
+	//recursive delete tree memory
 	void verboseDeleteTree(TreeNode* tree);
 	void deleteTree(TreeNode* tree);
 };

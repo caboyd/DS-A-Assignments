@@ -16,14 +16,14 @@ private:
 	int totalDepth;
 
 public:
-	//Default Constructor
+	//Default Constructor to initialize emprty AVL tree
 	AVLTree();
 
-	//Destructor
+	//Destructor to free all allocated node memory
 	~AVLTree();
 
 	//Returns total depth of tree nodes
-	int getTotalDepth();
+	int getTotalDepth() const;
 
 	//Insert into tree using key and balace tree
 	//Returns false if item not inserted
@@ -37,7 +37,7 @@ public:
 
 	//Prints items in a tree
 	//Far left item is the root
-	void printPostOrder();
+	void printPostOrder() const;
 
 
 
@@ -53,7 +53,7 @@ private:
 	void rlRotation(TreeNode *&tree);
 
 	//Recursive print tree in post order
-	void postOrder(TreeNode* tree, int indent);
+	void postOrder(TreeNode* tree, int indent) const;
 
 	//recursive delete tree memory
 	void verboseDeleteTree(TreeNode* tree);
@@ -64,9 +64,9 @@ private:
 
 	//calculate height difference between two sides of tree
 	//NULL tree has a height of -1
-	int getHeightDifference(TreeNode* left, TreeNode* right);
+	int getHeightDifference(TreeNode* left, TreeNode* right) const;
 
 	//Returns max between to ints
-	int max(int a, int b);
+	int max(int a, int b) const;
 };
 
