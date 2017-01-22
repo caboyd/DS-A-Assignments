@@ -1,14 +1,25 @@
+/*	Name: Chris Boyd
+	Date: Jan 19,2017
+*/
+
 #pragma once
 
-//TreeNode class that is used in BinaryTree.h BinarySearchTree.h and AVLTree.h
-
+/*	TreeNode Data Structure that can be used with AVL Trees and Binary Trees
+	This file contains Definition and Implementation
+	TreeNode memory must be managed and child nodes must be deleted properly
+	by the programmer
+*/
 class TreeNode {
 private:
 	int key;
 	TreeNode* left;
 	TreeNode* right;
+
+	//Height is used for AVL Trees
 	int height;
+
 public:
+
 	//Constructor to initalize TreeNode to 0
 	TreeNode() :key(-1), right(0), left(0), height(0) {}
 
@@ -28,18 +39,20 @@ public:
 
 	//Getters and Setters
 	int getKey()const { return key; }
+	void setKey(int k) { key = k; }
+
 	int getHeight() { return height; }
+	void setHeight(int height) { this->height = height; }
 
 	TreeNode* getLeft() { return left; }
 	TreeNode* getRight() { return right; }
 	//Returns Address of pointer which is required for AVL rotations
 	TreeNode*& getLeftA() { return left; }
 	TreeNode*& getRightA() { return right; }
-	
-	void setKey(int k) { key = k; }
+
 	void setLeft(TreeNode *left) { this->left = left; }
 	void setRight(TreeNode *right) { this->right = right; }
-	void setHeight(int height) { this->height = height; }
+
 
 	//Destructor
 	~TreeNode() {}

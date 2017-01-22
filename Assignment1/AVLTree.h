@@ -1,13 +1,20 @@
+/*	Name: Chris Boyd
+	Date: Jan 19,2017
+*/
+
 #pragma once
 #include "TreeNode.h"
 
 //AVLTree Data Structure
-
 class AVLTree
 {
 private:
 	TreeNode* root;
+
+	//Total Depth of all nodes in the tree. Value is
+	//updated when nodes are inserted
 	int totalDepth;
+
 public:
 	//Default Constructor
 	AVLTree();

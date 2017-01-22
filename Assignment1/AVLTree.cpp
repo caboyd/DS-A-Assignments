@@ -18,6 +18,7 @@ int AVLTree::getTotalDepth()
 
 bool AVLTree::insert(int key)
 {
+	//create root if tree is empty
 	if (root == 0)
 	{
 		root = new TreeNode(key);
@@ -25,6 +26,7 @@ bool AVLTree::insert(int key)
 	}
 	else
 	{
+		//recursive insert
 		return insert(key, root, 0);
 	}
 }
@@ -33,6 +35,7 @@ void AVLTree::deleteTree()
 {
 	if (root)
 	{
+		//recursive delete
 		deleteTree(root);
 		delete root;
 		root = 0;
@@ -42,6 +45,7 @@ void AVLTree::verboseDeleteTree()
 {
 	if (root)
 	{
+		//recursive delete
 		verboseDeleteTree(root);
 		std::cout << "\nRoot node with key " << root->getKey();
 		std::cout << " has been deleted.\n\n";
@@ -62,6 +66,7 @@ void AVLTree::printPostOrder()
 	}
 	else
 	{
+		//recursive print
 		postOrder(root, 0);
 	}
 }
@@ -69,7 +74,10 @@ void AVLTree::printPostOrder()
 
 bool AVLTree::insert(int key, TreeNode * &tree, int depth)
 {
+	//increment depth because depth increases for every
+	//recursive leaf node
 	depth++;
+
 	bool inserted = false;
 
 	//If key is smaller than current node, insert on left side
@@ -84,11 +92,14 @@ bool AVLTree::insert(int key, TreeNode * &tree, int depth)
 		}
 		else
 		{
+			//try to insert to this nodes left child
 			inserted = insert(key, tree->getLeftA(), depth);
 		}
+
 		if (inserted)
 		{
 			assert(tree->getLeft());
+
 			//Calculate height difference
 			//Rotate if left is deeper than right
 			if (getHeightDifference(tree->getLeft(), tree->getRight()) == 2)
@@ -118,6 +129,7 @@ bool AVLTree::insert(int key, TreeNode * &tree, int depth)
 		}
 		else
 		{
+			//try to insert to this nodes right child
 			inserted = insert(key, tree->getRightA(), depth);
 		}
 		if (inserted)
@@ -131,12 +143,10 @@ bool AVLTree::insert(int key, TreeNode * &tree, int depth)
 				totalDepth--;
 				if (key > tree->getRight()->getKey())
 				{
-
 					rrRotation(tree);
 				}
 				else
 				{
-
 					rlRotation(tree);
 				}
 			}
@@ -145,10 +155,10 @@ bool AVLTree::insert(int key, TreeNode * &tree, int depth)
 	}
 	else
 	{
-		//Duplicate key
+		//Duplicate key exists in tree
 		inserted = false;
 	}
-	//Set this nodes height
+	//recalculate this nodes height
 	if (inserted)
 	{
 		fixHeight(tree);
@@ -158,6 +168,8 @@ bool AVLTree::insert(int key, TreeNode * &tree, int depth)
 
 }
 
+//Hilderman's standard AVL rotation algorithm
+//http://www2.cs.uregina.ca/~hilder/cs210/Algorithms/avlLL.txt
 void AVLTree::llRotation(TreeNode * &tree)
 {
 	TreeNode *leftSubTree = tree->getLeft();
@@ -169,6 +181,8 @@ void AVLTree::llRotation(TreeNode * &tree)
 	tree = leftSubTree;
 }
 
+//Hilderman's standard AVL rotation algorithm
+//http://www2.cs.uregina.ca/~hilder/cs210/Algorithms/avlRR.txt
 void AVLTree::rrRotation(TreeNode * &tree)
 {
 	TreeNode *rightSubTree = tree->getRight();
@@ -180,17 +194,23 @@ void AVLTree::rrRotation(TreeNode * &tree)
 	tree = rightSubTree;
 }
 
+//Hilderman's standard AVL rotation algorithm
+//http://www2.cs.uregina.ca/~hilder/cs210/Algorithms/avlLR.txt
 void AVLTree::lrRotation(TreeNode * &tree)
 {
 	rrRotation(tree->getLeftA());
 	llRotation(tree);
 }
 
+//Hilderman's standard AVL rotation algorithm
+//http://www2.cs.uregina.ca/~hilder/cs210/Algorithms/avlRL.txt
 void AVLTree::rlRotation(TreeNode * &tree)
 {
 	llRotation(tree->getRightA());
 	rrRotation(tree);
 }
+
+
 
 void AVLTree::postOrder(TreeNode * tree, int indent)
 {
@@ -198,6 +218,9 @@ void AVLTree::postOrder(TreeNode * tree, int indent)
 	{
 		if (tree->getRight())
 		{
+			//prints right of tree at the top of output
+			//farthest right child node printed first
+			//and farthest indented
 			postOrder(tree->getRight(), indent + 4);
 		}
 		if (indent)
@@ -205,9 +228,12 @@ void AVLTree::postOrder(TreeNode * tree, int indent)
 			std::cout << std::setw(indent) << ' ';
 		}
 		if (tree->getRight()) std::cout << " /\n" << std::setw(indent) << ' ';
+		//prints this node
 		std::cout << tree->getKey() << "\n ";
 		if (tree->getLeft())
 		{
+			//prints down the left side of the tree
+			//farthest left child is printed last
 			std::cout << std::setw(indent) << ' ' << " \\\n";
 			postOrder(tree->getLeft(), indent + 4);
 		}
@@ -260,13 +286,14 @@ void AVLTree::deleteTree(TreeNode * tree)
 
 void AVLTree::fixHeight(TreeNode* tree)
 {
-	//Ternary to get height if not NULL. NULL has -1 height
+	//Ternary to get height of child nodes if not NULL. NULL has -1 height
 	int leftTreeHeight = tree->getLeft() ? tree->getLeft()->getHeight(): -1;
 	int rightTreeHeight = tree->getRight() ? tree->getRight()->getHeight(): -1;
 
-	//get max height of left and right sub trees
+	//Get max height of left and right sub trees
 	int tempMaxHeight = max(leftTreeHeight, rightTreeHeight);
-	//Add 1 to height for current tree level
+	//Add 1 to height because current node has 1 more height
+	//than its tallest child
 	tempMaxHeight += 1;
 	tree->setHeight(tempMaxHeight);
 }
