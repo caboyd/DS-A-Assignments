@@ -1,0 +1,342 @@
+Script started on Sun Jan 22 01:03:36 2017
+
+Script on hercules[1]% ls
+
+AVLTree.cpp  BinarySearchTree.cpp  BinaryTree.cpp  TreeNode.h  main.cpp
+AVLTree.h    BinarySearchTree.h    BinaryTree.h    main*       output.log
+Script on hercules[2]% g++ main.cpp BinaryTreep.cpp BinarySearchTree.cpp AVLTree.
+cpp -o main
+
+Script on hercules[3]% main
+
+Test Binary Tree:
+
+    1
+      \
+            5
+          /
+        2
+          \
+            4
+              \
+                7
+  /
+ 0
+   \
+        6
+      /
+    3
+ 
+Total depth is 16
+
+Deleting Binary Tree:
+Node with key 6 has been deleted.
+
+    1
+      \
+            5
+          /
+        2
+          \
+            4
+              \
+                7
+  /
+ 0
+   \
+    3
+ 
+Node with key 3 has been deleted.
+
+    1
+      \
+            5
+          /
+        2
+          \
+            4
+              \
+                7
+  /
+ 0
+ 
+Node with key 7 has been deleted.
+
+    1
+      \
+            5
+          /
+        2
+          \
+            4
+  /
+ 0
+ 
+Node with key 4 has been deleted.
+
+    1
+      \
+            5
+          /
+        2
+  /
+ 0
+ 
+Node with key 5 has been deleted.
+
+    1
+      \
+        2
+  /
+ 0
+ 
+Node with key 2 has been deleted.
+
+    1
+  /
+ 0
+ 
+Node with key 1 has been deleted.
+
+0
+ 
+Root node with key 0 has been deleted.
+
+Binary Tree is empty.
+
+This binary Tree has deleted every node.
+
+Test Binary Search Tree:
+
+    1823612788
+      \
+        1681246404
+          \
+            1481770609
+              \
+                1343493641
+                  \
+                    1318665174
+  /
+ 854441206
+   \
+    289207069
+      \
+        167729869
+ 
+Total depth is 18
+
+Deleting Search Binary Tree:
+Node with key 167729869 has been deleted.
+
+    1823612788
+      \
+        1681246404
+          \
+            1481770609
+              \
+                1343493641
+                  \
+                    1318665174
+  /
+ 854441206
+   \
+    289207069
+ 
+Node with key 289207069 has been deleted.
+
+    1823612788
+      \
+        1681246404
+          \
+            1481770609
+              \
+                1343493641
+                  \
+                    1318665174
+  /
+ 854441206
+ 
+Node with key 1318665174 has been deleted.
+
+    1823612788
+      \
+        1681246404
+          \
+            1481770609
+              \
+                1343493641
+  /
+ 854441206
+ 
+Node with key 1343493641 has been deleted.
+
+    1823612788
+      \
+        1681246404
+          \
+            1481770609
+  /
+ 854441206
+ 
+Node with key 1481770609 has been deleted.
+
+    1823612788
+      \
+        1681246404
+  /
+ 854441206
+ 
+Node with key 1681246404 has been deleted.
+
+    1823612788
+  /
+ 854441206
+ 
+Node with key 1823612788 has been deleted.
+
+854441206
+ 
+Root node with key 854441206 has been deleted.
+
+Binary Search Tree is empty.
+
+This Binary Search Tree has deleted every node.
+Test AVL Tree:
+
+            2133098344
+          /
+        1793611861
+          \
+            1698315969
+      /
+    1624936203
+      \
+        1163598472
+          \
+            973077017
+  /
+ 959443165
+   \
+        647098841
+      /
+    633718681
+      \
+        532782830
+ 
+Total depth is 19
+
+Deleting AVL Tree:
+Node with key 532782830 has been deleted.
+
+            2133098344
+          /
+        1793611861
+          \
+            1698315969
+      /
+    1624936203
+      \
+        1163598472
+          \
+            973077017
+  /
+ 959443165
+   \
+        647098841
+      /
+    633718681
+ 
+Node with key 647098841 has been deleted.
+
+            2133098344
+          /
+        1793611861
+          \
+            1698315969
+      /
+    1624936203
+      \
+        1163598472
+          \
+            973077017
+  /
+ 959443165
+   \
+    633718681
+ 
+Node with key 633718681 has been deleted.
+
+            2133098344
+          /
+        1793611861
+          \
+            1698315969
+      /
+    1624936203
+      \
+        1163598472
+          \
+            973077017
+  /
+ 959443165
+ 
+Node with key 973077017 has been deleted.
+
+            2133098344
+          /
+        1793611861
+          \
+            1698315969
+      /
+    1624936203
+      \
+        1163598472
+  /
+ 959443165
+ 
+Node with key 1163598472 has been deleted.
+
+            2133098344
+          /
+        1793611861
+          \
+            1698315969
+      /
+    1624936203
+  /
+ 959443165
+ 
+Node with key 1698315969 has been deleted.
+
+            2133098344
+          /
+        1793611861
+      /
+    1624936203
+  /
+ 959443165
+ 
+Node with key 2133098344 has been deleted.
+
+        1793611861
+      /
+    1624936203
+  /
+ 959443165
+ 
+Node with key 1793611861 has been deleted.
+
+    1624936203
+  /
+ 959443165
+ 
+Node with key 1624936203 has been deleted.
+
+959443165
+ 
+Root node with key 959443165 has been deleted.
+
+AVL Tree is empty.
+
+This AVL Tree has deleted every node.
