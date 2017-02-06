@@ -23,9 +23,11 @@ struct Follower
 };
 
 
-TopologicalSort::TopologicalSort(string fileName) : head(0), tail(0), vertexCount(0)
+TopologicalSort::TopologicalSort(string fileName) : 
+	head(0), tail(0), vertexCount(0)
 {
-	ifstream input(fileName);
+	//Read file into input stream
+	ifstream input(fileName.c_str());
 
 	initialize(input);
 	findStartVertex();
@@ -36,15 +38,16 @@ TopologicalSort::TopologicalSort(string fileName) : head(0), tail(0), vertexCoun
 	input.close();
 }
 
-TopologicalSort::TopologicalSort(string fileName, bool initOnly)
+TopologicalSort::TopologicalSort(string fileName, bool initOnly) :
+	head(0), tail(0), vertexCount(0)
 {
-	ifstream input(fileName);
+	//Read file into input stream
+	ifstream input(fileName.c_str());
 
 	initialize(input);
 	print();
 
 	input.close();
-	
 }
 
 //http://www2.cs.uregina.ca/~hilder/cs340/Algorithms/graphTSInitialization.txt 
@@ -58,6 +61,7 @@ void TopologicalSort::initialize(ifstream& input)
 	head = new Leader;
 	tail = head;
 
+	//Read edges from input stream
 	while (input >> x >> y)
 	{
 		p = buildList(x);

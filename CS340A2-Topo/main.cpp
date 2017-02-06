@@ -21,10 +21,15 @@ int main()
 {
 	cout << "Evidence program is working\n\n";
 	//Calls constructor that prints after initialize phase
+	cout << "In Class Example Initialization" << endl;
 	TopologicalSort t1("input.txt",1);
+	cout << "In Class Example Partial Order" << endl;
+	TopologicalSort t2("input.txt");
 	cout << endl;
 
-	cout << "Prerequisites Topological Sort\n\n";
+	cout << "Prerequisites Initialization" << endl;
+	TopologicalSort t4("prerequisites.txt",1);
+	cout << "Prerequisites Topological Sort Partial Order" << endl;
 	//Calls constructor that prints partial Order
 	TopologicalSort t3("prerequisites.txt");
 

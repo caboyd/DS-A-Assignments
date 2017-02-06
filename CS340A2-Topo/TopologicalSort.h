@@ -17,14 +17,12 @@ private:
 	int vertexCount;
 		
 public:
-	//Default Constructor
+
 	//Calls initialize, findStartVertex, partialOrder
 	TopologicalSort(std::string fileName);
 
 	//Calls initialize, print
 	TopologicalSort(std::string fileName, bool initOnly);
-
-
 
 private:
 	//Initializes the topological sort adjacency list using a input stream
