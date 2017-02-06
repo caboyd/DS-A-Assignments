@@ -3,7 +3,7 @@
 #include <iomanip>
 
 using namespace std;
-
+static const int HIGH_VALUE = 0x7FFFFFFF; //MAX INT
 
 
 FloydShortestPath::FloydShortestPath(string fileName):numOfVertices(20)
@@ -13,13 +13,14 @@ FloydShortestPath::FloydShortestPath(string fileName):numOfVertices(20)
 	input.close();
 }
 
-void FloydShortestPath::printAndSearch()
+void FloydShortestPath::searchAndPrint()
 {
 	print();
+	cout << "Searching for paths" << endl;
 	search();
-	cout << "Paths" << endl;
 	for (int i = 1; i <= numOfVertices; i++)
 	{
+		cout << "Listing paths for start vertex " << i << endl;
 		for (int j = 1; j <= numOfVertices; j++)
 		{
 			if (i != j && distance[i][j] != HIGH_VALUE)

@@ -6,8 +6,6 @@ Date: Feb 4,2017
 #include <fstream>
 #include <string>
 
-static const int HIGH_VALUE = 0x7FFFFFFF;
-
 class FloydShortestPath
 {
 private:
@@ -28,8 +26,12 @@ public:
 	//Calls print function to print initialized matrices.
 	//Updates distance and vertex arrays with shortest paths.
 	//Calls paths function to print all paths.
-	void printAndSearch();
+	void searchAndPrint();
 
+
+	//******************************************
+	//This function is used for algorithm timing
+	//******************************************
 	//Updates distance and vertex matrices with shortest paths.
 	void search();
 

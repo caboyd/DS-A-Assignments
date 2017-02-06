@@ -18,6 +18,8 @@
 #include <vector>
 #include <algorithm>
 #include <sys/time.h>
+#include "floydShortestPath.h"
+
 
 using namespace std;
 
@@ -55,8 +57,6 @@ int main()
     cout << fixed << setprecision (12);
 
     cout << endl;
-    cout << "Enter length of algorithm: ";
-    cin >> maxIterations;
 
     cout << "Enter number of repetitions: ";
     cin >> repetitions;
@@ -80,8 +80,10 @@ int main()
             withoutCount ++;
 
             // Algorithm that you are timing is removed for this phase.
-
-            //
+			
+			//This will only initialize
+			FloydShortestPath f("graph.txt");
+            
 
             // Get the end time. NULL means return the current time.
             gettimeofday (&endTime, NULL);
@@ -146,8 +148,11 @@ int main()
         // The algorithm that you want to measure goes here. As you
         // can see, the current algorithm is just a simple loop that
         // repeats until the loop counter reaches maxIterations.
-        for (long i = 1; i <= maxIterations; i ++);
-        //
+
+		//This will only initialize
+		FloydShortestPath f("graph.txt");
+		//This will be the timed function
+		f.search();
 
         // This is here because it is required in the Phase 1 do loop.
         gettimeofday (&endTime, NULL);

@@ -6,10 +6,23 @@ Date: Feb 4,2017
 #include <fstream>
 #include <string>
 
-static const int HIGH_VALUE = 0x7FFFFFFF;
-
-struct Leader;
 struct Follower;
+struct Follower
+{
+	int vertex;
+	int distance;
+	Follower* nextFollower;
+};
+
+struct Leader
+{
+	int vertex;
+	bool known;
+	int distance;
+	Follower* firstFollower;
+};
+
+
 
 
 
@@ -29,9 +42,16 @@ public:
 	//Prints Leaders and followers
 	void print();
 
-	//Updates distances of Leaders given distinguished startVertex
-	//Calls findNextVertex to iterate through array
-	void search(int startVertex);
+	//******************************************
+	//This function is used for algorithm timing
+	//******************************************
+	//Call search for each vertex in the array.
+	void searchAll();
+
+
+	//Call search for each vertex in the array.
+	//Prints paths after every search
+	void searchAllAndPrint();
 
 
 private:
@@ -39,10 +59,16 @@ private:
 	//distance read from an input stream (Ex. 1 2 100). 
 	void initialize(std::ifstream& input);
 
-	//Prints the shortest path for each vertex	
-	void paths(int startVertex, int goalVertex);
+	//Updates distances of Leaders given distinguished startVertex
+	//Calls findNextVertex to iterate through array
+	void search(int startVertex);
+
+	//Prints the shortest path from one vertex to all the others
+	void paths();
 
 	//Returns next Leader in array that has known==false
 	//and has shortest distance.
 	int findNextVertex();
+
+	void resetLeaderValues();
 };
