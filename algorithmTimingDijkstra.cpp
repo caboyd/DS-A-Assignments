@@ -1,3 +1,18 @@
+/* Modified from Hilderman's algorithmTiming.cpp
+
+Name: Chris Boyd
+Date: Feb 5, 2017
+CS340 Winter 2017
+Assignment 2 Part 2 - Dijkstra's Algorithm Timing
+
+This program counts the number of times the initialization of Dijskra's 
+algorithm as can be run in 1 second. Then compares it against how
+long it takes to run the initiliazation and the search for every
+vertex to every other vertex. Therefore it can calculate the total
+time it takes to run only the search part of the algorithm.
+
+*/
+
 // This program determines the running time of an algorithm whose
 // life is very short. A two-step measurement technique is used.
 // The first step determines the number of times an empty loop can
@@ -81,8 +96,7 @@ int main()
             withoutCount ++;
 
             // Algorithm that you are timing is removed for this phase.
-
-            //This will only initialize
+			//This will initialize
 			DijkstraShortestPath d("graph.txt"); 
 
 
@@ -152,9 +166,10 @@ int main()
 
 	
 		{
-			//This will only initialize
+			//This will initialize
 			DijkstraShortestPath d("graph.txt");
 			//This is the function that will be timed
+			//It does one search algorithm per vertex
 			d.searchAll();
 		}
 

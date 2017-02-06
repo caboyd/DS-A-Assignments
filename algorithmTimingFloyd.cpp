@@ -1,3 +1,18 @@
+/* Modified from Hilderman's algorithmTiming.cpp
+
+Name: Chris Boyd
+Date: Feb 5, 2017
+CS340 Winter 2017
+Assignment 2 Part 2 -Floyd's Algorithm Timing
+
+This program counts the number of times the initialization of Floyd's
+algorithm as can be run in 1 second. Then compares it against how
+long it takes to run the initiliazation and search. Therefore
+it can calculate the total time it takes to run only the search
+part of the algorithm.
+
+*/
+
 // This program determines the running time of an algorithm whose
 // life is very short. A two-step measurement technique is used.
 // The first step determines the number of times an empty loop can
@@ -153,7 +168,9 @@ int main()
 
 		//This will only initialize
 		FloydShortestPath f("graph.txt");
+
 		//This will be the timed function
+		//It only does the search algorithm
 		f.search();
 
         // This is here because it is required in the Phase 1 do loop.

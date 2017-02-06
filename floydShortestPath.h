@@ -1,7 +1,6 @@
 /*	Name: Chris Boyd
 Date: Feb 4,2017
 */
-
 #pragma once
 #include <fstream>
 #include <string>
@@ -9,7 +8,6 @@ Date: Feb 4,2017
 class FloydShortestPath
 {
 private:
-
 	//Distance Matrix from vertex i to j
 	int distance[20][20];
 	//Matrix of predecessor to the vertex j in the path from i to j
@@ -17,7 +15,6 @@ private:
 	int numOfVertices;
 
 public:
-	
 	//Initializes Distance and vertex matrix
 	//Reads edges from a file (Ex. 1 2 100). 
 	//Calls initialize function to update matrices
@@ -28,13 +25,11 @@ public:
 	//Calls paths function to print all paths.
 	void searchAndPrint();
 
-
 	//******************************************
 	//This function is used for algorithm timing
 	//******************************************
 	//Updates distance and vertex matrices with shortest paths.
 	void search();
-
 
 private:
 	//Initializes Distance and vertex matrices with edges with 
@@ -47,5 +42,6 @@ private:
 	//prints distance and vertex matrices
 	void print();
 
+	//Prints nice 2D array for either distance or vertex
 	void printMatrix(int m[][20]);
 };

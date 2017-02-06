@@ -20,6 +20,7 @@ void FloydShortestPath::searchAndPrint()
 	search();
 	for (int i = 1; i <= numOfVertices; i++)
 	{
+		//Prints all paths for every start vertex
 		cout << "Listing paths for start vertex " << i << endl;
 		for (int j = 1; j <= numOfVertices; j++)
 		{
@@ -45,6 +46,7 @@ void FloydShortestPath::search()
 				{
 					if (i == j || j == k || distance[k][j] == HIGH_VALUE)
 						continue;
+					//Update distance and previous vertext if distance shorter
 					if (distance[i][k] + distance[k][j] < distance[i][j])
 					{
 						distance[i][j] = distance[i][k] + distance[k][j];
@@ -59,6 +61,7 @@ void FloydShortestPath::search()
 //Implements Hilderman's algorithm for Floyd's initialization
 void FloydShortestPath::initialize(ifstream & input)
 {
+	//Initialize to defaults
 	for (int i = 1; i <= numOfVertices; i++)
 	{
 		for (int j = 1; j <= numOfVertices; j++)
@@ -69,9 +72,13 @@ void FloydShortestPath::initialize(ifstream & input)
 				distance[i][j] = 0;
 		}
 	}
+
 	int i = 0, j = 0, inputDistance = 0, newNumOfVertices = 0;
+
+	//Reads edges from input stream
 	while (input >> i >> j >> inputDistance)
 	{
+		//Updates High values to shorter distances
 		if (inputDistance < distance[i][j])
 			distance[i][j] = inputDistance;
 		
@@ -113,7 +120,7 @@ void FloydShortestPath::print()
 
 void FloydShortestPath::printMatrix(int m[][20])
 {
-
+	//Prints nice 2D array
 	for (int i = 0; i <= numOfVertices; i++)
 	{
 		//Print horizontal line under column numbers
@@ -146,7 +153,6 @@ void FloydShortestPath::printMatrix(int m[][20])
 				else
 					cout << setw(4) << "HV";
 			}
-
 		}
 		cout << endl;
 	}

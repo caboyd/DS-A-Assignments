@@ -6,6 +6,7 @@ Date: Feb 4,2017
 #include <fstream>
 #include <string>
 
+
 struct Follower;
 struct Follower
 {
@@ -22,14 +23,11 @@ struct Leader
 	Follower* firstFollower;
 };
 
-
-
-
-
 class DijkstraShortestPath
 {
 private:
 	Leader a[20];
+	//Will hold number of vertices after reading file
 	int numOfVertices;
 
 public:
@@ -50,13 +48,12 @@ public:
 	//This function is used for algorithm timing
 	//******************************************
 	//Call search for each vertex in the array.
+	//Calls resetLeaderValues before each search
 	void searchAll();
-
 
 	//Call search for each vertex in the array.
 	//Prints paths after every search
 	void searchAllAndPrint();
-
 
 private:
 	//Initializes Distance and vertex matrices with edges with 
@@ -74,5 +71,6 @@ private:
 	//and has shortest distance.
 	int findNextVertex();
 
+	//Resets the Leader values so searches can be run again.
 	void resetLeaderValues();
 };
