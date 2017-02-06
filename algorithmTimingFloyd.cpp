@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <sys/time.h>
 #include "floydShortestPath.h"
+#include <string>
 
 
 using namespace std;
@@ -58,6 +59,7 @@ int main()
 
     cout << endl;
 
+	cout << "Floyd's algorithm" << endl;
     cout << "Enter number of repetitions: ";
     cin >> repetitions;
 

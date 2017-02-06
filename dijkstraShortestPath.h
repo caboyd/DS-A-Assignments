@@ -30,7 +30,7 @@ class DijkstraShortestPath
 {
 private:
 	Leader a[20];
-	int numOfVertices = 20;
+	int numOfVertices;
 
 public:
 
@@ -38,6 +38,10 @@ public:
 	//Reads edges from a file (Ex. 1 2 100). 
 	//Calls initialize function to update array
 	DijkstraShortestPath(std::string fileName);
+
+	//Destructor
+	//Clean up all followers
+	~DijkstraShortestPath();
 
 	//Prints Leaders and followers
 	void print();

@@ -6,15 +6,26 @@ using namespace std;
 static const int HIGH_VALUE = 0x7FFFFFFF; //MAX INT
 static const int NO_VERTEX_FOUND = -1;
 
-
-
-
-
-DijkstraShortestPath::DijkstraShortestPath(std::string fileName):numOfVertices(20)
+DijkstraShortestPath::DijkstraShortestPath(string fileName):numOfVertices(19)
 {
-	ifstream input(fileName);
+	ifstream input(fileName.c_str());
 	initialize(input);
 	input.close();
+}
+
+DijkstraShortestPath::~DijkstraShortestPath()
+{
+	Follower *p, *prev;
+	for (int i = 1; i <= numOfVertices; i++)
+	{
+		p = a[i].firstFollower;
+		while (p)
+		{
+			prev = p;
+			p = p->nextFollower;
+			delete prev;
+		}	
+	}
 }
 
 void DijkstraShortestPath::print()

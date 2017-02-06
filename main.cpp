@@ -12,6 +12,11 @@ using namespace std;
 
 int main()
 {
+	while (1)
+	{
+		DijkstraShortestPath b("graph.txt");
+		b.searchAll();
+	}
 
 	cout << "Dijsktra's Algorithm Test using class example" << endl;
 	DijkstraShortestPath d("input.txt");

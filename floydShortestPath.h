@@ -14,7 +14,7 @@ private:
 	int distance[20][20];
 	//Matrix of predecessor to the vertex j in the path from i to j
 	int vertex[20][20];
-	int numOfVertices = 20;
+	int numOfVertices;
 
 public:
 	

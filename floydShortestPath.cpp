@@ -6,9 +6,9 @@ using namespace std;
 static const int HIGH_VALUE = 0x7FFFFFFF; //MAX INT
 
 
-FloydShortestPath::FloydShortestPath(string fileName):numOfVertices(20)
+FloydShortestPath::FloydShortestPath(string fileName):numOfVertices(19)
 {
-	ifstream input(fileName);
+	ifstream input(fileName.c_str());
 	initialize(input);
 	input.close();
 }

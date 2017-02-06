@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <sys/time.h>
 #include "dijkstraShortestPath.h"
+#include <string>
 
 using namespace std;
 
@@ -57,6 +58,7 @@ int main()
 
     cout << endl;
 
+	cout << "Dijkstra's algorithm" << endl;
     cout << "Enter number of repetitions: ";
     cin >> repetitions;
 
@@ -81,7 +83,7 @@ int main()
             // Algorithm that you are timing is removed for this phase.
 
             //This will only initialize
-			DijkstraShortestPath d("graph.txt");
+			DijkstraShortestPath d("graph.txt"); 
 
 
             // Get the end time. NULL means return the current time.
@@ -148,10 +150,13 @@ int main()
         // can see, the current algorithm is just a simple loop that
         // repeats until the loop counter reaches maxIterations.
 
-		//This will only initialize
-		DijkstraShortestPath d("graph.txt");
-		//This is the function that will be timed
-		d.searchAll();
+	
+		{
+			//This will only initialize
+			DijkstraShortestPath d("graph.txt");
+			//This is the function that will be timed
+			d.searchAll();
+		}
 
         // This is here because it is required in the Phase 1 do loop.
         gettimeofday (&endTime, NULL);
