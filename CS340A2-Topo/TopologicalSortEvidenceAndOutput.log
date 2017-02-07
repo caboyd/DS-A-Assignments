@@ -1,0 +1,335 @@
+Script started on Sun Feb  5 21:55:39 2017
+Script on a049414[1]% main
+Evidence program is working
+
+In Class Example Initialization
+Leader 1
+	vertex = 1
+	inDegree = 0
+	nextLeader = 2
+	Follower 1 = 3
+	Follower 2 = 2
+
+Leader 2
+	vertex = 2
+	inDegree = 1
+	nextLeader = 4
+	Follower 1 = 10
+	Follower 2 = 4
+
+Leader 3
+	vertex = 4
+	inDegree = 2
+	nextLeader = 6
+	Follower 1 = 8
+	Follower 2 = 6
+
+Leader 4
+	vertex = 6
+	inDegree = 1
+	nextLeader = 10
+	Follower 1 = 3
+
+Leader 5
+	vertex = 10
+	inDegree = 2
+	nextLeader = 8
+
+Leader 6
+	vertex = 8
+	inDegree = 2
+	nextLeader = 3
+
+Leader 7
+	vertex = 3
+	inDegree = 2
+	nextLeader = 5
+	Follower 1 = 5
+
+Leader 8
+	vertex = 5
+	inDegree = 2
+	nextLeader = 7
+	Follower 1 = 8
+
+Leader 9
+	vertex = 7
+	inDegree = 0
+	nextLeader = 9
+	Follower 1 = 9
+	Follower 2 = 5
+
+Leader 10
+	vertex = 9
+	inDegree = 1
+	nextLeader = N/A
+	Follower 1 = 10
+	Follower 2 = 4
+
+In Class Example Partial Order
+7 1 
+9 2 
+10 4 
+6 
+3 
+5 
+8 
+
+Prerequisites Initialization
+Leader 1
+	vertex = B30
+	inDegree = 0
+	nextLeader = CS110
+	Follower 1 = CS110
+
+Leader 2
+	vertex = CS110
+	inDegree = 2
+	nextLeader = C30
+	Follower 1 = CS280
+	Follower 2 = CS261
+	Follower 3 = CS270
+	Follower 4 = CS115
+	Follower 5 = CS207
+	Follower 6 = CS205
+	Follower 7 = CS201
+
+Leader 3
+	vertex = C30
+	inDegree = 0
+	nextLeader = CS201
+	Follower 1 = CS110
+
+Leader 4
+	vertex = CS201
+	inDegree = 1
+	nextLeader = CS205
+	Follower 1 = CS301
+
+Leader 5
+	vertex = CS205
+	inDegree = 1
+	nextLeader = CS207
+
+Leader 6
+	vertex = CS207
+	inDegree = 1
+	nextLeader = CS115
+
+Leader 7
+	vertex = CS115
+	inDegree = 1
+	nextLeader = CS270
+	Follower 1 = CS210
+	Follower 2 = CS203
+
+Leader 8
+	vertex = CS270
+	inDegree = 2
+	nextLeader = CS261
+	Follower 1 = CS271
+
+Leader 9
+	vertex = CS261
+	inDegree = 1
+	nextLeader = CS280
+	Follower 1 = CS361
+
+Leader 10
+	vertex = CS280
+	inDegree = 1
+	nextLeader = CS100
+	Follower 1 = CS428
+
+Leader 11
+	vertex = CS100
+	inDegree = 0
+	nextLeader = CS301
+	Follower 1 = CS270
+
+Leader 12
+	vertex = CS301
+	inDegree = 1
+	nextLeader = CS401
+	Follower 1 = CS401
+
+Leader 13
+	vertex = CS401
+	inDegree = 1
+	nextLeader = CS203
+
+Leader 14
+	vertex = CS203
+	inDegree = 1
+	nextLeader = CS210
+
+Leader 15
+	vertex = CS210
+	inDegree = 1
+	nextLeader = CS271
+	Follower 1 = CS350
+	Follower 2 = CS340
+	Follower 3 = CS335
+	Follower 4 = CS330
+	Follower 5 = CS320
+	Follower 6 = CS315
+	Follower 7 = CS310
+	Follower 8 = CS215
+
+Leader 16
+	vertex = CS271
+	inDegree = 1
+	nextLeader = CS361
+
+Leader 17
+	vertex = CS361
+	inDegree = 1
+	nextLeader = CS461
+	Follower 1 = CS461
+
+Leader 18
+	vertex = CS461
+	inDegree = 1
+	nextLeader = CS428
+
+Leader 19
+	vertex = CS428
+	inDegree = 2
+	nextLeader = CS215
+
+Leader 20
+	vertex = CS215
+	inDegree = 1
+	nextLeader = CS372
+	Follower 1 = CS375
+	Follower 2 = CS372
+	Follower 3 = CS428
+
+Leader 21
+	vertex = CS372
+	inDegree = 1
+	nextLeader = CS476
+	Follower 1 = CS476
+
+Leader 22
+	vertex = CS476
+	inDegree = 1
+	nextLeader = CS375
+
+Leader 23
+	vertex = CS375
+	inDegree = 1
+	nextLeader = CS475
+	Follower 1 = CS475
+
+Leader 24
+	vertex = CS475
+	inDegree = 1
+	nextLeader = CS310
+
+Leader 25
+	vertex = CS310
+	inDegree = 1
+	nextLeader = CS410
+	Follower 1 = CS421
+	Follower 2 = CS412
+	Follower 3 = CS411
+	Follower 4 = CS410
+
+Leader 26
+	vertex = CS410
+	inDegree = 2
+	nextLeader = CS411
+
+Leader 27
+	vertex = CS411
+	inDegree = 1
+	nextLeader = CS412
+
+Leader 28
+	vertex = CS412
+	inDegree = 2
+	nextLeader = CS421
+
+Leader 29
+	vertex = CS421
+	inDegree = 3
+	nextLeader = CS315
+
+Leader 30
+	vertex = CS315
+	inDegree = 1
+	nextLeader = CS405
+	Follower 1 = CS405
+
+Leader 31
+	vertex = CS405
+	inDegree = 1
+	nextLeader = CS320
+
+Leader 32
+	vertex = CS320
+	inDegree = 1
+	nextLeader = CS330
+	Follower 1 = CS421
+
+Leader 33
+	vertex = CS330
+	inDegree = 1
+	nextLeader = CS430
+	Follower 1 = CS430
+
+Leader 34
+	vertex = CS430
+	inDegree = 1
+	nextLeader = CS335
+
+Leader 35
+	vertex = CS335
+	inDegree = 1
+	nextLeader = CS435
+	Follower 1 = CS435
+
+Leader 36
+	vertex = CS435
+	inDegree = 1
+	nextLeader = CS340
+
+Leader 37
+	vertex = CS340
+	inDegree = 1
+	nextLeader = CS425
+	Follower 1 = CS455
+	Follower 2 = CS425
+	Follower 3 = CS421
+	Follower 4 = CS412
+	Follower 5 = CS410
+
+Leader 38
+	vertex = CS425
+	inDegree = 1
+	nextLeader = CS455
+
+Leader 39
+	vertex = CS455
+	inDegree = 1
+	nextLeader = CS350
+
+Leader 40
+	vertex = CS350
+	inDegree = 1
+	nextLeader = N/A
+
+Prerequisites Topological Sort Partial Order
+CS100 C30 B30 
+CS110 
+CS280 CS261 CS270 CS115 CS207 CS205 CS201 
+CS361 CS271 CS210 CS203 CS301 
+CS461 CS350 CS340 CS335 CS330 CS320 CS315 CS310 CS215 CS401 
+CS455 CS425 CS435 CS430 CS405 CS421 CS412 CS411 CS410 CS375 CS372 CS428 
+CS475 CS476 
+
+Script on a049414[2]% exit
+exit
+
+Script done on Sun Feb  5 21:55:45 2017
