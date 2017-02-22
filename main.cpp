@@ -6,7 +6,7 @@ Assignment 2 Part 2 - Dijkstra's and Floyd's Shortest Path
 This program contains the evidence that the algorithms
 are working properly. Tests Dijkstra's Shortest Path algorithm
 for every vertex as the start vertext. Tests Floyd's Shortest 
-Path algorithm.
+Path algorithm..
 */
 
 #include "floydShortestPath.h"
