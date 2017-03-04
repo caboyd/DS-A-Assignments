@@ -29,14 +29,14 @@
     <ClInclude Include="AVLTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SetNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="KruskalsMST.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BinaryHeap.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SetNode.cpp">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

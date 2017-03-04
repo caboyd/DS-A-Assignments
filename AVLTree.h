@@ -3,17 +3,13 @@
 */
 
 #pragma once
-#include "SetNode.h"
+#include "SetNode.cpp"
 
 //AVLTree Data Structure
 class AVLTree
 {
 private:
 	SetNode* root;
-
-	//Total Depth of all nodes in the tree. Value is
-	//updated when nodes are inserted
-	int totalDepth;
 
 public:
 	//Default Constructor to initialize emprty AVL tree
@@ -22,53 +18,47 @@ public:
 	//Destructor to free all allocated node memory
 	~AVLTree();
 
-	//Returns total depth of tree nodes
-	int getTotalDepth() const;
-
 	//Insert into tree using vertex and balance tree
 	//Returns false if item not inserted
 	bool insert(int vertex);
 
-
+	//Returns SetNode given vertex value.
+	//Returns 0 if not found.
+	SetNode* find(int vertex);
+	
+	//Combines the VertexNodes of two vertexes into the larger
+	//  of the vertexes. Updates the SubSetNode sizes of each.
+	void unionize(SetNode* vertex1, SetNode* vertex2);
 
 	//Delete every node in the tree
 	void deleteTree();
 
-	//Delete every node in the tree with output
-	void verboseDeleteTree();
-
-	//Prints items in a tree
-	//Far left item is the root
+	//Print the AVL tree
 	void printPostOrder() const;
-
-
-
 private:
 	//Helper fucntions
 	//Recurvsive insert into AVL tree, updates tree total depth
-	bool insert(int vertex, SetNode* &tree, int depth);
+	bool insert(int vertex, SetNode* &tree) const;
 
 	//AVL rotations
-	void llRotation(SetNode *&tree);
-	void rrRotation(SetNode *&tree);
-	void lrRotation(SetNode *&tree);
-	void rlRotation(SetNode *&tree);
+	static void llRotation(SetNode *&tree);
+	static void rrRotation(SetNode *&tree);
+	static void lrRotation(SetNode *&tree);
+	static void rlRotation(SetNode *&tree);
 
-	//Recursive print tree in post order
-	void postOrder(SetNode* tree, int indent) const;
+	static void postOrder(SetNode * tree, int indent);
 
 	//recursive delete tree memory
-	void verboseDeleteTree(SetNode* tree);
-	void deleteTree(SetNode* tree);
+	static void deleteTree(SetNode* tree);
 
 	//update the nodes height
-	void fixHeight(SetNode* tree);
+	static void fixHeight(SetNode* tree);
 
 	//calculate height difference between two sides of tree
 	//NULL tree has a height of -1
-	int getHeightDifference(SetNode* left, SetNode* right) const;
+	static int getHeightDifference(SetNode* left, SetNode* right);
 
 	//Returns max between to ints
-	int max(int a, int b) const;
+	static int max(int a, int b) ;
 };
 

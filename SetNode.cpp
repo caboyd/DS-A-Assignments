@@ -11,7 +11,7 @@
 */
 
 struct VertexNode;
-struct VertextNode
+struct VertexNode
 {
 	int vertex;
 	VertexNode* next;
@@ -66,7 +66,30 @@ public:
 	void setLeft(SetNode *left) { this->left = left; }
 	void setRight(SetNode *right) { this->right = right; }
 
+	//Creates the subset Node and vertexNode
+	void makeSet()
+	{
+		subset = new SubSetNode;
+		subset->size = 1;
+		subset->firstVertex = new VertexNode;
+		subset->firstVertex->vertex = vertex;
+		subset->firstVertex->next = 0;
+	};
 
-	//Destructor
-	~SetNode() {}
+	//Destructor will delete linked list, but not sub trees.
+	//AVL tree class must delete sub trees.
+	~SetNode()
+	{
+		SubSetNode* s = subset;
+		VertexNode* v = subset->firstVertex;
+		while(v)
+		{
+			VertexNode* next = v->next;
+			delete(v);
+			v = next;
+		}
+		v = 0;
+		delete subset;
+		subset = 0;
+	}
 };
