@@ -28,17 +28,20 @@ void EdmondsCarpMaxFlow::initialization(std::ifstream& input)
 	int capacity;
 	int newNumOfNodes = 0;
 
+	//initialize network to -1
 	for(i = 0; i < MAX_NODES; i++)
 	{
 		for (j = 0; j < MAX_NODES;j++)
 			residualCapacity[i][j] = -1;
 	}
 
+	//Read each edge in
 	while(input >> i >> j >> capacity)
 	{
 		residualCapacity[i][j] = capacity;
 		residualCapacity[j][i] = 0;
 		
+		//get max of nodes
 		if (i > newNumOfNodes)
 			newNumOfNodes = i;
 		if (j > newNumOfNodes)
@@ -52,11 +55,15 @@ void EdmondsCarpMaxFlow::search(int source, int sink)
 	bool pathFound;
 	int i, j;
 
+	//Find path from source to sink and store path in currentPath
 	pathFound = breadthFirstSearch(source, sink);
+
 	while (pathFound)
 	{
 		int pathFlow = HIGH_VALUE;
 		j = sink;
+
+		//Find max possible flow through this path
 		while(j != source)
 		{
 			i = currentPath[j];
@@ -64,6 +71,8 @@ void EdmondsCarpMaxFlow::search(int source, int sink)
 			j = i;
 		}
 		j = sink;
+
+		//Add max possible flow through this path
 		while (j != source)
 		{
 			i = currentPath[j];
@@ -71,8 +80,11 @@ void EdmondsCarpMaxFlow::search(int source, int sink)
 			residualCapacity[j][i] += pathFlow;
 			j = i;
 		}
+		//add this paths flow to total network flow
 		maxFlow += pathFlow;
+		//try to find new path
 		pathFound = breadthFirstSearch(source, sink);
+
 		cout << "Residual Capacity Matrix after path found\n\n";
 		printResidualCapacity();
 		cout << endl;
@@ -83,16 +95,20 @@ bool EdmondsCarpMaxFlow::breadthFirstSearch(int source, int sink)
 {
 	int head, tail;
 	int i, j;
+	//reset array to false
 	for (i = 0; i <= numOfNodes; i++)
 	{
 		visitedVertices[i] = false;
 	}
+
 	head = 1;
 	tail = 1;
 	q[tail] = source;
 	tail++;
 	visitedVertices[source] = true;
 
+	//Try to find a path with some residualCapacitiy
+	// from source to sink
 	while (head != tail)
 	{
 		i = q[head];
