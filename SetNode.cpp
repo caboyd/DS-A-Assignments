@@ -39,7 +39,7 @@ public:
 	SetNode() :vertex(-1), left(0),  right(0), subset(0), height(0) {}
 
 	//Constructor to Initialize SetNode with a vertex
-	explicit SetNode(int v) :vertex(v),left(0), right(0), subset(0), height(0) {}
+	SetNode(int v) :vertex(v),left(0), right(0), subset(0), height(0) {}
 
 		//Constructor to Initialize SetNode with a vertex and set left and right nodes
 	SetNode(int k, SetNode *left, SetNode *right): subset(0), height(0)

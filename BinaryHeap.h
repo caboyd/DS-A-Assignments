@@ -24,7 +24,7 @@ private:
 	int edgeCount;
 public:
 	//Constructor to initialize Binary Heap size
-	explicit BinaryHeap();
+	BinaryHeap();
 
 	//Insert Edge
 	void insert(int vertex1, int vertex2, int distance);

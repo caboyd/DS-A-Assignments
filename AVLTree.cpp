@@ -87,7 +87,7 @@ void AVLTree::printPostOrder() const
 
 bool AVLTree::insert(int vertex, int& vertexCount, SetNode* & tree) const
 {
-	bool inserted = false;
+	bool inserted;
 
 	//Insert here
 	if(tree == 0)

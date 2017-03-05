@@ -3,7 +3,7 @@ Date: March 4,2017
 */
 #pragma once
 #include "AVLTree.h"
-#include <fstream>
+
 #include <string>
 #include "BinaryHeap.h"
 
@@ -18,7 +18,7 @@ private:
 	int vertexCount;
 
 public:
-	explicit KruskalsMST(std::string fileName);
+	KruskalsMST(std::string fileName);
 	~KruskalsMST();
 
 	//builds the minimum spanning tree
