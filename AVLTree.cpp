@@ -1,3 +1,6 @@
+/*	Name: Chris Boyd
+Date: March 4,2017
+*/
 #include "AVLTree.h"
 #include <iostream>
 #include <iomanip>

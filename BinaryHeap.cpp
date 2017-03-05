@@ -1,5 +1,7 @@
+/*	Name: Chris Boyd
+Date: March 4,2017
+*/
 #include "BinaryHeap.h"
-
 
 BinaryHeap::BinaryHeap()
 	:edgeCount(0)

@@ -1,3 +1,6 @@
+/*	Name: Chris Boyd
+Date: March 4,2017
+*/
 #pragma once
 
 const int NUM_OF_EDGES = 128;

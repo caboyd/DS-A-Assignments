@@ -1,3 +1,11 @@
+/*	Name: Chris Boyd
+*	Date: March 4,2017
+*	
+*	Description:
+*	Implement Kruskal’s minimum spanning tree algorithm.
+*	Reads edges from a text file and generates the minimum
+*	spanning tree and prints out the edges.
+*/
 #include "KruskalsMST.h"
 #include <iostream>
 using namespace std;
