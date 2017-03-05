@@ -1,7 +1,6 @@
 #pragma once
-#include <fstream>
-#include <string>
 
+#include <string>
 
 const int MAX_NODES = 20;
 
@@ -30,6 +29,6 @@ private:
 
 	static int min(int a, int b);
 
-	void printMatrix(int m[][MAX_NODES]);
+	void printMatrix(int m[][MAX_NODES]) const;
 
 };

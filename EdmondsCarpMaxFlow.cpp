@@ -1,6 +1,7 @@
 #include "EdmondsCarpMaxFlow.h"
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 
 static const int HIGH_VALUE = 0x7FFFFFFF; //MAX INT
 
@@ -72,6 +73,7 @@ void EdmondsCarpMaxFlow::search(int source, int sink)
 		}
 		maxFlow += pathFlow;
 		pathFound = breadthFirstSearch(source, sink);
+		cout << "Residual Capacity Matrix after path found\n\n";
 		printResidualCapacity();
 		cout << endl;
 	}
@@ -133,6 +135,7 @@ void EdmondsCarpMaxFlow::paths()
 
 void EdmondsCarpMaxFlow::printResidualCapacity()
 {
+
 	printMatrix(residualCapacity);
 }
 
@@ -141,7 +144,7 @@ int EdmondsCarpMaxFlow::min(int a, int b)
 	return (a < b ? a : b);
 }
 
-void EdmondsCarpMaxFlow::printMatrix(int m[][20])
+void EdmondsCarpMaxFlow::printMatrix(int m[][MAX_NODES]) const
 {
 	//Prints nice 2D array
 	for (int i = 0; i <= numOfNodes; i++)
@@ -151,7 +154,7 @@ void EdmondsCarpMaxFlow::printMatrix(int m[][20])
 		{
 			for (int k = 0; k <= numOfNodes; k++)
 			{
-				cout << "----";
+				cout << "---";
 			}
 			cout << endl;
 		}
@@ -167,17 +170,17 @@ void EdmondsCarpMaxFlow::printMatrix(int m[][20])
 		{
 			//Print Columns Numbers
 			if (i == 0)
-				cout << setw(4) << j;
+				cout << setw(3) << j;
 			else
 			{
 				//Print values
-				if (m[i][j] != HIGH_VALUE)
-					cout << setw(4) << m[i][j];
+				if (m[i][j] != -1)
+					cout << setw(3) << m[i][j];
 				else
-					cout << setw(4) << "HV";
+					cout << setw(3) << ".";
 			}
 		}
 		cout << endl;
 	}
-	cout << endl << endl;
+	cout << endl;
 }

@@ -147,7 +147,11 @@
     <ClInclude Include="EdmondsCarpMaxFlow.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="EdmondsCarpEvidenceAndOutput.txt" />
     <Text Include="input.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EdmondsCarpFlow.pdf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
