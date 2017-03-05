@@ -20,15 +20,15 @@ public:
 
 	//Insert into tree using vertex and balance tree
 	//Returns false if item not inserted
-	bool insert(int vertex);
+	bool insert(int vertex, int& vertexCount);
 
-	//Returns SetNode given vertex value.
+	//Returns SetNode that contains vertex value.
 	//Returns 0 if not found.
-	SetNode* find(int vertex);
+	SetNode* find(int vertex) const;
 	
 	//Combines the VertexNodes of two vertexes into the larger
 	//  of the vertexes. Updates the SubSetNode sizes of each.
-	void unionize(SetNode* vertex1, SetNode* vertex2);
+	void unionize(SetNode* vertexTo, SetNode* vertexFrom) const;
 
 	//Delete every node in the tree
 	void deleteTree();
@@ -38,13 +38,16 @@ public:
 private:
 	//Helper fucntions
 	//Recurvsive insert into AVL tree, updates tree total depth
-	bool insert(int vertex, SetNode* &tree) const;
+	bool insert(int vertex, int& vertexCount, SetNode* &tree) const;
 
 	//AVL rotations
 	static void llRotation(SetNode *&tree);
 	static void rrRotation(SetNode *&tree);
 	static void lrRotation(SetNode *&tree);
 	static void rlRotation(SetNode *&tree);
+
+	//recursive find node
+	SetNode* find(SetNode* tree, int vertex) const;
 
 	static void postOrder(SetNode * tree, int indent);
 

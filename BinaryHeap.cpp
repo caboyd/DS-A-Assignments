@@ -1,11 +1,6 @@
 #include "BinaryHeap.h"
 
 
-BinaryHeap::BinaryHeap()
-	:q(new Edge[128]),
-	edgeCount(0)
-{}
-
 BinaryHeap::BinaryHeap(int numOfEdges)
 	:q(new Edge[numOfEdges]),
 	edgeCount(0)

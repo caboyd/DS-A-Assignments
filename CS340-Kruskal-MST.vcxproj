@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BinaryHeap.cpp" />
+    <ClCompile Include="KruskalsMST.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

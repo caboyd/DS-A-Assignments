@@ -3,25 +3,50 @@
 #include <iomanip>
 #include <cassert>
 
-AVLTree::AVLTree() :root(0)
-{}
+AVLTree::AVLTree() : root(0)
+{
+}
 
 AVLTree::~AVLTree()
 {
 	deleteTree();
 }
 
-bool AVLTree::insert(int vertex)
+bool AVLTree::insert(int vertex, int& vertexCount)
 {
 	//create root if tree is empty
 	if (root == 0)
 	{
 		root = new SetNode(vertex);
+		vertexCount++;
 		return true;
 	}
 	//recursive insert
-	return insert(vertex, root);
+	return insert(vertex, vertexCount, root);
+}
 
+SetNode* AVLTree::find(int vertex) const
+{
+	return find(root, vertex);
+}
+
+void AVLTree::unionize(SetNode* vertexTo, SetNode* vertexFrom) const
+{
+	vertexTo->getSubSet()->size += vertexFrom->getSubSet()->size;
+	VertexNode* v = vertexTo->getSubSet()->firstVertex;
+	//Append vertexFrom's vertexNodes to vertexTo's last vertexNode
+	while(v->next)
+		v = v->next;
+	v->next = vertexFrom->getSubSet()->firstVertex;
+	delete vertexFrom->getSubSet();
+	v = v->next;
+	//Set all vertexFrom's vertexNode's SetNode's subsets to vertexTo's subset
+	while (v)
+	{
+		vertexFrom = find(v->vertex);
+		vertexFrom->setSubSet(vertexTo->getSubSet());
+		v = v->next;
+	}
 }
 
 void AVLTree::deleteTree()
@@ -41,56 +66,45 @@ void AVLTree::printPostOrder() const
 	if (root == 0)
 		std::cout << "AVL Tree is empty.\n\n";
 	else
-		//recursive print
+	//recursive print
 		postOrder(root, 0);
 }
 
 
-bool AVLTree::insert(int vertex, SetNode * &tree) const
+bool AVLTree::insert(int vertex, int& vertexCount, SetNode* & tree) const
 {
 	bool inserted = false;
 
-	//If vertex is smaller than current node, insert on left side
-	if (vertex < tree->getKey())
+	//Insert here
+	if(tree == 0)
 	{
-		//add to left child if empty
-		if (tree->getLeft() == 0)
-		{
-			tree->setLeft(new SetNode(vertex));
-			inserted = true;
-		} else
-		{
-			//try to insert to this nodes left child
-			inserted = insert(vertex, tree->getLeftA());
-		}
+		tree = new SetNode(vertex);
+		vertexCount++;
+		inserted = true;
 
+	} else if (vertex < tree->getVertex())
+	{
+		//try to insert to this nodes left child
+		inserted = insert(vertex, vertexCount, tree->getLeftA());
+		
 		if (inserted)
 		{
 			assert(tree->getLeft());
-
 			//Calculate height difference
 			//Rotate if left is deeper than right
 			if (getHeightDifference(tree->getLeft(), tree->getRight()) == 2)
 			{
-				if (vertex < tree->getLeft()->getKey())
+				if (vertex < tree->getLeft()->getVertex())
 					llRotation(tree);
 				else
 					lrRotation(tree);
 			}
 		}
-
-	} else if (vertex > tree->getKey())
+	} else if (vertex > tree->getVertex())
 	{
-		//add to right child if empty
-		if (tree->getRight() == 0)
-		{
-			tree->setRight(new SetNode(vertex));
-			inserted = true;
-		} else
-		{
-			//try to insert to this nodes right child
-			inserted = insert(vertex, tree->getRightA());
-		}
+		//try to insert to this nodes right child
+		inserted = insert(vertex, vertexCount, tree->getRightA());
+
 		if (inserted)
 		{
 			assert(tree->getRight());
@@ -98,14 +112,14 @@ bool AVLTree::insert(int vertex, SetNode * &tree) const
 			//Rotate if right is deeper than left
 			if (getHeightDifference(tree->getLeft(), tree->getRight()) == -2)
 			{
-				if (vertex > tree->getRight()->getKey())
+				if (vertex > tree->getRight()->getVertex())
 					rrRotation(tree);
 				else
 					rlRotation(tree);
 			}
 		}
-
-	} else
+	}
+	else
 	{
 		//Duplicate vertex exists in tree
 		inserted = false;
@@ -115,14 +129,13 @@ bool AVLTree::insert(int vertex, SetNode * &tree) const
 		fixHeight(tree);
 
 	return inserted;
-
 }
 
 //Hilderman's standard AVL rotation algorithm
 //http://www2.cs.uregina.ca/~hilder/cs210/Algorithms/avlLL.txt
-void AVLTree::llRotation(SetNode * &tree)
+void AVLTree::llRotation(SetNode* & tree)
 {
-	SetNode *leftSubTree = tree->getLeft();
+	SetNode* leftSubTree = tree->getLeft();
 	tree->setLeft(leftSubTree->getRight());
 	leftSubTree->setRight(tree);
 
@@ -133,9 +146,9 @@ void AVLTree::llRotation(SetNode * &tree)
 
 //Hilderman's standard AVL rotation algorithm
 //http://www2.cs.uregina.ca/~hilder/cs210/Algorithms/avlRR.txt
-void AVLTree::rrRotation(SetNode * &tree)
+void AVLTree::rrRotation(SetNode* & tree)
 {
-	SetNode *rightSubTree = tree->getRight();
+	SetNode* rightSubTree = tree->getRight();
 	tree->setRight(rightSubTree->getLeft());
 	rightSubTree->setLeft(tree);
 
@@ -146,7 +159,7 @@ void AVLTree::rrRotation(SetNode * &tree)
 
 //Hilderman's standard AVL rotation algorithm
 //http://www2.cs.uregina.ca/~hilder/cs210/Algorithms/avlLR.txt
-void AVLTree::lrRotation(SetNode * &tree)
+void AVLTree::lrRotation(SetNode* & tree)
 {
 	rrRotation(tree->getLeftA());
 	llRotation(tree);
@@ -154,15 +167,41 @@ void AVLTree::lrRotation(SetNode * &tree)
 
 //Hilderman's standard AVL rotation algorithm
 //http://www2.cs.uregina.ca/~hilder/cs210/Algorithms/avlRL.txt
-void AVLTree::rlRotation(SetNode * &tree)
+void AVLTree::rlRotation(SetNode* & tree)
 {
 	llRotation(tree->getRightA());
 	rrRotation(tree);
 }
 
+SetNode* AVLTree::find(SetNode* tree, int vertex) const
+{
+	assert(tree);
+	//Vertex is smaller check left sub tree
+	if (tree->getVertex() < vertex)
+	{
+		if (tree->getLeft())
+			return find(tree->getLeft(), vertex);
+			return 0; //Not Found
+	}
+	//Vertex is larger check right sub tree
+	if (tree->getVertex() > vertex)
+	{
+		if (tree->getRight())
+			return find(tree->getRight(), vertex);
+			return 0; //Not Found
+	}
+	if (tree->getVertex() == vertex)
+	{
+		//Found Vertex
+		return tree;
+	}
+
+	//Not Found
+	return 0;
+}
 
 
-void AVLTree::postOrder(SetNode * tree, int indent)
+void AVLTree::postOrder(SetNode* tree, int indent)
 {
 	if (tree)
 	{
@@ -176,11 +215,11 @@ void AVLTree::postOrder(SetNode * tree, int indent)
 			std::cout << std::setw(indent) << ' ';
 
 		//Prints tree lines
-		if (tree->getRight()) 
+		if (tree->getRight())
 			std::cout << " /\n" << std::setw(indent) << ' ';
 
 		//prints this node
-		std::cout << tree->getKey() << "\n ";
+		std::cout << tree->getVertex() << "\n ";
 
 		//prints down the left side of the tree
 		//farthest left child is printed last
@@ -192,7 +231,7 @@ void AVLTree::postOrder(SetNode * tree, int indent)
 	}
 }
 
-void AVLTree::deleteTree(SetNode * tree)
+void AVLTree::deleteTree(SetNode* tree)
 {
 	assert(tree);
 	if (tree->getLeft())
@@ -225,7 +264,7 @@ void AVLTree::fixHeight(SetNode* tree)
 	tree->setHeight(maxHeight);
 }
 
-int AVLTree::getHeightDifference(SetNode * left, SetNode * right)
+int AVLTree::getHeightDifference(SetNode* left, SetNode* right)
 {
 	//Ternary to get SetNode height, NULL SetNode has -1 height
 	int leftHeight = left ? left->getHeight() : -1;

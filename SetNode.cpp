@@ -50,8 +50,8 @@ public:
 	}
 
 	//Getters and Setters
-	int getKey()const { return vertex; }
-	void setKey(int k) { vertex = k; }
+	int getVertex()const { return vertex; }
+	void setVertex(int v) { vertex = v; }
 
 	int getHeight()const { return height; }
 	void setHeight(int height) { this->height = height; }
@@ -65,6 +65,9 @@ public:
 
 	void setLeft(SetNode *left) { this->left = left; }
 	void setRight(SetNode *right) { this->right = right; }
+
+	SubSetNode* getSubSet()const { return subset; }
+	void setSubSet(SubSetNode *subset) { this->subset = subset; }
 
 	//Creates the subset Node and vertexNode
 	void makeSet()

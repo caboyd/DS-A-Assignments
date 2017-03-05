@@ -18,8 +18,6 @@ private:
 	Edge* q;
 	int edgeCount;
 public:
-	//Constructor to initialize Binary Heap size to 128
-	BinaryHeap();
 	//Constructor to initialize Binary Heap size
 	explicit BinaryHeap(int numOfEdges = 128);
 
