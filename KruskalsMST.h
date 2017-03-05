@@ -16,13 +16,15 @@ private:
 
 public:
 	explicit KruskalsMST(std::string fileName);
-
 	~KruskalsMST();
 
-	void initialization(std::ifstream & input);
 	void search();
-	void tree();
+	void tree() const;
+	void print() const;
+
 private:
+	void initialization(std::ifstream & input);
+
 	//number of current edges in the minimum spanning tree
 	int length() const;
 

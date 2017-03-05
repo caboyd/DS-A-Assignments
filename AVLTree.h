@@ -30,6 +30,8 @@ public:
 	//  of the vertexes. Updates the SubSetNode sizes of each.
 	void unionize(SetNode* vertexTo, SetNode* vertexFrom) const;
 
+	void makeSet(int vertex) const;
+
 	//Delete every node in the tree
 	void deleteTree();
 
@@ -38,7 +40,9 @@ public:
 private:
 	//Helper fucntions
 	//Recurvsive insert into AVL tree, updates tree total depth
-	bool insert(int vertex, int& vertexCount, SetNode* &tree) const;
+	bool insert(int vertex, int& vertexCount,SetNode* &tree) const;
+
+
 
 	//AVL rotations
 	static void llRotation(SetNode *&tree);

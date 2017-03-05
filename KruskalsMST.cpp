@@ -8,7 +8,7 @@ KruskalsMST::KruskalsMST(string fileName)
 	:minQueue(),
 	setNodeTree(),
 	minSpanningTree{0},
-	vertexCount(20)
+	vertexCount(0)
 {
 	//Open file and initialize
 	ifstream input(fileName.c_str());
@@ -32,14 +32,12 @@ void KruskalsMST::initialization(std::ifstream & input)
 		bool result = setNodeTree.insert(vertex1, vertexCount);
 		if(result)
 		{
-			SetNode* v = setNodeTree.find(vertex1);
-			v->makeSet();
+			setNodeTree.makeSet(vertex1);
 		}
 		result = setNodeTree.insert(vertex2, vertexCount);
 		if (result)
 		{
-			SetNode* v = setNodeTree.find(vertex2);
-			v->makeSet();
+			setNodeTree.makeSet(vertex2);
 		}
 	}
 }
@@ -67,9 +65,9 @@ void KruskalsMST::search()
 	}
 }
 
-void KruskalsMST::tree()
+void KruskalsMST::tree() const
 {
-	for (int i = 0; i < length() - 1; i++)
+	for (int i = 0; i < length(); i++)
 	{
 		cout << minSpanningTree[i].vertex1;
 		cout << "--";
@@ -79,6 +77,11 @@ void KruskalsMST::tree()
 		cout << ")";
 		cout << endl;
 	}
+}
+
+void KruskalsMST::print() const
+{
+	setNodeTree.printPostOrder();
 }
 
 int KruskalsMST::length() const
@@ -102,6 +105,7 @@ void KruskalsMST::insertUnsorted(Edge e)
 		if(minSpanningTree[i].vertex1 == 0)
 		{
 			minSpanningTree[i] = e;
+			return;
 		}
 	}
 }

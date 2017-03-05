@@ -49,6 +49,17 @@ void AVLTree::unionize(SetNode* vertexTo, SetNode* vertexFrom) const
 	}
 }
 
+void AVLTree::makeSet(int vertex) const
+{	//Creates the subset Node and vertexNode
+	SetNode* v = find(vertex);
+	SubSetNode* temp = new SubSetNode{};
+	temp->size = 1;
+	temp->firstVertex = new VertexNode{};
+	temp->firstVertex->vertex = v->getVertex();
+	temp->firstVertex->next = 0;
+	v->setSubSet(temp);
+}
+
 void AVLTree::deleteTree()
 {
 	if (root)
@@ -81,7 +92,6 @@ bool AVLTree::insert(int vertex, int& vertexCount, SetNode* & tree) const
 		tree = new SetNode(vertex);
 		vertexCount++;
 		inserted = true;
-
 	} else if (vertex < tree->getVertex())
 	{
 		//try to insert to this nodes left child
@@ -131,6 +141,7 @@ bool AVLTree::insert(int vertex, int& vertexCount, SetNode* & tree) const
 	return inserted;
 }
 
+
 //Hilderman's standard AVL rotation algorithm
 //http://www2.cs.uregina.ca/~hilder/cs210/Algorithms/avlLL.txt
 void AVLTree::llRotation(SetNode* & tree)
@@ -177,14 +188,14 @@ SetNode* AVLTree::find(SetNode* tree, int vertex) const
 {
 	assert(tree);
 	//Vertex is smaller check left sub tree
-	if (tree->getVertex() < vertex)
+	if (tree->getVertex() > vertex)
 	{
 		if (tree->getLeft())
 			return find(tree->getLeft(), vertex);
 			return 0; //Not Found
 	}
 	//Vertex is larger check right sub tree
-	if (tree->getVertex() > vertex)
+	if (tree->getVertex() < vertex)
 	{
 		if (tree->getRight())
 			return find(tree->getRight(), vertex);
@@ -219,7 +230,16 @@ void AVLTree::postOrder(SetNode* tree, int indent)
 			std::cout << " /\n" << std::setw(indent) << ' ';
 
 		//prints this node
-		std::cout << tree->getVertex() << "\n ";
+		std::cout << tree->getVertex();
+		//Print this nodes subset
+		VertexNode* v = tree->getSubSet()->firstVertex;
+		while(v)
+		{
+			std::cout << "->" << v->vertex;
+			v = v->next;
+		}
+		std::cout << std::endl;
+
 
 		//prints down the left side of the tree
 		//farthest left child is printed last

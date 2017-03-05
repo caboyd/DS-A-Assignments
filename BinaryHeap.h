@@ -1,5 +1,7 @@
 #pragma once
 
+const int NUM_OF_EDGES = 128;
+
 struct Edge
 {
 	int vertex1;
@@ -15,14 +17,11 @@ class BinaryHeap
 {
 private:
 	//Dynamic array for priority queue size
-	Edge* q;
+	Edge q[NUM_OF_EDGES];
 	int edgeCount;
 public:
 	//Constructor to initialize Binary Heap size
-	explicit BinaryHeap(int numOfEdges = 128);
-
-	//Destructor to delete q
-	~BinaryHeap();
+	explicit BinaryHeap();
 
 	//Insert Edge
 	void insert(int vertex1, int vertex2, int distance);

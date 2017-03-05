@@ -26,7 +26,7 @@ struct SubSetNode
 
 class SetNode 
 {
-private:
+protected:
 	int vertex;
 	SetNode* left;
 	SetNode* right;
@@ -69,30 +69,21 @@ public:
 	SubSetNode* getSubSet()const { return subset; }
 	void setSubSet(SubSetNode *subset) { this->subset = subset; }
 
-	//Creates the subset Node and vertexNode
-	void makeSet()
-	{
-		subset = new SubSetNode;
-		subset->size = 1;
-		subset->firstVertex = new VertexNode;
-		subset->firstVertex->vertex = vertex;
-		subset->firstVertex->next = 0;
-	};
+
 
 	//Destructor will delete linked list, but not sub trees.
 	//AVL tree class must delete sub trees.
 	~SetNode()
 	{
-		SubSetNode* s = subset;
+		//subset already deleted
+		if (!subset)return;
 		VertexNode* v = subset->firstVertex;
+		subset->firstVertex = 0;
 		while(v)
 		{
 			VertexNode* next = v->next;
 			delete(v);
 			v = next;
 		}
-		v = 0;
-		delete subset;
-		subset = 0;
 	}
 };

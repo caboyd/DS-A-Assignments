@@ -1,15 +1,11 @@
 #include "BinaryHeap.h"
 
 
-BinaryHeap::BinaryHeap(int numOfEdges)
-	:q(new Edge[numOfEdges]),
-	edgeCount(0)
-{}
-
-BinaryHeap::~BinaryHeap()
+BinaryHeap::BinaryHeap()
+	:edgeCount(0)
 {
-	delete q;
-	q = 0;
+	for (int i = 0; i < NUM_OF_EDGES; i++)
+	q[i] = Edge{};
 }
 
 void BinaryHeap::insert(int vertex1, int vertex2, int distance)
@@ -23,7 +19,7 @@ void BinaryHeap::insert(int vertex1, int vertex2, int distance)
 	int i = edgeCount;
 	while (i > 1 && e.distance < q[i / 2].distance)
 	{
-		q[i] = q[1 / 2];
+		q[i] = q[i / 2];
 		i = i / 2;
 	}
 	q[i] = e;
