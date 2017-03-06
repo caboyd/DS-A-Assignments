@@ -139,6 +139,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryHeap.cpp" />
+    <ClCompile Include="BinarySearchTree.cpp" />
+    <ClCompile Include="HuffmanCompressor.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BinaryHeap.h" />
+    <ClInclude Include="BinarySearchTree.h" />
+    <ClInclude Include="HuffmanCompressor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
