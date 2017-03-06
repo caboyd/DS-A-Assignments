@@ -1,3 +1,7 @@
+/*	Chris Boyd
+*	March 5, 2017
+*/
+
 #include "HuffmanCompressor.h"
 #include <fstream>
 #include <iostream>
@@ -5,9 +9,6 @@
 using namespace std;
 
 HuffmanCompressor::HuffmanCompressor(std::string fileName) 
-	:minQueue(),
-	prefixTree(0),
-	elementCount(0)
 {
 	ifstream input(fileName.c_str());
 	initialization(input);
@@ -57,11 +58,16 @@ void HuffmanCompressor::buildEncodeTree()
 	buildEncodeTree(prefixTree, "");
 }
 
+void HuffmanCompressor::printEncodeTree()
+{	
+	encodeTree.printInorder();
+}
+
 void HuffmanCompressor::initialization(std::ifstream& input)
 {
 	BinarySearchTree<PCTreeNode> tempTree;
 	char c;
-
+	elementCount = 0;
 	//Reads all characters into BST.
 	//Count frequencies
 	while (input.get(c))
@@ -98,15 +104,16 @@ void HuffmanCompressor::buildEncodeTree(PCTreeNode* tree, string code)
 	if (tree->left)
 	{
 		string s = code + "0";
-		buildEncodeTree(tree->left, code);
+		buildEncodeTree(tree->left, s);
 	}
 
 	if (tree->right)
 	{
 		string s = code + "1";
-		buildEncodeTree(tree->right, code);
+		buildEncodeTree(tree->right, s);
 	}
-	encodeTree.insert(tree->character, code);
+	if(tree->character != NO_CHARACTER)
+		encodeTree.insert(tree->character, code);
 }
 
 void HuffmanCompressor::encode(std::string fileIn, std::string fileOut)
@@ -127,6 +134,36 @@ void HuffmanCompressor::decode(std::string fileIn, std::string fileOut)
 	ofstream output(fileOut.c_str());
 	while (!input.eof())
 		printDecode(input, output);
+}
+
+void HuffmanCompressor::printPrefixTree()
+{
+	postorder(prefixTree, 0);
+}
+
+void HuffmanCompressor::postorder(PCTreeNode *tree, int indent = 0)
+{
+	if (tree)
+	{
+		if (tree->right)
+			postorder(tree->right, indent + 4);
+		if (indent)
+			std::cout << std::setw(indent) << "";
+		if (tree->right)
+			std::cout << " /\n" << std::setw(indent) << "";
+
+		if (tree->character)
+			std::cout << "(" <<tree->character << ")";
+		else
+			std::cout << "nil";
+		std::cout << " (freq = " << tree->frequency << ")\n";
+
+		if (tree->left)
+		{
+			std::cout << std::setw(indent) << ' ' << " \\\n";
+			postorder(tree->left, indent + 4);
+		}
+	}
 }
 
 void HuffmanCompressor::printEncode(std::ofstream& output, char c)

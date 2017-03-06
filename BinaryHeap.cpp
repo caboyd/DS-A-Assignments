@@ -1,5 +1,5 @@
-/*	Name: Chris Boyd
-Date: March 4,2017
+/*	Chris Boyd
+*	March 5, 2017
 */
 #include "BinaryHeap.h"
 

@@ -150,6 +150,9 @@
     <ClInclude Include="HuffmanCompressor.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="decoded.txt" />
+    <Text Include="encoded.txt" />
+    <Text Include="HuffmanCodesEvidence.txt" />
     <Text Include="text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

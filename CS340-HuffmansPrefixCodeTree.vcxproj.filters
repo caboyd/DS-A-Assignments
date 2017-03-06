@@ -43,5 +43,14 @@
     <Text Include="text.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="encoded.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="decoded.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="HuffmanCodesEvidence.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

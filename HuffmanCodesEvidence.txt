@@ -1,0 +1,319 @@
+Prefix Codes for encoding text.txt
+
+char | code
+-----------------
+
+   0011
+    11
+"   10100010
+$   00010
+&   1001111101
+(   1001110
+)   1000111
++   1010000001
+,   1000100
+.   0100000
+0   101000011
+1   101101100
+2   10011111100
+3   10110110110
+4   10011111000
+:   0101111
+;   00000
+<   01000010
+=   000011
+>   1010000010
+A   010100001
+C   10011111101
+D   1010000011
+E   0101001
+F   10011110
+I   100100
+J   10001010
+L   1000110
+M   10011111001
+N   000010
+O   1001111111
+P   1011000
+R   1010000000
+S   10001011
+T   01010001
+U   10110110100
+V   010100000
+W   101000010
+X   10110110101
+Z   01000011
+_   0101110
+a   10111
+b   10110111
+c   010001
+d   00011
+e   0110
+f   0101100
+g   101001
+h   100110
+i   10000
+k   10110110111
+l   100101
+m   1011001
+n   01001
+o   01110
+p   010101
+r   0010
+s   01111
+t   10101
+u   1011010
+w   0101101
+y   10100011
+
+
+
+Binary Search Tree for decoding
+
+        ( ) (freq = 635)
+     /
+    nil (freq = 1138)
+     \
+                    (a) (freq = 71)
+                 /
+                nil (freq = 139)
+                 \
+                                (b) (freq = 9)
+                             /
+                            nil (freq = 17)
+                             \
+                                            (k) (freq = 1)
+                                         /
+                                        nil (freq = 2)
+                                         \
+                                            (3) (freq = 1)
+                                     /
+                                    nil (freq = 4)
+                                     \
+                                            (X) (freq = 1)
+                                         /
+                                        nil (freq = 2)
+                                         \
+                                            (U) (freq = 1)
+                                 /
+                                nil (freq = 8)
+                                 \
+                                    (1) (freq = 4)
+                         /
+                        nil (freq = 34)
+                         \
+                            (u) (freq = 17)
+                     /
+                    nil (freq = 68)
+                     \
+                            (m) (freq = 17)
+                         /
+                        nil (freq = 34)
+                         \
+                            (P) (freq = 17)
+             /
+            nil (freq = 270)
+             \
+                    (t) (freq = 67)
+                 /
+                nil (freq = 131)
+                 \
+                        (g) (freq = 32)
+                     /
+                    nil (freq = 64)
+                     \
+                                (y) (freq = 8)
+                             /
+                            nil (freq = 16)
+                             \
+                                (") (freq = 8)
+                         /
+                        nil (freq = 32)
+                         \
+                                    (0) (freq = 4)
+                                 /
+                                nil (freq = 8)
+                                 \
+                                    (W) (freq = 4)
+                             /
+                            nil (freq = 16)
+                             \
+                                        (D) (freq = 2)
+                                     /
+                                    nil (freq = 4)
+                                     \
+                                        (>) (freq = 2)
+                                 /
+                                nil (freq = 8)
+                                 \
+                                        (+) (freq = 2)
+                                     /
+                                    nil (freq = 4)
+                                     \
+                                        (R) (freq = 2)
+         /
+        nil (freq = 503)
+         \
+                                        (O) (freq = 2)
+                                     /
+                                    nil (freq = 4)
+                                     \
+                                            (C) (freq = 1)
+                                         /
+                                        nil (freq = 2)
+                                         \
+                                            (2) (freq = 1)
+                                 /
+                                nil (freq = 8)
+                                 \
+                                        (&) (freq = 2)
+                                     /
+                                    nil (freq = 4)
+                                     \
+                                            (M) (freq = 1)
+                                         /
+                                        nil (freq = 2)
+                                         \
+                                            (4) (freq = 1)
+                             /
+                            nil (freq = 16)
+                             \
+                                (F) (freq = 8)
+                         /
+                        nil (freq = 31)
+                         \
+                            (() (freq = 15)
+                     /
+                    nil (freq = 61)
+                     \
+                        (h) (freq = 30)
+                 /
+                nil (freq = 119)
+                 \
+                        (l) (freq = 29)
+                     /
+                    nil (freq = 58)
+                     \
+                        (I) (freq = 29)
+             /
+            nil (freq = 233)
+             \
+                            ()) (freq = 15)
+                         /
+                        nil (freq = 29)
+                         \
+                            (L) (freq = 14)
+                     /
+                    nil (freq = 57)
+                     \
+                                (S) (freq = 8)
+                             /
+                            nil (freq = 14)
+                             \
+                                (J) (freq = 6)
+                         /
+                        nil (freq = 28)
+                         \
+                            (,) (freq = 14)
+                 /
+                nil (freq = 114)
+                 \
+                    (i) (freq = 57)
+ /
+nil (freq = 1853)
+  \
+                    (s) (freq = 55)
+                 /
+                nil (freq = 110)
+                 \
+                    (o) (freq = 55)
+             /
+            nil (freq = 218)
+             \
+                (e) (freq = 108)
+         /
+        nil (freq = 408)
+         \
+                            (:) (freq = 14)
+                         /
+                        nil (freq = 27)
+                         \
+                            (_) (freq = 13)
+                     /
+                    nil (freq = 53)
+                     \
+                            (w) (freq = 13)
+                         /
+                        nil (freq = 26)
+                         \
+                            (f) (freq = 13)
+                 /
+                nil (freq = 102)
+                 \
+                        (p) (freq = 25)
+                     /
+                    nil (freq = 49)
+                     \
+                            (E) (freq = 12)
+                         /
+                        nil (freq = 24)
+                         \
+                                (T) (freq = 6)
+                             /
+                            nil (freq = 12)
+                             \
+                                    (A) (freq = 3)
+                                 /
+                                nil (freq = 6)
+                                 \
+                                    (V) (freq = 3)
+             /
+            nil (freq = 190)
+             \
+                    (n) (freq = 48)
+                 /
+                nil (freq = 88)
+                 \
+                        (c) (freq = 21)
+                     /
+                    nil (freq = 40)
+                     \
+                                (Z) (freq = 5)
+                             /
+                            nil (freq = 10)
+                             \
+                                (<) (freq = 5)
+                         /
+                        nil (freq = 19)
+                         \
+                            (.) (freq = 9)
+     /
+    nil (freq = 715)
+     \
+                (
+) (freq = 79)
+             /
+            nil (freq = 157)
+             \
+                (r) (freq = 78)
+         /
+        nil (freq = 307)
+         \
+                    (d) (freq = 39)
+                 /
+                nil (freq = 77)
+                 \
+                    ($) (freq = 38)
+             /
+            nil (freq = 150)
+             \
+                        (=) (freq = 19)
+                     /
+                    nil (freq = 37)
+                     \
+                        (N) (freq = 18)
+                 /
+                nil (freq = 73)
+                 \
+                    (;) (freq = 36)
+Press any key to continue . . .

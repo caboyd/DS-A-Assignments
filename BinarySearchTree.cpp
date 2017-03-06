@@ -1,3 +1,7 @@
+/*	Chris Boyd
+*	March 5, 2017
+*/
+
 #pragma once
 
 #include "BinarySearchTree.h"
@@ -19,7 +23,7 @@ TreeNode<ItemType>::TreeNode(int k, const ItemType& nodeDataItem)
 template <typename ItemType>
 TreeNode<ItemType>::TreeNode(int k, const ItemType& nodeDataItem,
 	TreeNode<ItemType>* left, TreeNode<ItemType>* right)
-	:key(),
+	:key(k),
 	item(nodeDataItem),
 	leftTree(left),
 	rightTree(right)
@@ -36,7 +40,7 @@ void BinarySearchTree<ItemType>::insert(
 	int key,const ItemType &nodeDataItem)
 {
 	if(root == 0)
-		root = new TreeNode<ItemType>(key, nodeDataItem, 0, 0);
+		root = new TreeNode<ItemType>(key, nodeDataItem);
 	else
 		insert(key, nodeDataItem, root);
 }
@@ -228,8 +232,8 @@ void BinarySearchTree<ItemType>::printInorder()
 	} else
 	{
 		
-		std::cout << "key | item" << std::endl;
-		std::cout << "----------" << std::endl;
+		std::cout << "char | code      " << std::endl;
+		std::cout << "-----------------" << std::endl;
 		inorder(root);
 	}
 }
@@ -243,8 +247,8 @@ void BinarySearchTree<ItemType>::inorder(TreeNode<ItemType> *tree)
 		return;
 
 	inorder(tree->getLeft());
-	std::cout << std::setw(4) << tree->getKey() 
-		<< std::setw(4) << tree->getItem() << std::endl;
+	std::cout << std::setw(4) <<std::left  << char(tree->getKey())
+		<< std::setw(16) << std::left << tree->getItem() << std::endl;
 	inorder(tree->getRight());
 	return;
 	
