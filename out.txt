@@ -1,0 +1,620 @@
+Brute Force Test
+
+Pattern: Elephant
+Brute Force Test with No Match
+Comparisons: 273
+Brute Force Test with Match at Beginning
+Pattern found at line: 1 position: 0
+Comparisons: 9
+Brute Force Test with Match in Middle
+Pattern found at line: 2 position: 19
+Comparisons: 99
+Brute Force Test with Match split on two lines
+Comparisons: 287
+Brute Force Test with multiple matches
+Pattern: Elephant
+Pattern found at line: 1 position: 6
+Pattern found at line: 1 position: 47
+Pattern found at line: 3 position: 12
+Pattern found at line: 3 position: 40
+Pattern found at line: 4 position: 70
+Comparisons: 358
+Total Brute Force comparisons: 1026
+
+Boyer Moore Test
+
+Pattern: Elephant
+Boyer Moore Test with No Match
+Comparisons: 337
+Boyer Moore Test with Match at Beginning
+Pattern found at line: 1 position: 0
+Comparisons: 8
+Boyer Moore Test with Match in Middle
+Pattern found at line: 2 position: 19
+Comparisons: 115
+Boyer Moore Test with Match split on two lines
+Comparisons: 359
+Boyer Moore Test with multiple matches
+Boyer Moore
+Pattern: Elephant
+Pattern found at line: 1 position: 6
+Pattern found at line: 1 position: 47
+Pattern found at line: 3 position: 12
+Pattern found at line: 3 position: 40
+Pattern found at line: 4 position: 70
+Comparisons: 446
+Total Boyer Moor comparisons: 1711
+
+Knuth Morris Pratt Test
+
+Pattern: Elephant
+Knuth Morris Pratt Test with No Match
+Comparisons: 280
+Knuth Morris Pratt Test with Match at Beginning
+Pattern found at line: 1 position: 0
+Comparisons: 15
+Knuth Morris Pratt Test with Match in Middle
+Pattern found at line: 2 position: 19
+Comparisons: 105
+Knuth Morris Pratt Test with Match split on two lines
+Pattern found at line: 3 position: 32
+Comparisons: 188
+Knuth Morris Pratt Test with multiple matches
+Knuth Morris Pratt
+Pattern: Elephant
+Pattern found at line: 1 position: 6
+Pattern found at line: 1 position: 47
+Pattern found at line: 3 position: 12
+Pattern found at line: 3 position: 40
+Pattern found at line: 4 position: 70
+Comparisons: 396
+Total Knuth Morris Pratt Comparisons: 984
+
+
+Brute Force with text.txt and pattern.txt
+Pattern: Pro
+Pattern found at line: 1 position: 0
+Pattern found at line: 14 position: 0
+Pattern found at line: 19 position: 4
+Pattern found at line: 28 position: 0
+Pattern found at line: 78 position: 4
+Pattern found at line: 80 position: 4
+Pattern found at line: 167 position: 0
+Comparisons: 1986
+Pattern: $$
+Pattern found at line: 3 position: 0
+Pattern found at line: 4 position: 0
+Pattern found at line: 5 position: 0
+Pattern found at line: 6 position: 0
+Pattern found at line: 7 position: 0
+Pattern found at line: 8 position: 0
+Pattern found at line: 9 position: 0
+Pattern found at line: 10 position: 0
+Pattern found at line: 11 position: 0
+Pattern found at line: 12 position: 0
+Pattern found at line: 21 position: 0
+Pattern found at line: 22 position: 0
+Pattern found at line: 23 position: 0
+Pattern found at line: 24 position: 0
+Pattern found at line: 25 position: 0
+Pattern found at line: 26 position: 0
+Pattern found at line: 42 position: 0
+Pattern found at line: 43 position: 0
+Pattern found at line: 44 position: 0
+Comparisons: 2012
+Pattern: associated$$
+Comparisons: 2046
+Pattern: ;
+Pattern found at line: 15 position: 13
+Pattern found at line: 17 position: 10
+Pattern found at line: 18 position: 14
+Pattern found at line: 19 position: 14
+Pattern found at line: 29 position: 30
+Pattern found at line: 30 position: 30
+Pattern found at line: 31 position: 27
+Pattern found at line: 32 position: 17
+Pattern found at line: 33 position: 57
+Pattern found at line: 35 position: 10
+Pattern found at line: 37 position: 16
+Pattern found at line: 38 position: 35
+Pattern found at line: 39 position: 17
+Pattern found at line: 40 position: 12
+Pattern found at line: 47 position: 21
+Pattern found at line: 48 position: 13
+Pattern found at line: 49 position: 13
+Pattern found at line: 51 position: 19
+Pattern found at line: 56 position: 35
+Pattern found at line: 57 position: 38
+Pattern found at line: 58 position: 19
+Pattern found at line: 60 position: 19
+Pattern found at line: 61 position: 32
+Pattern found at line: 62 position: 37
+Pattern found at line: 63 position: 35
+Pattern found at line: 67 position: 40
+Pattern found at line: 68 position: 57
+Pattern found at line: 69 position: 19
+Pattern found at line: 70 position: 16
+Pattern found at line: 71 position: 20
+Pattern found at line: 72 position: 15
+Pattern found at line: 74 position: 27
+Pattern found at line: 75 position: 61
+Pattern found at line: 76 position: 15
+Pattern found at line: 77 position: 12
+Pattern found at line: 78 position: 14
+Comparisons: 1992
+Pattern: sort
+Pattern found at line: 6 position: 3
+Pattern found at line: 22 position: 8
+Pattern found at line: 22 position: 51
+Pattern found at line: 24 position: 22
+Pattern found at line: 25 position: 12
+Pattern found at line: 43 position: 10
+Comparisons: 2030
+Pattern: Sort
+Pattern found at line: 18 position: 3
+Pattern found at line: 28 position: 10
+Comparisons: 1968
+Pattern: End_
+Pattern found at line: 19 position: 0
+Pattern found at line: 40 position: 3
+Pattern found at line: 58 position: 12
+Pattern found at line: 69 position: 12
+Pattern found at line: 70 position: 9
+Pattern found at line: 72 position: 6
+Pattern found at line: 76 position: 6
+Pattern found at line: 77 position: 3
+Pattern found at line: 78 position: 0
+Pattern found at line: 80 position: 0
+Comparisons: 1995
+Pattern: whilst
+Comparisons: 1966
+Pattern: This program reads a series of words, each of which$$ has an associated page number.  The words are then
+Comparisons: 1917
+Pattern: ted
+Pattern found at line: 5 position: 17
+Pattern found at line: 6 position: 6
+Pattern found at line: 6 position: 34
+Pattern found at line: 7 position: 50
+Pattern found at line: 8 position: 30
+Pattern found at line: 9 position: 23
+Pattern found at line: 10 position: 20
+Pattern found at line: 11 position: 24
+Pattern found at line: 24 position: 51
+Pattern found at line: 25 position: 15
+Comparisons: 2046
+Pattern: I love CS340
+Pattern found at line: 166 position: 0
+Comparisons: 2005
+Pattern: Page ( J ) := Pagelist
+Pattern found at line: 57 position: 15
+Comparisons: 2013
+Pattern: :=
+Pattern found at line: 35 position: 5
+Pattern found at line: 39 position: 8
+Pattern found at line: 47 position: 12
+Pattern found at line: 48 position: 8
+Pattern found at line: 49 position: 8
+Pattern found at line: 56 position: 26
+Pattern found at line: 57 position: 26
+Pattern found at line: 60 position: 14
+Pattern found at line: 61 position: 18
+Pattern found at line: 62 position: 23
+Pattern found at line: 63 position: 21
+Pattern found at line: 67 position: 26
+Pattern found at line: 68 position: 24
+Pattern found at line: 71 position: 11
+Comparisons: 1983
+Pattern: ed
+Pattern found at line: 5 position: 18
+Pattern found at line: 6 position: 7
+Pattern found at line: 6 position: 35
+Pattern found at line: 7 position: 51
+Pattern found at line: 8 position: 31
+Pattern found at line: 9 position: 24
+Pattern found at line: 10 position: 21
+Pattern found at line: 11 position: 25
+Pattern found at line: 14 position: 4
+Pattern found at line: 19 position: 8
+Pattern found at line: 24 position: 32
+Pattern found at line: 24 position: 52
+Pattern found at line: 25 position: 16
+Pattern found at line: 28 position: 4
+Pattern found at line: 78 position: 8
+Comparisons: 2079
+Pattern: ( I ) := Very_Large
+Pattern found at line: 62 position: 17
+Pattern found at line: 67 position: 20
+Comparisons: 2031
+Total Brute Force comparisons: 30069
+
+
+Boyer Moore with text.txt and pattern.txt
+Boyer Moore
+Pattern: Pro
+Pattern found at line: 1 position: 0
+Pattern found at line: 14 position: 0
+Pattern found at line: 19 position: 4
+Pattern found at line: 28 position: 0
+Pattern found at line: 78 position: 4
+Pattern found at line: 80 position: 4
+Pattern found at line: 167 position: 0
+Comparisons: 2710
+Pattern: $$
+Pattern found at line: 3 position: 0
+Pattern found at line: 4 position: 0
+Pattern found at line: 5 position: 0
+Pattern found at line: 6 position: 0
+Pattern found at line: 7 position: 0
+Pattern found at line: 8 position: 0
+Pattern found at line: 9 position: 0
+Pattern found at line: 10 position: 0
+Pattern found at line: 11 position: 0
+Pattern found at line: 12 position: 0
+Pattern found at line: 21 position: 0
+Pattern found at line: 22 position: 0
+Pattern found at line: 23 position: 0
+Pattern found at line: 24 position: 0
+Pattern found at line: 25 position: 0
+Pattern found at line: 26 position: 0
+Pattern found at line: 42 position: 0
+Pattern found at line: 43 position: 0
+Pattern found at line: 44 position: 0
+Comparisons: 2972
+Pattern: associated$$
+Comparisons: 2182
+Pattern: ;
+Pattern found at line: 15 position: 13
+Pattern found at line: 17 position: 10
+Pattern found at line: 18 position: 14
+Pattern found at line: 19 position: 14
+Pattern found at line: 29 position: 30
+Pattern found at line: 30 position: 30
+Pattern found at line: 31 position: 27
+Pattern found at line: 32 position: 17
+Pattern found at line: 33 position: 57
+Pattern found at line: 35 position: 10
+Pattern found at line: 37 position: 16
+Pattern found at line: 38 position: 35
+Pattern found at line: 39 position: 17
+Pattern found at line: 40 position: 12
+Pattern found at line: 47 position: 21
+Pattern found at line: 48 position: 13
+Pattern found at line: 49 position: 13
+Pattern found at line: 51 position: 19
+Pattern found at line: 56 position: 35
+Pattern found at line: 57 position: 38
+Pattern found at line: 58 position: 19
+Pattern found at line: 60 position: 19
+Pattern found at line: 61 position: 32
+Pattern found at line: 62 position: 37
+Pattern found at line: 63 position: 35
+Pattern found at line: 67 position: 40
+Pattern found at line: 68 position: 57
+Pattern found at line: 69 position: 19
+Pattern found at line: 70 position: 16
+Pattern found at line: 71 position: 20
+Pattern found at line: 72 position: 15
+Pattern found at line: 74 position: 27
+Pattern found at line: 75 position: 61
+Pattern found at line: 76 position: 15
+Pattern found at line: 77 position: 12
+Pattern found at line: 78 position: 14
+Comparisons: 3876
+Pattern: sort
+Pattern found at line: 6 position: 3
+Pattern found at line: 22 position: 8
+Pattern found at line: 22 position: 51
+Pattern found at line: 24 position: 22
+Pattern found at line: 25 position: 12
+Pattern found at line: 43 position: 10
+Comparisons: 2578
+Pattern: Sort
+Pattern found at line: 18 position: 3
+Pattern found at line: 28 position: 10
+Comparisons: 2572
+Pattern: End_
+Pattern found at line: 19 position: 0
+Pattern found at line: 40 position: 3
+Pattern found at line: 58 position: 12
+Pattern found at line: 69 position: 12
+Pattern found at line: 70 position: 9
+Pattern found at line: 72 position: 6
+Pattern found at line: 76 position: 6
+Pattern found at line: 77 position: 3
+Pattern found at line: 78 position: 0
+Pattern found at line: 80 position: 0
+Comparisons: 2508
+Pattern: whilst
+Comparisons: 2401
+Pattern: This program reads a series of words, each of which$$ has an associated page number.  The words are then
+Comparisons: 2068
+Pattern: ted
+Pattern found at line: 5 position: 17
+Pattern found at line: 6 position: 6
+Pattern found at line: 6 position: 34
+Pattern found at line: 7 position: 50
+Pattern found at line: 8 position: 30
+Pattern found at line: 9 position: 23
+Pattern found at line: 10 position: 20
+Pattern found at line: 11 position: 24
+Pattern found at line: 24 position: 51
+Pattern found at line: 25 position: 15
+Comparisons: 2746
+Pattern: I love CS340
+Pattern found at line: 166 position: 0
+Comparisons: 2257
+Pattern: Page ( J ) := Pagelist
+Pattern found at line: 57 position: 15
+Comparisons: 2271
+Pattern: :=
+Pattern found at line: 35 position: 5
+Pattern found at line: 39 position: 8
+Pattern found at line: 47 position: 12
+Pattern found at line: 48 position: 8
+Pattern found at line: 49 position: 8
+Pattern found at line: 56 position: 26
+Pattern found at line: 57 position: 26
+Pattern found at line: 60 position: 14
+Pattern found at line: 61 position: 18
+Pattern found at line: 62 position: 23
+Pattern found at line: 63 position: 21
+Pattern found at line: 67 position: 26
+Pattern found at line: 68 position: 24
+Pattern found at line: 71 position: 11
+Comparisons: 2952
+Pattern: ed
+Pattern found at line: 5 position: 18
+Pattern found at line: 6 position: 7
+Pattern found at line: 6 position: 35
+Pattern found at line: 7 position: 51
+Pattern found at line: 8 position: 31
+Pattern found at line: 9 position: 24
+Pattern found at line: 10 position: 21
+Pattern found at line: 11 position: 25
+Pattern found at line: 14 position: 4
+Pattern found at line: 19 position: 8
+Pattern found at line: 24 position: 32
+Pattern found at line: 24 position: 52
+Pattern found at line: 25 position: 16
+Pattern found at line: 28 position: 4
+Pattern found at line: 78 position: 8
+Comparisons: 3045
+Pattern: ( I ) := Very_Large
+Pattern found at line: 62 position: 17
+Pattern found at line: 67 position: 20
+Comparisons: 2276
+Total Boyer Moor comparisons: 41690
+
+
+Knuth Morris Pratt with text.txt and pattern.txt
+Knuth Morris Pratt
+Pattern: Pro
+Pattern found at line: 1 position: 0
+Pattern found at line: 14 position: 0
+Pattern found at line: 19 position: 4
+Pattern found at line: 28 position: 0
+Pattern found at line: 33 position: 9
+Pattern found at line: 46 position: 2
+Pattern found at line: 72 position: 9
+Pattern found at line: 78 position: 4
+Pattern found at line: 80 position: 4
+Pattern found at line: 167 position: 0
+Comparisons: 1997
+Pattern: $$
+Pattern found at line: 3 position: 0
+Pattern found at line: 3 position: 2
+Pattern found at line: 4 position: 0
+Pattern found at line: 4 position: 54
+Pattern found at line: 5 position: 0
+Pattern found at line: 5 position: 53
+Pattern found at line: 6 position: 0
+Pattern found at line: 6 position: 53
+Pattern found at line: 7 position: 0
+Pattern found at line: 7 position: 53
+Pattern found at line: 8 position: 0
+Pattern found at line: 8 position: 52
+Pattern found at line: 9 position: 0
+Pattern found at line: 9 position: 54
+Pattern found at line: 10 position: 0
+Pattern found at line: 10 position: 55
+Pattern found at line: 11 position: 0
+Pattern found at line: 11 position: 55
+Pattern found at line: 12 position: 0
+Pattern found at line: 20 position: 0
+Pattern found at line: 21 position: 0
+Pattern found at line: 21 position: 2
+Pattern found at line: 22 position: 0
+Pattern found at line: 22 position: 57
+Pattern found at line: 23 position: 0
+Pattern found at line: 23 position: 24
+Pattern found at line: 24 position: 0
+Pattern found at line: 24 position: 57
+Pattern found at line: 25 position: 0
+Pattern found at line: 25 position: 19
+Pattern found at line: 26 position: 0
+Pattern found at line: 41 position: 0
+Pattern found at line: 42 position: 0
+Pattern found at line: 42 position: 2
+Pattern found at line: 43 position: 0
+Pattern found at line: 43 position: 25
+Pattern found at line: 44 position: 0
+Comparisons: 2030
+Pattern: associated$$
+Pattern found at line: 5 position: 44
+Pattern found at line: 7 position: 44
+Pattern found at line: 9 position: 45
+Pattern found at line: 19 position: 7
+Pattern found at line: 24 position: 48
+Pattern found at line: 40 position: 5
+Comparisons: 2095
+Pattern: ;
+Pattern found at line: 15 position: 13
+Pattern found at line: 17 position: 10
+Pattern found at line: 18 position: 14
+Pattern found at line: 19 position: 14
+Pattern found at line: 29 position: 30
+Pattern found at line: 30 position: 30
+Pattern found at line: 31 position: 27
+Pattern found at line: 32 position: 17
+Pattern found at line: 33 position: 57
+Pattern found at line: 35 position: 10
+Pattern found at line: 37 position: 16
+Pattern found at line: 38 position: 35
+Pattern found at line: 39 position: 17
+Pattern found at line: 40 position: 12
+Pattern found at line: 47 position: 21
+Pattern found at line: 48 position: 13
+Pattern found at line: 49 position: 13
+Pattern found at line: 51 position: 19
+Pattern found at line: 56 position: 35
+Pattern found at line: 57 position: 38
+Pattern found at line: 58 position: 19
+Pattern found at line: 60 position: 19
+Pattern found at line: 61 position: 32
+Pattern found at line: 62 position: 37
+Pattern found at line: 63 position: 35
+Pattern found at line: 67 position: 40
+Pattern found at line: 68 position: 57
+Pattern found at line: 69 position: 19
+Pattern found at line: 70 position: 16
+Pattern found at line: 71 position: 20
+Pattern found at line: 72 position: 15
+Pattern found at line: 74 position: 27
+Pattern found at line: 75 position: 61
+Pattern found at line: 76 position: 15
+Pattern found at line: 77 position: 12
+Pattern found at line: 78 position: 14
+Comparisons: 1956
+Pattern: sort
+Pattern found at line: 5 position: 14
+Pattern found at line: 6 position: 3
+Pattern found at line: 6 position: 31
+Pattern found at line: 7 position: 47
+Pattern found at line: 9 position: 20
+Pattern found at line: 15 position: 2
+Pattern found at line: 22 position: 8
+Pattern found at line: 22 position: 39
+Pattern found at line: 22 position: 51
+Pattern found at line: 24 position: 14
+Pattern found at line: 24 position: 22
+Pattern found at line: 25 position: 12
+Pattern found at line: 43 position: 3
+Pattern found at line: 43 position: 10
+Pattern found at line: 52 position: 26
+Pattern found at line: 74 position: 13
+Comparisons: 2052
+Pattern: Sort
+Pattern found at line: 18 position: 3
+Pattern found at line: 28 position: 10
+Pattern found at line: 43 position: 3
+Comparisons: 1974
+Pattern: End_
+Pattern found at line: 19 position: 0
+Pattern found at line: 40 position: 3
+Pattern found at line: 58 position: 12
+Pattern found at line: 69 position: 12
+Pattern found at line: 70 position: 9
+Pattern found at line: 72 position: 6
+Pattern found at line: 76 position: 6
+Pattern found at line: 77 position: 3
+Pattern found at line: 78 position: 0
+Pattern found at line: 80 position: 0
+Comparisons: 2016
+Pattern: whilst
+Pattern found at line: 7 position: 20
+Pattern found at line: 9 position: 18
+Pattern found at line: 10 position: 47
+Pattern found at line: 15 position: 0
+Pattern found at line: 24 position: 12
+Comparisons: 2006
+Pattern: This program reads a series of words, each of which$$ has an associated page number.  The words are then
+Pattern found at line: 4 position: 4
+Comparisons: 2164
+Pattern: ted
+Pattern found at line: 5 position: 17
+Pattern found at line: 6 position: 6
+Pattern found at line: 6 position: 34
+Pattern found at line: 7 position: 50
+Pattern found at line: 8 position: 30
+Pattern found at line: 9 position: 23
+Pattern found at line: 10 position: 4
+Pattern found at line: 10 position: 20
+Pattern found at line: 11 position: 15
+Pattern found at line: 11 position: 24
+Pattern found at line: 14 position: 3
+Pattern found at line: 17 position: 4
+Pattern found at line: 19 position: 7
+Pattern found at line: 22 position: 19
+Pattern found at line: 22 position: 45
+Pattern found at line: 23 position: 19
+Pattern found at line: 24 position: 31
+Pattern found at line: 24 position: 51
+Pattern found at line: 25 position: 15
+Pattern found at line: 38 position: 7
+Pattern found at line: 43 position: 15
+Pattern found at line: 58 position: 12
+Pattern found at line: 69 position: 12
+Pattern found at line: 76 position: 6
+Comparisons: 2052
+Pattern: I love CS340
+Pattern found at line: 166 position: 0
+Comparisons: 1978
+Pattern: Page ( J ) := Pagelist
+Pattern found at line: 57 position: 15
+Comparisons: 2000
+Pattern: :=
+Pattern found at line: 35 position: 5
+Pattern found at line: 39 position: 8
+Pattern found at line: 47 position: 12
+Pattern found at line: 48 position: 8
+Pattern found at line: 49 position: 8
+Pattern found at line: 56 position: 26
+Pattern found at line: 57 position: 26
+Pattern found at line: 60 position: 14
+Pattern found at line: 61 position: 18
+Pattern found at line: 62 position: 23
+Pattern found at line: 63 position: 21
+Pattern found at line: 67 position: 26
+Pattern found at line: 68 position: 24
+Pattern found at line: 71 position: 11
+Comparisons: 1984
+Pattern: ed
+Pattern found at line: 4 position: 18
+Pattern found at line: 4 position: 36
+Pattern found at line: 5 position: 18
+Pattern found at line: 5 position: 41
+Pattern found at line: 6 position: 7
+Pattern found at line: 6 position: 35
+Pattern found at line: 7 position: 4
+Pattern found at line: 7 position: 51
+Pattern found at line: 8 position: 31
+Pattern found at line: 9 position: 24
+Pattern found at line: 10 position: 5
+Pattern found at line: 10 position: 21
+Pattern found at line: 11 position: 16
+Pattern found at line: 11 position: 25
+Pattern found at line: 14 position: 4
+Pattern found at line: 17 position: 5
+Pattern found at line: 19 position: 8
+Pattern found at line: 22 position: 20
+Pattern found at line: 22 position: 46
+Pattern found at line: 23 position: 20
+Pattern found at line: 24 position: 32
+Pattern found at line: 24 position: 52
+Pattern found at line: 25 position: 16
+Pattern found at line: 28 position: 4
+Pattern found at line: 38 position: 8
+Pattern found at line: 40 position: 4
+Pattern found at line: 43 position: 16
+Pattern found at line: 58 position: 13
+Pattern found at line: 69 position: 13
+Pattern found at line: 76 position: 7
+Pattern found at line: 78 position: 8
+Pattern found at line: 80 position: 1
+Comparisons: 2020
+Pattern: ( I ) := Very_Large
+Pattern found at line: 62 position: 17
+Pattern found at line: 67 position: 20
+Comparisons: 2028
+Total Knuth Morris Pratt Comparisons: 30352
+
