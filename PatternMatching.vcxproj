@@ -139,6 +139,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="pattern.txt" />
+    <Text Include="proofPattern.txt" />
+    <Text Include="proofTextMatchBeginning.txt" />
+    <Text Include="proofTextMatchEnd.txt" />
+    <Text Include="proofTextMatchMiddle.txt" />
+    <Text Include="proofTextMatchMiddleSplitTwoLines.txt" />
+    <Text Include="proofTextMatchMultiple.txt" />
+    <Text Include="proofTextNoMatch.txt" />
+    <Text Include="text.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PatternMatch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,15 @@
+Pro
+$$
+associated$$
+;
+sort
+Sort
+End_
+whilst
+This program reads a series of words, each of which$$ has an associated page number.  The words are then
+ted
+I love CS340
+Page ( J ) := Pagelist
+:=
+ed
+( I ) := Very_Large
