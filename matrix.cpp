@@ -17,7 +17,7 @@ int** createMatrix(const int row, const int col);
 void parseRowAndColumn(ifstream &input, int &row, int &col);
 void parseMatrix(ifstream &input, int** matrix, const int row, const int col);
 void printMatrix(int** m, const int row, const int col);
-void multiplyMatrixFiles(std::string file1, std::string file2);
+int multiplyMatrixFiles(std::string file1, std::string file2);
 
 pthread_t *tids;
 //Global matrixes
@@ -41,14 +41,17 @@ extern "C" {
 int main(int argc, char *argv[])
 {
 
-	multiplyMatrixFiles("a1.txt", "b1.txt");
-	multiplyMatrixFiles("a2.txt", "b2.txt");
-	multiplyMatrixFiles("a3.txt", "b3.txt");
+	if (multiplyMatrixFiles("a1.txt", "b1.txt") > 0)
+		return -1;
+	if (multiplyMatrixFiles("a2.txt", "b2.txt") > 0)
+		return -1;
+	if (multiplyMatrixFiles("a3.txt", "b3.txt") > 0)
+		return -1;
 
 	return 0;
 }
 
-void multiplyMatrixFiles(std::string file1, std::string file2)
+int multiplyMatrixFiles(std::string file1, std::string file2)
 {
 	int threadIndex = 0;
 	int row, col;
@@ -76,7 +79,7 @@ void multiplyMatrixFiles(std::string file1, std::string file2)
 			if (pthread_create(&tids[threadIndex], NULL, threadMultiplyMatrix, r) > 0)
 			{
 				cerr << "pthread_create failure" << endl;
-				exit(0);
+				return 1;
 			}
 			threadIndex++;
 		}
@@ -90,7 +93,7 @@ void multiplyMatrixFiles(std::string file1, std::string file2)
 		if (pthread_join(tids[i], NULL) > 0)
 		{
 			cerr << "pthread_join failure" << endl;
-			exit(0);
+			return 1;
 		}
 	}
 
@@ -98,6 +101,7 @@ void multiplyMatrixFiles(std::string file1, std::string file2)
 	printMatrix(c, m, r);
 
 	delete[] tids;
+	return 0;
 }
 
 //Dynamically allocate matrix with row by col dimensions
@@ -180,14 +184,14 @@ void printMatrix(int** m, const int row, const int col)
 		if (i == -1)
 			cout << setw(3) << internal << " ";
 		else
-			cout << setw(3) << internal << i+1;
+			cout << setw(3) << internal << i + 1;
 		cout << "|";
 
 		for (int j = 0; j < col; j++)
 		{
 			//Print Columns Numbers
 			if (i == -1)
-				cout << setw(4) << j+1;
+				cout << setw(4) << j + 1;
 			else
 			{
 				//Print values
