@@ -55,6 +55,8 @@ int main(int argc, char *argv[])
 	c = createMatrix(m, r);
 
 	tids = new pthread_t[m*r];
+	cout << "num of threads:" << m*r;
+	printMatrix(c, m, r);
 	for (int i = 0; i < m; i++)
 	{
 		for (int j = 0; j < r; j++)
@@ -67,7 +69,7 @@ int main(int argc, char *argv[])
 				cerr << "pthread_create failure" << endl;
 				return 1;
 			}
-			threadIndex++;
+			threadIndex++; 
 		}
 	}
 
