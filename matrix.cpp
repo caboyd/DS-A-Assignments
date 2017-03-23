@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 	tids = new pthread_t[m*r];
 	for (int i = 0; i < m; i++)
 	{
-		for (int j = 0; i < r; j++)
+		for (int j = 0; j < r; j++)
 		{
 			rowcol *r = new rowcol;
 			r->col = j;
