@@ -104,7 +104,7 @@ int** createMatrix(const int row, const int col)
 		for (int j = 0; j < col; j++)
 			matrix[i][j] = 0;
 	}
-	printMatrix(c, m, r);
+	printMatrix(c, row, col);
 	return matrix;
 }
 
