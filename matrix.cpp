@@ -56,7 +56,6 @@ int main(int argc, char *argv[])
 
 	tids = new pthread_t[m*r];
 	cout << "num of threads:" << m*r;
-	printMatrix(c, m, r);
 	for (int i = 0; i < m; i++)
 	{
 		for (int j = 0; j < r; j++)
@@ -104,7 +103,6 @@ int** createMatrix(const int row, const int col)
 		for (int j = 0; j < col; j++)
 			matrix[i][j] = 0;
 	}
-	printMatrix(matrix, row, col);
 	return matrix;
 }
 
@@ -171,23 +169,20 @@ void printMatrix(int** m, const int row, const int col)
 
 		//Print Row Numbers
 		if (i == -1)
-			cout << setw(2) << internal << " ";
+			cout << setw(3) << internal << " ";
 		else
-			cout << setw(2) << internal << i;
+			cout << setw(3) << internal << i;
 		cout << "|";
 
 		for (int j = 0; j < col; j++)
 		{
 			//Print Columns Numbers
 			if (i == -1)
-				cout << setw(3) << j;
-			else if(i > 0)
+				cout << setw(4) << j;
+			else
 			{
 				//Print values
-				if (m[i][j] != -1)
-					cout << setw(3) << m[i][j];
-				else
-					cout << setw(3) << ".";
+				cout << setw(4) << m[i][j];
 			}
 		}
 		cout << endl;

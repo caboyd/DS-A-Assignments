@@ -35,7 +35,6 @@ void* threadMultiplyMatrix(void* args)
 	for(int i = 0; i < n; i++)
 	{
 		c[row][col] += a[row][i] * b[i][col];
-		cout << "row:" << row << " col:" << col << " c:" <<c[row][col];
 	}
 
 	delete r;
