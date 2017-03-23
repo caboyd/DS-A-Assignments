@@ -1,0 +1,9 @@
+// a is a 2D matrix filled in row order
+2 // number of rows
+3 // number of columns
+1
+2
+3
+4
+5
+6
