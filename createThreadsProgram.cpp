@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <iostream>
+#include "threadFunction.cpp"
 
 using namespace  std;
 int n;
