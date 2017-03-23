@@ -7,56 +7,84 @@ This program creates child threads
 #include <fstream>
 #include <locale>
 #include <sstream>
+#include <pthread.h>
+#include <iomanip>
 
 using namespace  std;
 
 int** readMatrixFromFile(std::string fileName, int &row, int &col);
+int** createMatrix(const int row, const int col);
 void parseRowAndColumn(ifstream &input, int &row, int &col);
 void parseMatrix(ifstream &input, int** matrix, const int row, const int col);
-int ** createMatrix(const int row, const int col);
+void printMatrix(int** m, const int row, const int col);
 
+pthread_t *tids;
+//Global matrixes
 int ** a;
 int ** b;
-int ** c;
 //c matrix will be of dimensions m x r
-int m,r;
+int ** c;
+int n, m, r;
 
 struct rowcol
 {
-	int row,col;
+	int row, col;
 };
-
 
 //Prototype thread functions as C functions
 extern "C" {
-	
+	void *threadMultiplyMatrix(void *args);
 }
 
 
 int main(int argc, char *argv[])
 {
+	int error;
+	int threadIndex = 0;
 	int row, col;
 	//a matrix m x n
-	a = readMatrixFromFile("a1.txt", row ,col);
+	a = readMatrixFromFile("a1.txt", row, col);
 	m = row;
+	n = col;
 	//b matrix n x r
-	b = readMatrixFromFile("a2.txt", row, col);
+	b = readMatrixFromFile("b1.txt", row, col);
 	r = col;
+	if (n != row)
+		cout << "matrices wrong dimenstions";
 	//c matrix will be of dimensions m x r
 	c = createMatrix(m, r);
 
-	for(int i = 0; i < m; i++)
+	tids = new pthread_t[m*r];
+	for (int i = 0; i < m; i++)
 	{
 		for (int j = 0; i < r; j++)
 		{
 			rowcol *r = new rowcol;
 			r->col = j;
 			r->row = i;
-			
+			if (error = pthread_create(tids + threadIndex, NULL, threadMultiplyMatrix, r))
+			{
+				cout << "Failed to create thread: " << error << endl;
+				return 1;
+			}
+			threadIndex++;
 		}
 	}
 
+	/*
+	Wait for the threads to terminate
+	*/
+	for (int i = 0; i < m*r; i++)
+	{
+		if (error = pthread_join(tids[i], NULL))
+		{
+			cout << "Failed to join thread: " << error << endl;
+			return 1;
+		}
+	}
 
+	cout << "Parent thread done" << endl;
+	printMatrix(c, m, r);
 
 	return 0;
 }
@@ -67,10 +95,10 @@ int** createMatrix(const int row, const int col)
 {
 	int **matrix;
 	matrix = new int*[row];
-	for(int i = 0; i < row; i++)
+	for (int i = 0; i < row; i++)
 	{
 		matrix[i] = new int[col];
-		for(int j = 0;j < col; j++)
+		for (int j = 0; j < col; j++)
 			matrix[i][j] = 0;
 	}
 	return matrix;
@@ -95,9 +123,9 @@ void parseMatrix(ifstream &input, int** matrix, const int maxRow, const int maxC
 	int row = 0;
 	int col = 0;
 	//Read in values in row order
-	while(input >> num)
+	while (input >> num)
 	{
-		if(col == maxCol)
+		if (col == maxCol)
 		{
 			row++;
 			col = 0;
@@ -121,4 +149,44 @@ void parseRowAndColumn(ifstream &input, int &row, int &col)
 	iss >> row;
 	iss.str(scol);
 	iss >> col;
+}
+
+
+void printMatrix(int** m, const int row, const int col)
+{
+	//Prints nice 2D array
+	for (int i = 0; i <= row; i++)
+	{
+		//Print horizontal line under column numbers
+		if (i == 1)
+		{
+			for (int k = 0; k <= col; k++)
+				cout << "---";
+			cout << endl;
+		}
+
+		//Print Row Numbers
+		if (i == 0)
+			cout << setw(2) << internal << " ";
+		else
+			cout << setw(2) << internal << i;
+		cout << "|";
+
+		for (int j = 1; j <= col; j++)
+		{
+			//Print Columns Numbers
+			if (i == 0)
+				cout << setw(3) << j;
+			else
+			{
+				//Print values
+				if (m[i][j] != -1)
+					cout << setw(3) << m[i][j];
+				else
+					cout << setw(3) << ".";
+			}
+		}
+		cout << endl;
+	}
+	cout << endl;
 }
