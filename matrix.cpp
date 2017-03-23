@@ -68,7 +68,7 @@ int multiplyMatrixFiles(std::string file1, std::string file2)
 	c = createMatrix(m, r);
 
 	tids = new pthread_t[m*r];
-	cout << "num of threads:" << m*r;
+	cout << "num of threads:" << m*r << endl;
 	for (int i = 0; i < m; i++)
 	{
 		for (int j = 0; j < r; j++)
@@ -191,11 +191,11 @@ void printMatrix(int** m, const int row, const int col)
 		{
 			//Print Columns Numbers
 			if (i == -1)
-				cout << setw(4) << j + 1;
+				cout << setw(7) << j + 1;
 			else
 			{
 				//Print values
-				cout << setw(4) << m[i][j];
+				cout << setw(7) << m[i][j];
 			}
 		}
 		cout << endl;
