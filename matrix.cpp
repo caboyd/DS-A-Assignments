@@ -5,7 +5,6 @@ This program creates child threads
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <locale>
 #include <sstream>
 #include <pthread.h>
 #include <iomanip>
@@ -170,32 +169,33 @@ void parseRowAndColumn(ifstream &input, int &row, int &col)
 void printMatrix(int** m, const int row, const int col)
 {
 	//Prints nice 2D array
+	const int WIDTH_PER_COLUMN = 7;
 	for (int i = -1; i < row; i++)
 	{
 		//Print horizontal line under column numbers
 		if (i == 0)
 		{
 			for (int k = 0; k <= col; k++)
-				cout << "---";
+				cout << setw(WIDTH_PER_COLUMN) << internal << "-";
 			cout << endl;
 		}
 
 		//Print Row Numbers
 		if (i == -1)
-			cout << setw(3) << internal << " ";
+			cout << setw(2) << internal << " ";
 		else
-			cout << setw(3) << internal << i + 1;
+			cout << setw(2) << internal << i + 1;
 		cout << "|";
 
 		for (int j = 0; j < col; j++)
 		{
 			//Print Columns Numbers
 			if (i == -1)
-				cout << setw(7) << j + 1;
+				cout << setw(WIDTH_PER_COLUMN) << j + 1;
 			else
 			{
 				//Print values
-				cout << setw(7) << m[i][j];
+				cout << setw(WIDTH_PER_COLUMN) << m[i][j];
 			}
 		}
 		cout << endl;
