@@ -17,6 +17,7 @@ int** createMatrix(const int row, const int col);
 void parseRowAndColumn(ifstream &input, int &row, int &col);
 void parseMatrix(ifstream &input, int** matrix, const int row, const int col);
 void printMatrix(int** m, const int row, const int col);
+void multiplyMatrixFiles(std::string file1, std::string file2);
 
 pthread_t *tids;
 //Global matrixes
@@ -39,15 +40,24 @@ extern "C" {
 
 int main(int argc, char *argv[])
 {
-	int error;
+
+	multiplyMatrixFiles("a1.txt", "b1.txt");
+	multiplyMatrixFiles("a2.txt", "b2.txt");
+	multiplyMatrixFiles("a3.txt", "b3.txt");
+
+	return 0;
+}
+
+void multiplyMatrixFiles(std::string file1, std::string file2)
+{
 	int threadIndex = 0;
 	int row, col;
 	//a matrix m x n
-	a = readMatrixFromFile("a1.txt", row, col);
+	a = readMatrixFromFile(file1, row, col);
 	m = row;
 	n = col;
 	//b matrix n x r
-	b = readMatrixFromFile("b1.txt", row, col);
+	b = readMatrixFromFile(file2, row, col);
 	r = col;
 	if (n != row)
 		cout << "matrices wrong dimenstions";
@@ -66,9 +76,9 @@ int main(int argc, char *argv[])
 			if (pthread_create(&tids[threadIndex], NULL, threadMultiplyMatrix, r) > 0)
 			{
 				cerr << "pthread_create failure" << endl;
-				return 1;
+				exit(0);
 			}
-			threadIndex++; 
+			threadIndex++;
 		}
 	}
 
@@ -77,10 +87,10 @@ int main(int argc, char *argv[])
 	*/
 	for (int i = 0; i < m*r; i++)
 	{
-		if (error = pthread_join(tids[i], NULL))
+		if (pthread_join(tids[i], NULL) > 0)
 		{
-			cout << "Failed to join thread: " << error << endl;
-			return 1;
+			cerr << "pthread_join failure" << endl;
+			exit(0);
 		}
 	}
 
@@ -88,7 +98,6 @@ int main(int argc, char *argv[])
 	printMatrix(c, m, r);
 
 	delete[] tids;
-	return 0;
 }
 
 //Dynamically allocate matrix with row by col dimensions
@@ -171,14 +180,14 @@ void printMatrix(int** m, const int row, const int col)
 		if (i == -1)
 			cout << setw(3) << internal << " ";
 		else
-			cout << setw(3) << internal << i;
+			cout << setw(3) << internal << i+1;
 		cout << "|";
 
 		for (int j = 0; j < col; j++)
 		{
 			//Print Columns Numbers
 			if (i == -1)
-				cout << setw(4) << j;
+				cout << setw(4) << j+1;
 			else
 			{
 				//Print values
