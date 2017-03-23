@@ -21,9 +21,15 @@ int ** c;
 //c matrix will be of dimensions m x r
 int m,r;
 
+struct rowcol
+{
+	int row,col;
+};
+
+
 //Prototype thread functions as C functions
 extern "C" {
-	void *threadout(void *args);
+	
 }
 
 
@@ -39,6 +45,19 @@ int main(int argc, char *argv[])
 	//c matrix will be of dimensions m x r
 	c = createMatrix(m, r);
 
+	for(int i = 0; i < m; i++)
+	{
+		for (int j = 0; i < r; j++)
+		{
+			rowcol *r = new rowcol;
+			r->col = j;
+			r->row = i;
+			
+		}
+	}
+
+
+
 	return 0;
 }
 
@@ -52,9 +71,7 @@ int** createMatrix(const int row, const int col)
 	{
 		matrix[i] = new int[col];
 		for(int j = 0;j < col; j++)
-		{
 			matrix[i][j] = 0;
-		}
 	}
 	return matrix;
 }
