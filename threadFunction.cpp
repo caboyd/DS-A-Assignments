@@ -17,8 +17,6 @@ extern "C" {
 	void *threadout(void *args);
 }
 
-
-
 void *threadout(void *args)
 {
 	int i;
