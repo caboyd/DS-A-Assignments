@@ -6,12 +6,16 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <iostream>
-#include "threadFunction.cpp"
 
 using namespace  std;
 int n;
 pthread_t *tids;
-void *threadout(void *args);
+
+//Prototype thread functions as C functions
+extern "C"{
+	void *threadout(void *args);
+}
+
 
 int main(int argc, char *argv[])
 {

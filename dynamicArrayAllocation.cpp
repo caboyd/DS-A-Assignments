@@ -16,10 +16,10 @@ int main()
 
 	cout << "starting main" << endl;
 
-	a = static_cast<int **>(calloc(3, sizeof(int *)));
+	a = new int*[3];
 
 	for (i = 0; i < 3; i++)
-		a[i] = static_cast<int *>(calloc(3, sizeof(int *)));
+		a[i] = new int[3];
 
 	a[0][0] = 10;
 	a[0][1] = 20;
