@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 				cerr << "pthread_create failure" << endl;
 				return 1;
 			}
-			threadIndex++; 
+			threadIndex++;
 		}
 	}
 
@@ -159,16 +159,8 @@ void parseRowAndColumn(ifstream &input, int &row, int &col)
 void printMatrix(int** m, const int row, const int col)
 {
 	//Prints nice 2D array
-	for (int i = 0; i <= row; i++)
+	for (int i = 0; i < row; i++)
 	{
-		//Print horizontal line under column numbers
-		if (i == 1)
-		{
-			for (int k = 0; k <= col; k++)
-				cout << "---";
-			cout << endl;
-		}
-
 		//Print Row Numbers
 		if (i == 0)
 			cout << setw(2) << internal << " ";
@@ -176,19 +168,24 @@ void printMatrix(int** m, const int row, const int col)
 			cout << setw(2) << internal << i;
 		cout << "|";
 
-		for (int j = 1; j <= col; j++)
+		for (int j = 0; j < col; j++)
 		{
 			//Print Columns Numbers
 			if (i == 0)
-				cout << setw(3) << j;
-			else
 			{
-				//Print values
-				if (m[i][j] != -1)
-					cout << setw(3) << m[i][j];
-				else
-					cout << setw(3) << ".";
+				cout << setw(3) << j;
+				//Print horizontal line under column numbers
+				for (int k = 0; k <= col; k++)
+					cout << "---";
+				cout << endl;
 			}
+
+			//Print values
+			if (m[i][j] != -1)
+				cout << setw(3) << m[i][j];
+			else
+				cout << setw(3) << ".";
+
 		}
 		cout << endl;
 	}
