@@ -12,6 +12,11 @@ using namespace std;
 extern int n;
 extern pthread_t *tids;
 
+//Prototype thread functions as C functions
+extern "C" {
+	void *threadout(void *args);
+}
+
 
 
 void *threadout(void *args)
