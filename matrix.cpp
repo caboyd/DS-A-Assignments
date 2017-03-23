@@ -176,7 +176,7 @@ void printMatrix(int** m, const int row, const int col)
 		if (i == 0)
 		{
 			for (int k = 0; k <= col; k++)
-				cout << setfill("-") << setw(WIDTH_PER_COLUMN) << "-";
+				cout << setfill('-') << setw(WIDTH_PER_COLUMN) << "-";
 			cout << endl;
 		}
 
