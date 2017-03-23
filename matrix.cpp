@@ -62,9 +62,9 @@ int main(int argc, char *argv[])
 			rowcol *r = new rowcol;
 			r->col = j;
 			r->row = i;
-			if (error = pthread_create(tids + threadIndex, NULL, threadMultiplyMatrix, r))
+			if (pthread_create(&tids[threadIndex], NULL, threadMultiplyMatrix, r) > 0)
 			{
-				cout << "Failed to create thread: " << error << endl;
+				cerr << "pthread_create failure" << endl;
 				return 1;
 			}
 			threadIndex++;
@@ -86,6 +86,7 @@ int main(int argc, char *argv[])
 	cout << "Parent thread done" << endl;
 	printMatrix(c, m, r);
 
+	delete[] tids;
 	return 0;
 }
 

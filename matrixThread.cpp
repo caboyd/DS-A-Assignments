@@ -4,7 +4,6 @@ Child thread function
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h>
 #include <iostream>
 
 using namespace std;
@@ -23,13 +22,13 @@ struct rowcol
 
 //Prototype thread functions as C functions
 extern "C" {
-	void *threadMultiplyMatrix(void *args);
+	void* threadMultiplyMatrix(void* args);
 }
 
-void *threadMultiplyMatrix(void *args)
+void* threadMultiplyMatrix(void* args)
 {
 	//Parse args
-	rowcol *r = static_cast<rowcol*>(args);
+	rowcol* r = static_cast<rowcol*>(args);
 	int row = r->row;
 	int col = r->col;
 	int result =  0;
@@ -38,5 +37,6 @@ void *threadMultiplyMatrix(void *args)
 		c[row][col] += a[row][i] * b[i][col];
 	}
 
-	return static_cast<void*>(NULL);
+	delete r;
+	return NULL;
 }
