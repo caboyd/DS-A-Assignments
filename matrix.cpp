@@ -6,7 +6,7 @@ This program creates child threads
 #include <iostream>
 #include <fstream>
 #include <locale>
-#include <cctype>
+#include <sstream>
 
 using namespace  std;
 
@@ -42,6 +42,8 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
+//Dynamically allocate matrix with row by col dimensions
+//Initialize all values to 0
 int** createMatrix(const int row, const int col)
 {
 	int **matrix;
@@ -62,17 +64,12 @@ int** readMatrixFromFile(string fileName, int &row, int &col)
 	ifstream input(fileName.c_str());
 	string s;
 	int ** matrix;
+	//get row and column from file
 	parseRowAndColumn(input, row, col);
-
-	//Dynamically allocat matrix;
-	matrix = new int*[row];
-	for(int i = 0; i < row; i++)
-	{
-		matrix[i] = new int[col];
-	}
+	matrix = createMatrix(row, col);
+	//Fill matrix with values in file
 	parseMatrix(input, matrix, row, col);
 	return matrix;
-
 }
 
 void parseMatrix(ifstream &input, int** matrix, const int maxRow, const int maxCol)
@@ -80,6 +77,7 @@ void parseMatrix(ifstream &input, int** matrix, const int maxRow, const int maxC
 	int num;
 	int row = 0;
 	int col = 0;
+	//Read in values in row order
 	while(input >> num)
 	{
 		if(col == maxCol)
@@ -101,22 +99,9 @@ void parseRowAndColumn(ifstream &input, int &row, int &col)
 	getline(input, srow);
 	getline(input, srow);
 	getline(input, scol);
-	//Junk everything after that last digit in the line
-	for (int i = 0; i < srow.length(); i++)
-	{
-		if (!std::isdigit(srow[i]))
-		{
-			srow = srow.substr(0, i);
-		}
-	}
-	//Junk everything after that last digit in the line
-	for (int i = 0; i < scol.length(); i++)
-	{
-		if (!std::isdigit(scol[i]))
-		{
-			scol = scol.substr(0, i);
-		}
-	}
-	row = stoi(srow);
-	col = stoi(scol);
+	//get the numbers at the beginning of the string
+	std::istringstream iss(srow);
+	iss >> row;
+	iss.str(scol);
+	iss >> col;
 }
