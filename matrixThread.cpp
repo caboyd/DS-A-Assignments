@@ -70,19 +70,19 @@ void* verboseThreadMultiplyMatrix(void* args)
 	delete rc;
 
 	//Print row
-	cout << "row: " << row << endl;
+	cout << "row: " << row + 1 << "\n\t";
 	for(int i = 0; i < n; i++)
 	{
 		cout << a[row][i] << " ";
 	}
 	cout << endl;
 	//Print column
-	cout << "col: " << col << endl;
+	cout << "col: " << col + 1 << "\n\t";
 	for (int i = 0; i < n; i++)
 	{
 		cout << b[i][col] << " ";
 	}
-	cout << endl;
+	cout << endl << endl;
 
 	int result = 0;
 	for (int i = 0; i < n; i++)
@@ -90,13 +90,11 @@ void* verboseThreadMultiplyMatrix(void* args)
 		c[row][col] += a[row][i] * b[i][col];
 	}
 
-
 	if (pthread_mutex_unlock(&output_lock) != 0)
 	{
 		cerr << "Could not unlock output: ";
 		exit(1);
 	}
-
 
 	return NULL;
 }

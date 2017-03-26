@@ -47,8 +47,6 @@ int main(int argc, char *argv[])
 
 	if (evidence("a1.txt", "b1.txt") > 0)
 		return -1;
-	if (multiplyMatrixFiles("a1.txt", "b1.txt") > 0)
-		return -1;
 	if (multiplyMatrixFiles("a2.txt", "b2.txt") > 0)
 		return -1;
 	if (multiplyMatrixFiles("a3.txt", "b3.txt") > 0)
@@ -162,6 +160,12 @@ int evidence(std::string file1, std::string file2)
 			return 1;
 		}
 	}
+
+	cout << "Parent thread done" << endl;
+	cout << "Matrix C" << endl;
+	printMatrix(c, m, r);
+
+	delete[] tids;
 	return 0;
 }
 
