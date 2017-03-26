@@ -45,7 +45,7 @@ extern "C" {
 int main(int argc, char *argv[])
 {
 
-	if (evidence("a1.txt", "b2.txt") > 0)
+	if (evidence("a1.txt", "b1.txt") > 0)
 		return -1;
 	if (multiplyMatrixFiles("a1.txt", "b1.txt") > 0)
 		return -1;
