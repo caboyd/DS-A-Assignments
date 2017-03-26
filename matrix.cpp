@@ -44,11 +44,13 @@ extern "C" {
 
 int main(int argc, char *argv[])
 {
-
+	cout << "Multiplying a1.txt to b1.txt" << endl;
 	if (evidence("a1.txt", "b1.txt") > 0)
 		return -1;
+	cout << "Multiplying a2.txt to b2.txt" << endl;
 	if (multiplyMatrixFiles("a2.txt", "b2.txt") > 0)
 		return -1;
+	cout << "Multiplying a3.txt to b3.txt" << endl;
 	if (multiplyMatrixFiles("a3.txt", "b3.txt") > 0)
 		return -1;
 
