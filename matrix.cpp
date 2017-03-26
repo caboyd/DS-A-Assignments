@@ -17,8 +17,12 @@ void parseRowAndColumn(ifstream &input, int &row, int &col);
 void parseMatrix(ifstream &input, int** matrix, const int row, const int col);
 void printMatrix(int** m, const int row, const int col);
 int multiplyMatrixFiles(std::string file1, std::string file2);
+void evidence(std::string file1, std::string file2);
 
 pthread_t *tids;
+//Cout output lock
+pthread_mutex_t output_lock;
+
 //Global matrixes
 int ** a;
 int ** b;
@@ -34,12 +38,14 @@ struct rowcol
 //Prototype thread functions as C functions
 extern "C" {
 	void *threadMultiplyMatrix(void *args);
+	void *verboseThreadMultiplyMatrix(void *args);
 }
 
 
 int main(int argc, char *argv[])
 {
 
+	evidence("a1.txt", "b2.txt");
 	if (multiplyMatrixFiles("a1.txt", "b1.txt") > 0)
 		return -1;
 	if (multiplyMatrixFiles("a2.txt", "b2.txt") > 0)
@@ -101,6 +107,57 @@ int multiplyMatrixFiles(std::string file1, std::string file2)
 
 	delete[] tids;
 	return 0;
+}
+
+void evidence(std::string file1, std::string file2)
+{
+	int threadIndex = 0;
+	int row, col;
+	//a matrix m x n
+	a = readMatrixFromFile(file1, row, col);
+	printMatrix(a, row, col);
+	m = row;
+	n = col;
+	//b matrix n x r
+	b = readMatrixFromFile(file2, row, col);
+	printMatrix(b, row, col);
+	r = col;
+	if (n != row)
+		cout << "matrices wrong dimenstions";
+	//c matrix will be of dimensions m x r
+	c = createMatrix(m, r);
+	printMatrix(b, m, r);
+
+	tids = new pthread_t[m*r];
+	cout << "num of threads:" << m*r << endl;
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < r; j++)
+		{
+			rowcol *r = new rowcol;
+			r->col = j;
+			r->row = i;
+			if (pthread_create(&tids[threadIndex], NULL, verboseThreadMultiplyMatrix, r) > 0)
+			{
+				cerr << "pthread_create failure" << endl;
+				return 1;
+			}
+			threadIndex++;
+		}
+	}
+
+	/*
+	Wait for the threads to terminate
+	*/
+	for (int i = 0; i < m*r; i++)
+	{
+		if (pthread_join(tids[i], NULL) > 0)
+		{
+			cerr << "pthread_join failure" << endl;
+			return 1;
+		}
+	}
+	
 }
 
 //Dynamically allocate matrix with row by col dimensions
@@ -169,7 +226,7 @@ void parseRowAndColumn(ifstream &input, int &row, int &col)
 void printMatrix(int** m, const int row, const int col)
 {
 	//Prints nice 2D array
-	const int WIDTH_PER_COLUMN = 7;
+	const int WIDTH_PER_COLUMN = 6;
 	for (int i = -1; i < row; i++)
 	{
 		//Print horizontal line under column numbers
