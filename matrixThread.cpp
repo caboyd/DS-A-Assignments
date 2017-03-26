@@ -16,9 +16,9 @@ extern int ** a;
 extern int ** b;
 //c matrix will be of dimensions m x r
 extern int ** c;
-extern int n;
+extern int n, m, r;
 
-struct rowcol
+struct RowCol
 {
 	int row, col;
 };
@@ -32,16 +32,15 @@ extern "C" {
 void* threadMultiplyMatrix(void* args)
 {
 	//Parse args
-	rowcol* r = static_cast<rowcol*>(args);
-	int row = r->row;
-	int col = r->col;
+	RowCol* rc = static_cast<RowCol*>(args);
+	int row = rc->row;
+	int col = rc->col;
+	delete rc;
 	int result =  0;
 	for(int i = 0; i < n; i++)
 	{
 		c[row][col] += a[row][i] * b[i][col];
 	}
-
-	delete r;
 	return NULL;
 }
 
@@ -55,18 +54,20 @@ void* verboseThreadMultiplyMatrix(void* args)
 
 	//Print thread
 	pthread_t tid = pthread_self();
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i <= n; i++)
 	{
 		if (pthread_equal(tid, tids[i]))
 		{
 			cout << "Thread: " << i << endl;
+			break;
 		}
 	}
 
 	//Parse args
-	rowcol* r = static_cast<rowcol*>(args);
-	int row = r->row;
-	int col = r->col;
+	RowCol* rc = static_cast<RowCol*>(args);
+	int row = rc->row;
+	int col = rc->col;
+	delete rc;
 
 	//Print row
 	cout << "row: " << row << endl;
@@ -97,6 +98,5 @@ void* verboseThreadMultiplyMatrix(void* args)
 	}
 
 
-	delete r;
 	return NULL;
 }

@@ -30,7 +30,7 @@ int ** b;
 int ** c;
 int n, m, r;
 
-struct rowcol
+struct RowCol
 {
 	int row, col;
 };
@@ -79,10 +79,10 @@ int multiplyMatrixFiles(std::string file1, std::string file2)
 	{
 		for (int j = 0; j < r; j++)
 		{
-			rowcol *r = new rowcol;
-			r->col = j;
-			r->row = i;
-			if (pthread_create(&tids[threadIndex], NULL, threadMultiplyMatrix, r) > 0)
+			RowCol *rc = new RowCol;
+			rc->col = j;
+			rc->row = i;
+			if (pthread_create(&tids[threadIndex], NULL, threadMultiplyMatrix, rc) > 0)
 			{
 				cerr << "pthread_create failure" << endl;
 				return 1;
@@ -139,10 +139,10 @@ int evidence(std::string file1, std::string file2)
 	{
 		for (int j = 0; j < r; j++)
 		{
-			rowcol *r = new rowcol;
-			r->col = j;
-			r->row = i;
-			if (pthread_create(&tids[threadIndex], NULL, verboseThreadMultiplyMatrix, r) > 0)
+			RowCol *rc = new RowCol;
+			rc->col = j;
+			rc->row = i;
+			if (pthread_create(&tids[threadIndex], NULL, verboseThreadMultiplyMatrix, rc) > 0)
 			{
 				cerr << "pthread_create failure" << endl;
 				return 1;
