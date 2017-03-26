@@ -8,6 +8,7 @@ This program creates child threads
 #include <sstream>
 #include <pthread.h>
 #include <iomanip>
+#include <stdlib.h>
 
 using namespace  std;
 
