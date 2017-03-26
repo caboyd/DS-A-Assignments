@@ -2,7 +2,6 @@
 Child thread function
 */
 
-#include <stdlib.h>
 #include <iostream>
 #include <pthread.h>
 
@@ -49,7 +48,7 @@ void* verboseThreadMultiplyMatrix(void* args)
 {
 	if (pthread_mutex_lock(&output_lock) != 0)
 	{
-		perror("Could not lock output: ");
+		cerr << "Could not lock output: ";
 		exit(4); //something horrible happened - exit whole program with error
 	}
 
@@ -92,7 +91,7 @@ void* verboseThreadMultiplyMatrix(void* args)
 
 	if (pthread_mutex_unlock(&output_lock) != 0)
 	{
-		perror("Could not unlock output: ");
+		cerr << "Could not unlock output: ";
 		exit(5);
 	}
 

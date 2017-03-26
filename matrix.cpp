@@ -8,7 +8,6 @@ This program creates child threads
 #include <sstream>
 #include <pthread.h>
 #include <iomanip>
-#include <stdlib.h>
 
 using namespace  std;
 
@@ -18,7 +17,7 @@ void parseRowAndColumn(ifstream &input, int &row, int &col);
 void parseMatrix(ifstream &input, int** matrix, const int row, const int col);
 void printMatrix(int** m, const int row, const int col);
 int multiplyMatrixFiles(std::string file1, std::string file2);
-void evidence(std::string file1, std::string file2);
+int evidence(std::string file1, std::string file2);
 
 pthread_t *tids;
 //Cout output lock
@@ -46,7 +45,8 @@ extern "C" {
 int main(int argc, char *argv[])
 {
 
-	evidence("a1.txt", "b2.txt");
+	if (evidence("a1.txt", "b2.txt") > 0)
+		return -1;
 	if (multiplyMatrixFiles("a1.txt", "b1.txt") > 0)
 		return -1;
 	if (multiplyMatrixFiles("a2.txt", "b2.txt") > 0)
@@ -110,7 +110,7 @@ int multiplyMatrixFiles(std::string file1, std::string file2)
 	return 0;
 }
 
-void evidence(std::string file1, std::string file2)
+int evidence(std::string file1, std::string file2)
 {
 	int threadIndex = 0;
 	int row, col;
@@ -141,7 +141,7 @@ void evidence(std::string file1, std::string file2)
 			if (pthread_create(&tids[threadIndex], NULL, verboseThreadMultiplyMatrix, r) > 0)
 			{
 				cerr << "pthread_create failure" << endl;
-				exit(2);
+				return 1;
 			}
 			threadIndex++;
 		}
@@ -155,10 +155,10 @@ void evidence(std::string file1, std::string file2)
 		if (pthread_join(tids[i], NULL) > 0)
 		{
 			cerr << "pthread_join failure" << endl;
-			exit(3);
+			return 1;
 		}
 	}
-	
+	return 0;
 }
 
 //Dynamically allocate matrix with row by col dimensions
