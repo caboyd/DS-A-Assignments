@@ -72,14 +72,14 @@ void* verboseThreadMultiplyMatrix(void* args)
 	cout << "row: " << row << endl;
 	for(int i = 0; i < n; i++)
 	{
-		cout << c[row][i] << " ";
+		cout << a[row][i] << " ";
 	}
 	cout << endl;
 	//Print column
 	cout << "col: " << col << endl;
 	for (int i = 0; i < n; i++)
 	{
-		cout << c[i][col] << " ";
+		cout << b[i][col] << " ";
 	}
 	cout << endl;
 

@@ -104,6 +104,7 @@ int multiplyMatrixFiles(std::string file1, std::string file2)
 	}
 
 	cout << "Parent thread done" << endl;
+	cout << "Matrix C" << endl;
 	printMatrix(c, m, r);
 
 	delete[] tids;
