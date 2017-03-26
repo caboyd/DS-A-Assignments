@@ -140,7 +140,7 @@ void evidence(std::string file1, std::string file2)
 			if (pthread_create(&tids[threadIndex], NULL, verboseThreadMultiplyMatrix, r) > 0)
 			{
 				cerr << "pthread_create failure" << endl;
-				return 1;
+				exit(2);
 			}
 			threadIndex++;
 		}
@@ -154,7 +154,7 @@ void evidence(std::string file1, std::string file2)
 		if (pthread_join(tids[i], NULL) > 0)
 		{
 			cerr << "pthread_join failure" << endl;
-			return 1;
+			exit(3);
 		}
 	}
 	
