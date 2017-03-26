@@ -116,18 +116,21 @@ int evidence(std::string file1, std::string file2)
 	int row, col;
 	//a matrix m x n
 	a = readMatrixFromFile(file1, row, col);
+	cout << "Matrix " << file1 << endl;
 	printMatrix(a, row, col);
 	m = row;
 	n = col;
 	//b matrix n x r
 	b = readMatrixFromFile(file2, row, col);
+	cout << "Matrix " << file2 << endl;
 	printMatrix(b, row, col);
 	r = col;
 	if (n != row)
 		cout << "matrices wrong dimenstions";
 	//c matrix will be of dimensions m x r
 	c = createMatrix(m, r);
-	printMatrix(b, m, r);
+	cout << "Matrix C" << endl;
+	printMatrix(c, m, r);
 
 	tids = new pthread_t[m*r];
 	cout << "num of threads:" << m*r << endl;
