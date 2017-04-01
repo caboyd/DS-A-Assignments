@@ -26,7 +26,6 @@ void* worker(void* args);
 
 void* worker(void* args)
 {
-	string s;
 	int i;
 	pthread_t tid = pthread_self();
 
@@ -43,8 +42,7 @@ void* worker(void* args)
 			break;
 		}
 	}
-	s = "This is tid" + ((int)i + 2);
-	s += " from pid " + (long)getpid();
+
 
 	/****************** Lock ****************************************/
 	if (pthread_mutex_lock(&output_lock) != 0)
@@ -55,7 +53,7 @@ void* worker(void* args)
 
 	/****************** Critical Section ****************************/
 
-	cout << s;
+	cout << "This is tid" << (int)i + 2 << " from pid " << (long)getpid() << endl;
 	
 
 	/****************** Unlock **************************************/
