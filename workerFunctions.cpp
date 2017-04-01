@@ -18,10 +18,10 @@ extern pthread_t *tids;
 extern pthread_mutex_t output_lock;
 
 //Globals
-extern const int NO_OF_WORKERS;
-extern const int NO_OF_WORK_POOLS;
+const int NO_OF_WORKERS = 5;
+const int NO_OF_WORK_POOLS = 3;
 //total threads
-extern const int n;
+const int n = NO_OF_WORK_POOLS * NO_OF_WORKERS;
 
 extern int t[NO_OF_WORK_POOLS + 1];
 extern sem_t s[NO_OF_WORK_POOLS + 1]; //t's lock
