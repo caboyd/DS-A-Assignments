@@ -14,6 +14,8 @@ This program creates child threads
 
 using namespace  std;
 
+const int EMPTY = 0;
+const int NULL_TASK = -1;
 
 pthread_t *tids;
 //Cout output lock
@@ -31,24 +33,24 @@ sem_t s[NO_OF_WORK_POOLS + 1]; //t's lock
 int d[NO_OF_WORK_POOLS * NO_OF_WORKERS + 1];
 int head[NO_OF_WORK_POOLS + 1];
 int tail[NO_OF_WORK_POOLS + 1];
-string w[NO_OF_WORK_POOLS + 1][POOL_SIZE];
+int w[NO_OF_WORK_POOLS + 1][POOL_SIZE];
 int emptyWorkPools;
 sem_t e; //emptyWorkPools lock
 int taskCounter = 1;
 
 //prototypes
-void replicatedWorkers(string task);
+void replicatedWorkers(int task);
 void* worker(void* args);
-void putWork(int workerId, string task);
+void putWork(int workerId, int task);
 
 
 int main(int argc, char *argv[])
 {
-	replicatedWorkers(std::to_string(taskCounter));
+	replicatedWorkers(taskCounter);
 	return 0;
 }
 
-void replicatedWorkers(string task)
+void replicatedWorkers(int task)
 {
 	//Initialize semaphores
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
@@ -65,7 +67,7 @@ void replicatedWorkers(string task)
 	{
 		for (int j = 0; j < POOL_SIZE; j++)
 		{
-			w[i][j] = "";
+			w[i][j] = EMPTY;
 		}
 	}
 

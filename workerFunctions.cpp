@@ -11,8 +11,8 @@ Child thread function
 #include <queue>
 #include "Semaphore.h"
 
-const std::string EMPTY = "";
-const std::string NULL_TASK = "NULL";
+const int EMPTY = 0;
+const int NULL_TASK = -1;
 
 using namespace std;
 
@@ -31,7 +31,7 @@ extern sem_t s[NO_OF_WORK_POOLS + 1]; //t's lock
 extern int d[NO_OF_WORK_POOLS * NO_OF_WORKERS + 1];
 extern int head[NO_OF_WORK_POOLS + 1];
 extern int tail[NO_OF_WORK_POOLS + 1];
-extern string w[NO_OF_WORK_POOLS][100];
+extern int w[NO_OF_WORK_POOLS][100];
 extern int emptyWorkPools;
 extern sem_t e; //emptyWorkPools lock
 
@@ -39,13 +39,13 @@ extern sem_t e; //emptyWorkPools lock
 
 //Prototype thread functions
 extern void* worker(void* args);
-extern void putWork(int workerId, string task);
-extern void insertTask(int workPoolID, string task);
-string getWork(int workerID);
-string removeTask(int workPoolID);
+extern void putWork(int workerId, int task);
+extern void insertTask(int workPoolID, int task);
+int getWork(int workerID);
+int removeTask(int workPoolID);
 void lockOutput();
 void unlockOutput();
-void doWork(int workerID, string task);
+void doWork(int workerID, int task);
 
 void* worker(void* args)
 {
@@ -75,7 +75,7 @@ void* worker(void* args)
 
 	unlockOutput();
 
-	string task = getWork(workerID);
+	int task = getWork(workerID);
 	while(task != NULL_TASK)
 	{
 		doWork(workerID, task);
@@ -96,7 +96,7 @@ void* worker(void* args)
 }
 
 
-void putWork(int workerId, string task)
+void putWork(int workerId, int task)
 {
 	int workPoolID = d[workerId];
 	semLock(&s[workPoolID]);
@@ -114,7 +114,7 @@ void putWork(int workerId, string task)
 	d[workerId] = workPoolID % NO_OF_WORK_POOLS + 1;
 }
 
-void insertTask(int workPoolID, string task)
+void insertTask(int workPoolID, int task)
 {
 	semLock(&s[workPoolID]);
 	tail[workPoolID]++;
@@ -123,7 +123,7 @@ void insertTask(int workPoolID, string task)
 	return;
 }
 
-string getWork(int workerID)
+int getWork(int workerID)
 {
 	int workPoolID = ((workerID - 1) / NO_OF_WORKERS) + 1;
 	semLock(&s[workPoolID]);
@@ -151,11 +151,11 @@ string getWork(int workerID)
 		semUnlock(&e);
 		semUnlock(&s[workPoolID]);
 	}
-	string task = removeTask(workPoolID);
+	int task = removeTask(workPoolID);
 	return task;
 }
 
-string removeTask(int workPoolID)
+int removeTask(int workPoolID)
 {
 	semLock(&s[workPoolID]);
 	while (true)
@@ -167,7 +167,7 @@ string removeTask(int workPoolID)
 		semLock(&s[workPoolID]);
 	}
 	head[workPoolID]++;
-	string task = w[workPoolID][head[workPoolID]];
+	int task = w[workPoolID][head[workPoolID]];
 	w[workPoolID][head[workPoolID]] = EMPTY;
 	semUnlock(&s[workPoolID]);
 	return task;
@@ -191,7 +191,7 @@ void unlockOutput()
 	}
 }
 
-void doWork(int workerID, string task)
+void doWork(int workerID, int task)
 {
 	lockOutput();
 	cout << "Worker " << workerID << " has started " << task;
