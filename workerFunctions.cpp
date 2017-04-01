@@ -59,7 +59,7 @@ void* worker(void* args)
 	as structs (such on the Linux machines in CL115). In this way,
 	thread ids are handled consistently when printed from the
 	different POSIX implementations.                             */
-	for (i = i; i <= n; i++)
+	for (i = 1; i <= n; i++)
 	{
 		if (pthread_equal(tid, tids[i]))
 		{
