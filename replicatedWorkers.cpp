@@ -10,7 +10,7 @@ This program creates child threads
 #include <list>
 #include <queue>
 #include <stdlib.h>
-
+#include "Semaphore.h"
 
 using namespace  std;
 

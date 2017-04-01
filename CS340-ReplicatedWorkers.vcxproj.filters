@@ -18,9 +18,6 @@
     <ClCompile Include="replicatedWorkers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="semaphoreFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="workerFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -30,9 +27,15 @@
     <ClCompile Include="counterFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="semaphore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sleep.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Semaphore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

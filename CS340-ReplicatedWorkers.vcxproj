@@ -143,9 +143,10 @@
     <ClCompile Include="replicatedWorkers.cpp" />
     <ClCompile Include="Sleep.cpp" />
     <ClCompile Include="workerFunctions.cpp" />
-    <ClCompile Include="semaphoreFunctions.cpp" />
+    <ClCompile Include="semaphore.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Semaphore.h" />
     <ClInclude Include="Sleep.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
