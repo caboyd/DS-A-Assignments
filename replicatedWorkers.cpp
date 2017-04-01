@@ -62,7 +62,7 @@ void replicatedWorkers(string task)
 	d[1] = 1;
 	emptyWorkPools = 0;
 
-	for(int i = 1; i < n; i++)
+	for(int i = 0; i < n; i++)
 	{
 		if (pthread_create(&tids[i], NULL, worker, NULL) > 0)
 		{
@@ -71,7 +71,7 @@ void replicatedWorkers(string task)
 		}
 	}
 
-
+	
 	for (int i = 0; i < n; i++)
 	{
 		if (pthread_join(tids[i], NULL) > 0)
