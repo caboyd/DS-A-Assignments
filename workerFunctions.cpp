@@ -140,9 +140,6 @@ string getWork(int workerID)
 		semUnlock(&e);
 		semUnlock(&s[workPoolID]);
 	}
-	lockOutput();
-	cout << "Worker " << workerID << " about to remove task" << endl;
-	unlockOutput();
 	string task = removeTask(workPoolID);
 	lockOutput();
 	cout << "Worker " << workerID << " has removed task " << task << endl;
@@ -161,14 +158,7 @@ string removeTask(int workPoolID)
 			break;
 		semLock(&s[workPoolID]);
 	}
-	lockOutput();
-	cout << "workPoolID " << workPoolID << endl;
-	cout << "tail[workPoolID] " << tail[workPoolID] << endl;
-	cout << "head[workPoolID] " << head[workPoolID] << endl;
 	head[workPoolID]++;
-	cout << "head[workPoolID] " << head[workPoolID] << endl;
-	cout << "task " << w[workPoolID][tail[workPoolID]] << endl;
-	unlockOutput();
 	string task = w[workPoolID][head[workPoolID]];
 	w[workPoolID][head[workPoolID]] = EMPTY;
 	semUnlock(&s[workPoolID]);
