@@ -35,7 +35,7 @@ pthread_mutex_t e; //emptyWorkPools lock
 
 //prototypes
 void replicatedWorkers(string task);
-extern void* worker(void* args);
+void* worker(void* args);
 
 int main(int argc, char *argv[])
 {

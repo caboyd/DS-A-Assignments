@@ -22,7 +22,7 @@ extern pthread_mutex_t output_lock;
 
 
 //Prototype thread functions
-void* worker(void* args);
+extern void* worker(void* args);
 
 
 void* worker(void* args)
