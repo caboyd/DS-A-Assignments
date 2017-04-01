@@ -47,6 +47,8 @@ int main(int argc, char *argv[])
 
 void replicatedWorkers(string task)
 {
+	tids = new pthread_t[n];
+
 	for(int i = 1; i <= NO_OF_WORK_POOLS; i++)
 	{
 		t[i] = 0;
