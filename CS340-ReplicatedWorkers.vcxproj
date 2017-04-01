@@ -139,6 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="counterFunctions.cpp" />
+    <ClCompile Include="replicatedWorkers.cpp" />
+    <ClCompile Include="Sleep.cpp" />
+    <ClCompile Include="workerFunctions.cpp" />
+    <ClCompile Include="semaphoreFunctions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sleep.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
