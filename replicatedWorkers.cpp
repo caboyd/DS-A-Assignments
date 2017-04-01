@@ -42,6 +42,12 @@ void putWork(int workerId, string task);
 
 int main(int argc, char *argv[])
 {
+	replicatedWorkers("1");
+	return 0;
+}
+
+void replicatedWorkers(string task)
+{
 	//Initialize semaphores
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 	{
@@ -49,21 +55,6 @@ int main(int argc, char *argv[])
 	}
 	semInit(&e);
 
-	replicatedWorkers("1");
-
-
-	//Delete semaphores
-	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
-	{
-		semDestroy(&s[i]);
-	}
-	semDestroy(&e);
-
-	return 0;
-}
-
-void replicatedWorkers(string task)
-{
 	tids = new pthread_t[n];
 
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
@@ -80,7 +71,7 @@ void replicatedWorkers(string task)
 	emptyWorkPools = 0;
 
 	putWork(1, task);
-	for (int i = 0; i < n; i++)
+	for (int i = 1; i <= n; i++)
 	{
 		if (pthread_create(&tids[i], NULL, worker, NULL) > 0)
 		{
@@ -98,6 +89,14 @@ void replicatedWorkers(string task)
 			exit(1);
 		}
 	}
+
+	//Delete semaphores
+	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
+	{
+		semDestroy(&s[i]);
+	}
+	semDestroy(&e);
+
 
 	delete tids;
 }

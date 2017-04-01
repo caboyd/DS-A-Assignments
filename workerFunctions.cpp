@@ -59,19 +59,19 @@ void* worker(void* args)
 	as structs (such on the Linux machines in CL115). In this way,
 	thread ids are handled consistently when printed from the
 	different POSIX implementations.                             */
-	for (i = 0; i < n; i++)
+	for (i = i; i <= n; i++)
 	{
 		if (pthread_equal(tid, tids[i]))
 		{
 			break;
 		}
 	}
-	workerID = i + 1;
+	workerID = (int)i;
 
 	lockOutput();
 
 	/****************** Critical Section ****************************/
-	cout << "This is worker id " << (int)i + 1 << " from pid " << (long)getpid() << endl;
+	cout << "This is worker id " << workerID << " from pid " << (long)getpid() << endl;
 
 	unlockOutput();
 
@@ -140,6 +140,9 @@ string getWork(int workerID)
 		semUnlock(&e);
 		semUnlock(&s[workPoolID]);
 	}
+	lockOutput();
+	cout << "Worker " << workerID << " about to remove task" << endl;
+	unlockOutput();
 	string task = removeTask(workPoolID);
 	lockOutput();
 	cout << "Worker " << workerID << " has removed task " << task << endl;
@@ -158,7 +161,14 @@ string removeTask(int workPoolID)
 			break;
 		semLock(&s[workPoolID]);
 	}
+	lockOutput();
+	cout << "workPoolID" << workPoolID << endl;
+	cout << "tail[workPoolID] " << tail[workPoolID] << endl;
+	cout << "head[workPoolID] " << head[workPoolID] << endl;
 	head[workPoolID]++;
+	cout << "head[workPoolID] " << head[workPoolID] << endl;
+	cout << "task " << w[workPoolID][tail[workPoolID]] << endl;
+	unlockOutput();
 	string task = w[workPoolID][head[workPoolID]];
 	w[workPoolID][head[workPoolID]] = EMPTY;
 	semUnlock(&s[workPoolID]);
