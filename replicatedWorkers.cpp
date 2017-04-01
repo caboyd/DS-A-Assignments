@@ -23,7 +23,7 @@ pthread_mutex_t output_lock;
 const int NO_OF_WORKERS = 5;
 const int NO_OF_WORK_POOLS = 3;
 //total threads
-const int n = NO_OF_WORKERS * NO_OF_WORK_POOLS + 1;
+const int n = NO_OF_WORKERS * NO_OF_WORK_POOLS;
 
 int t[NO_OF_WORK_POOLS + 1];
 sem_t s[NO_OF_WORK_POOLS + 1]; //t's lock
@@ -55,7 +55,7 @@ void replicatedWorkers(string task)
 	}
 	semInit(&e);
 
-	tids = new pthread_t[n];
+	tids = new pthread_t[NO_OF_WORK_POOLS * NO_OF_WORKERS + 1];
 
 	//initialzie workpool
 
@@ -91,7 +91,7 @@ void replicatedWorkers(string task)
 	}
 
 
-	for (int i = 0; i < n; i++)
+	for (int i = 1; i <= n; i++)
 	{
 		if (pthread_join(tids[i], NULL) > 0)
 		{
