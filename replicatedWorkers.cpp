@@ -63,7 +63,6 @@ void replicatedWorkers(string task)
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			cout << w[i][j] << "|";
 			w[i][j] = "";
 		}
 	}
