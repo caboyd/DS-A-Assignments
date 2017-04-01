@@ -27,7 +27,7 @@
     <ClCompile Include="counterFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Semaphore.cpp">
+    <ClCompile Include="s.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
