@@ -10,6 +10,7 @@ This program creates child threads
 #include <list>
 #include <queue>
 #include <stdlib.h>
+#include "semaphoreFunctions.cpp"
 
 using namespace  std;
 
@@ -41,7 +42,22 @@ void putWork(int workerId, string task);
 
 int main(int argc, char *argv[])
 {
-	replicatedWorkers("a");
+	//Initialize semaphores
+	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
+	{
+		Init(&s[i]);
+	}
+	Init(&e);
+
+	replicatedWorkers("1");
+
+
+	//Delete semaphores
+	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
+	{
+		Destroy(&s[i]);
+	}
+	Destroy(&e);
 
 	return 0;
 }
@@ -50,12 +66,12 @@ void replicatedWorkers(string task)
 {
 	tids = new pthread_t[n];
 
-	for(int i = 1; i <= NO_OF_WORK_POOLS; i++)
+	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 	{
 		t[i] = 0;
 		head[i] = 0;
 		tail[i] = 0;
-		for(int j = (i - 1) * NO_OF_WORKERS + 1; j <= i * NO_OF_WORKERS; j++)
+		for (int j = (i - 1) * NO_OF_WORKERS + 1; j <= i * NO_OF_WORKERS; j++)
 		{
 			d[j] = i % NO_OF_WORK_POOLS + 1;
 		}
@@ -63,7 +79,8 @@ void replicatedWorkers(string task)
 	d[1] = 1;
 	emptyWorkPools = 0;
 
-	for(int i = 0; i < n; i++)
+	putWork(1, task);
+	for (int i = 0; i < n; i++)
 	{
 		if (pthread_create(&tids[i], NULL, worker, NULL) > 0)
 		{
@@ -72,7 +89,7 @@ void replicatedWorkers(string task)
 		}
 	}
 
-	
+
 	for (int i = 0; i < n; i++)
 	{
 		if (pthread_join(tids[i], NULL) > 0)
