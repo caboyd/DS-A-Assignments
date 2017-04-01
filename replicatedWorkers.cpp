@@ -10,8 +10,6 @@ This program creates child threads
 #include <list>
 #include <queue>
 #include <stdlib.h>
-#include "Sleep.h"
-#include "workerFunctions.cpp"
 
 using namespace  std;
 
@@ -41,7 +39,7 @@ void replicatedWorkers(string task);
 int main(int argc, char *argv[])
 {
 	replicatedWorkers("a");
-	sleep(0.1);//Sleep for 100ms
+
 	return 0;
 }
 
@@ -80,4 +78,6 @@ void replicatedWorkers(string task)
 			exit(1);
 		}
 	}
+
+	delete tids;
 }

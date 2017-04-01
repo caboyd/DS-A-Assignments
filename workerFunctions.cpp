@@ -7,6 +7,7 @@ Child thread function
 #include <pthread.h>
 #include <stdlib.h>
 #include <semaphore.h>
+#include "Sleep.h"
 
 
 using namespace std;
@@ -53,8 +54,8 @@ void* worker(void* args)
 
 	/****************** Critical Section ****************************/
 
-	cout << "This is tid" << (int)i + 2 << " from pid " << (long)getpid() << endl;
-	
+	cout << "This is tid " << (int)i + 1 << " from pid " << (long)getpid() << endl;
+	sleep(0.1);//Sleep for 100ms
 
 	/****************** Unlock **************************************/
 	if (pthread_mutex_unlock(&output_lock) != 0)
