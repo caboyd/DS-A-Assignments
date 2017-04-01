@@ -143,7 +143,7 @@
     <ClCompile Include="replicatedWorkers.cpp" />
     <ClCompile Include="Sleep.cpp" />
     <ClCompile Include="workerFunctions.cpp" />
-    <ClCompile Include="s.cpp" />
+    <ClCompile Include="Semaphore.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Semaphore.h" />
