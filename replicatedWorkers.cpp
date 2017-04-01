@@ -19,8 +19,8 @@ pthread_t *tids;
 pthread_mutex_t output_lock;
 
 //Globals
-const int NO_OF_WORKERS = 5;
-const int NO_OF_WORK_POOLS = 3;
+extern const int NO_OF_WORKERS = 5;
+extern const int NO_OF_WORK_POOLS = 3;
 //total threads
 extern const int n = NO_OF_WORKERS * NO_OF_WORK_POOLS;
 
@@ -29,13 +29,15 @@ sem_t s[NO_OF_WORK_POOLS + 1]; //t's lock
 int d[NO_OF_WORK_POOLS * NO_OF_WORKERS + 1];
 int head[NO_OF_WORK_POOLS + 1];
 int tail[NO_OF_WORK_POOLS + 1];
-queue<string> w[NO_OF_WORK_POOLS];
+string w[NO_OF_WORK_POOLS][100];
 int emptyWorkPools;
-pthread_mutex_t e; //emptyWorkPools lock
+sem_t e; //emptyWorkPools lock
 
 //prototypes
 void replicatedWorkers(string task);
 void* worker(void* args);
+void putWork(int workerId, string task);
+
 
 int main(int argc, char *argv[])
 {
@@ -82,3 +84,4 @@ void replicatedWorkers(string task)
 
 	delete tids;
 }
+
