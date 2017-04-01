@@ -18,5 +18,7 @@
 //  Side Effect: The curent thread sleeps for seconds seconds.
 //               If seconds == 0, execution is not stopped.
 //
-void sleep (double seconds);
+extern "C" {
+	void sleep(double seconds);
+}
 
