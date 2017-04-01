@@ -1,11 +1,13 @@
 #include <semaphore.h>
 #include <iostream>
 #include <stdlib.h>
+#include <errno.h>
 
 void Init(sem_t *sem);
 void Lock(sem_t *sem);
 void Unlock(sem_t *sem);
 void Destroy(sem_t *sem);
+
 
 void Init (sem_t *sem)
 {
