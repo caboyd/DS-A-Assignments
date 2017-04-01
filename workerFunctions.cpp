@@ -72,7 +72,6 @@ void* worker(void* args)
 
 	/****************** Critical Section ****************************/
 	cout << "This is worker id " << (int)i + 1 << " from pid " << (long)getpid() << endl;
-	sleep(0.1);//Sleep for 100ms
 
 	unlockOutput();
 
@@ -188,5 +187,6 @@ void doWork(int workerID, string task)
 {
 	lockOutput();
 	cout << "Worker " << workerID << " is doing task " << task << endl;
+	sleep(0.1);
 	unlockOutput();
 }
