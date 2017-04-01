@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <errno.h>
 
-void Init (sem_t *sem)
+void semInit (sem_t *sem)
 {
     if (sem_init (sem, 0, 1) == -1)
     {
@@ -13,7 +13,7 @@ void Init (sem_t *sem)
     }
 }
 
-void Lock (sem_t *sem)
+void semLock (sem_t *sem)
 {
     while (sem_wait (sem) == -1)
     {
@@ -25,7 +25,7 @@ void Lock (sem_t *sem)
     }
 }
 
-void Unlock (sem_t *sem)
+void semUnlock (sem_t *sem)
 {
     if (sem_post (sem) == -1)
     {
@@ -34,7 +34,7 @@ void Unlock (sem_t *sem)
     }
 }
 
-void Destroy (sem_t *sem)
+void semDestroy (sem_t *sem)
 {
     if (sem_destroy (sem) == -1)
     {

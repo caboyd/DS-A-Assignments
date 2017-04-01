@@ -89,13 +89,13 @@ void* worker(void* args)
 void putWork(int workerId, string task)
 {
 	int workPoolID = d[workerId];
-	Lock(&s[workPoolID]);
-	Lock(&e);
+	semLock(&s[workPoolID]);
+	semLock(&e);
 	t[workPoolID]++;
 	if (t[workPoolID] == -NO_OF_WORKERS + 1)
 		emptyWorkPools--;
-	Unlock(&e);
-	Unlock(&s[workPoolID]);
+	semUnlock(&e);
+	semUnlock(&s[workPoolID]);
 	insertTask(workPoolID, task);
 	lockOutput();
 	cout << "Worker " << workerId << " has inserted task " << task << endl;
@@ -105,26 +105,26 @@ void putWork(int workerId, string task)
 
 void insertTask(int workPoolID, string task)
 {
-	Lock(&s[workPoolID]);
+	semLock(&s[workPoolID]);
 	tail[workPoolID]++;
 	w[workPoolID][tail[workPoolID]] = task;
-	Unlock(&s[workPoolID]);
+	semUnlock(&s[workPoolID]);
 	return;
 }
 
 string getWork(int workerID)
 {
 	int workPoolID = ((workerID - 1) / NO_OF_WORKERS) + 1;
-	Lock(&s[workPoolID]);
-	Lock(&e);
+	semLock(&s[workPoolID]);
+	semLock(&e);
 	t[workPoolID]--;
 	if (t[workPoolID] == -NO_OF_WORKERS)
 	{
 		emptyWorkPools++;
 		if (emptyWorkPools == NO_OF_WORK_POOLS)
 		{
-			Unlock(&e);
-			Unlock(&s[workPoolID]);
+			semUnlock(&e);
+			semUnlock(&s[workPoolID]);
 			for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 			{
 				for (int j = 1; j <= NO_OF_WORKERS; j++)
@@ -132,13 +132,13 @@ string getWork(int workerID)
 			}
 		} else
 		{
-			Unlock(&e);
-			Unlock(&s[workPoolID]);
+			semUnlock(&e);
+			semUnlock(&s[workPoolID]);
 		}
 	} else
 	{
-		Unlock(&e);
-		Unlock(&s[workPoolID]);
+		semUnlock(&e);
+		semUnlock(&s[workPoolID]);
 	}
 	string task = removeTask(workPoolID);
 	lockOutput();
@@ -149,19 +149,19 @@ string getWork(int workerID)
 
 string removeTask(int workPoolID)
 {
-	Lock(&s[workPoolID]);
+	semLock(&s[workPoolID]);
 	while (true)
 	{
 		if (w[workPoolID][tail[workPoolID]] == EMPTY)
-			Unlock(&s[workPoolID]);
+			semUnlock(&s[workPoolID]);
 		else
 			break;
-		Lock(&s[workPoolID]);
+		semLock(&s[workPoolID]);
 	}
 	head[workPoolID]++;
 	string task = w[workPoolID][head[workPoolID]];
 	w[workPoolID][head[workPoolID]] = EMPTY;
-	Unlock(&s[workPoolID]);
+	semUnlock(&s[workPoolID]);
 	return task;
 }
 

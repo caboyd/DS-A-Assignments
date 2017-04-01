@@ -45,9 +45,9 @@ int main(int argc, char *argv[])
 	//Initialize semaphores
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 	{
-		Init(&s[i]);
+		semInit(&s[i]);
 	}
-	Init(&e);
+	semInit(&e);
 
 	replicatedWorkers("1");
 
@@ -55,9 +55,9 @@ int main(int argc, char *argv[])
 	//Delete semaphores
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 	{
-		Destroy(&s[i]);
+		semDestroy(&s[i]);
 	}
-	Destroy(&e);
+	semDestroy(&e);
 
 	return 0;
 }

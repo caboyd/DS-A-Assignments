@@ -2,7 +2,7 @@
 #include <semaphore.h>
 
 
-void Init(sem_t *sem);
-void Lock(sem_t *sem);
-void Unlock(sem_t *sem);
-void Destroy(sem_t *sem);
+void semInit(sem_t *sem);
+void semLock(sem_t *sem);
+void semUnlock(sem_t *sem);
+void semDestroy(sem_t *sem);
