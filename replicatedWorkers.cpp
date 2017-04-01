@@ -30,7 +30,7 @@ sem_t s[NO_OF_WORK_POOLS + 1]; //t's lock
 int d[NO_OF_WORK_POOLS * NO_OF_WORKERS + 1];
 int head[NO_OF_WORK_POOLS + 1];
 int tail[NO_OF_WORK_POOLS + 1];
-string w[NO_OF_WORK_POOLS][100];
+string w[NO_OF_WORK_POOLS + 1][100];
 int emptyWorkPools;
 sem_t e; //emptyWorkPools lock
 
