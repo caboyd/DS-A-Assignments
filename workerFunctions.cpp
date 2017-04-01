@@ -162,7 +162,7 @@ string removeTask(int workPoolID)
 		semLock(&s[workPoolID]);
 	}
 	lockOutput();
-	cout << "workPoolID" << workPoolID << endl;
+	cout << "workPoolID " << workPoolID << endl;
 	cout << "tail[workPoolID] " << tail[workPoolID] << endl;
 	cout << "head[workPoolID] " << head[workPoolID] << endl;
 	head[workPoolID]++;

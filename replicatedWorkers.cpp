@@ -57,6 +57,16 @@ void replicatedWorkers(string task)
 
 	tids = new pthread_t[n];
 
+	//initialzie workpool
+
+	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			w[i][j] = "";
+		}
+	}
+
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 	{
 		t[i] = 0;
