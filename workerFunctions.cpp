@@ -9,6 +9,7 @@ Child thread function
 #include <semaphore.h>
 #include "Sleep.h"
 #include <queue>
+#include "semaphoreFunctions.cpp"
 
 const std::string EMPTY = "";
 const std::string NULL_TASK = "NULL";
