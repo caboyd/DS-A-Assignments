@@ -20,10 +20,9 @@ extern const int n;
 extern pthread_mutex_t output_lock;
 
 
-//Prototype thread functions as C functions
-extern "C" {
-	void* worker(void* args);
-}
+//Prototype thread functions
+void* worker(void* args);
+
 
 void* worker(void* args)
 {

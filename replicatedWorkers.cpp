@@ -34,10 +34,12 @@ queue<string> w[NO_OF_WORK_POOLS];
 int emptyWorkPools;
 pthread_mutex_t e; //emptyWorkPools lock
 
+//prototypes
+void replicatedWorkers(string task);
 
 int main(int argc, char *argv[])
 {
-
+	replicatedWorkers("a");
 
 	return 0;
 }
