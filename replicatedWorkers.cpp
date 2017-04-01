@@ -22,6 +22,7 @@ pthread_mutex_t output_lock;
 //Globals
 const int NO_OF_WORKERS = 5;
 const int NO_OF_WORK_POOLS = 3;
+const int POOL_SIZE = 100;
 //total threads
 const int n = NO_OF_WORKERS * NO_OF_WORK_POOLS;
 
@@ -30,9 +31,10 @@ sem_t s[NO_OF_WORK_POOLS + 1]; //t's lock
 int d[NO_OF_WORK_POOLS * NO_OF_WORKERS + 1];
 int head[NO_OF_WORK_POOLS + 1];
 int tail[NO_OF_WORK_POOLS + 1];
-string w[NO_OF_WORK_POOLS + 1][100];
+string w[NO_OF_WORK_POOLS + 1][POOL_SIZE];
 int emptyWorkPools;
 sem_t e; //emptyWorkPools lock
+int taskCounter = 1;
 
 //prototypes
 void replicatedWorkers(string task);
@@ -42,7 +44,7 @@ void putWork(int workerId, string task);
 
 int main(int argc, char *argv[])
 {
-	replicatedWorkers("1");
+	replicatedWorkers(std::to_string(taskCounter));
 	return 0;
 }
 
@@ -61,7 +63,7 @@ void replicatedWorkers(string task)
 
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 	{
-		for (int j = 0; j < 100; j++)
+		for (int j = 0; j < POOL_SIZE; j++)
 		{
 			w[i][j] = "";
 		}

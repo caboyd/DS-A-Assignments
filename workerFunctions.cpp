@@ -79,8 +79,18 @@ void* worker(void* args)
 	while(task != NULL_TASK)
 	{
 		doWork(workerID, task);
+
+		lockOutput();
+		cout << "Worker " << workerID << " has finished task " << task;
+		cout << " in workPoolID " << d[workerID] << endl;
+		unlockOutput();
+
 		task = getWork(workerID);
 	}
+
+	lockOutput();
+	cout << "Worker " << workerID << " has terminated" << endl;
+	unlockOutput();
 
 	return NULL;
 }
@@ -98,7 +108,8 @@ void putWork(int workerId, string task)
 	semUnlock(&s[workPoolID]);
 	insertTask(workPoolID, task);
 	lockOutput();
-	cout << "Worker " << workerId << " has inserted task " << task << endl;
+	cout << "Worker " << workerId << " has inserted task " << task;
+	cout << " in workPoolID " << workPoolID << endl;
 	unlockOutput();
 	d[workerId] = workPoolID % NO_OF_WORK_POOLS + 1;
 }
@@ -141,9 +152,6 @@ string getWork(int workerID)
 		semUnlock(&s[workPoolID]);
 	}
 	string task = removeTask(workPoolID);
-	lockOutput();
-	cout << "Worker " << workerID << " has removed task " << task << endl;
-	unlockOutput();
 	return task;
 }
 
@@ -186,7 +194,8 @@ void unlockOutput()
 void doWork(int workerID, string task)
 {
 	lockOutput();
-	cout << "Worker " << workerID << " is doing task " << task << endl;
-	sleep(0.1);
+	cout << "Worker " << workerID << " has started " << task;
+	cout << " in workPoolID " << d[workerID] << endl;
 	unlockOutput();
+	sleep(0.1);
 }
