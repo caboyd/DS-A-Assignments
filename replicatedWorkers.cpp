@@ -10,6 +10,7 @@ This program creates child threads
 #include <list>
 #include <queue>
 #include <stdlib.h>
+#include "workerFunctions.cpp"
 
 using namespace  std;
 
@@ -32,11 +33,6 @@ int tail[NO_OF_WORK_POOLS + 1];
 queue<string> w[NO_OF_WORK_POOLS];
 int emptyWorkPools;
 pthread_mutex_t e; //emptyWorkPools lock
-
-//Prototype thread functions as C functions
-extern "C" {
-	void *worker(void *args);
-}
 
 
 int main(int argc, char *argv[])

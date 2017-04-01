@@ -14,7 +14,7 @@ using namespace std;
 extern pthread_t *tids;
 
 //total num of workers
-extern int n;
+extern const int n;
 
 //Cout output lock
 extern pthread_mutex_t output_lock;
