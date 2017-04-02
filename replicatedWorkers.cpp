@@ -23,9 +23,9 @@ pthread_t *tids;
 pthread_mutex_t output_lock;
 
 //Globals
-const int NO_OF_WORKERS = 5;
-const int NO_OF_WORK_POOLS = 3;
-const int POOL_SIZE = 100;
+const int NO_OF_WORKERS = 15;
+const int NO_OF_WORK_POOLS = 10;
+const int POOL_SIZE = 1000;
 //total threads
 const int n = NO_OF_WORKERS * NO_OF_WORK_POOLS;
 
