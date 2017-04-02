@@ -4,51 +4,20 @@ This program creates child threads
 
 #include <string>
 #include <iostream>
-#include <pthread.h>
+
 #include <iomanip>
-#include <semaphore.h>
+
 #include <list>
 #include <queue>
 #include <stdlib.h>
 #include "Semaphore.h"
 #include <math.h>
+#include "replicatedWorkers.h"
 
 using namespace  std;
 
 const int EMPTY = 0;
 const int NULL_TASK = -1;
-
-pthread_t *tids;
-//Cout output lock
-sem_t output_lock;
-
-//Globals
-const int NO_OF_WORKERS = 5;
-const int NO_OF_WORK_POOLS = 3;
-const int POOL_SIZE = 1000;
-//total threads
-const int n = NO_OF_WORKERS * NO_OF_WORK_POOLS;
-
-int t[NO_OF_WORK_POOLS + 1];
-sem_t s[NO_OF_WORK_POOLS + 1]; //t's lock
-int d[n + 1];
-int head[NO_OF_WORK_POOLS + 1];
-int tail[NO_OF_WORK_POOLS + 1];
-int w[NO_OF_WORK_POOLS + 1][POOL_SIZE];
-int emptyWorkPools;
-sem_t e; //emptyWorkPools lock
-
-
-//Random number of new tasks for threads to create
-int newTasks[n + 1];
-int taskCounter = 1;
-sem_t tc; //taskCounter lock
-
-//prototypes
-void replicatedWorkers(int task);
-void* worker(void* args);
-void putWork(int workerId, int task);
-
 
 int main(int argc, char *argv[])
 {

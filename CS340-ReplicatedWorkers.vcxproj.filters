@@ -38,5 +38,8 @@
     <ClInclude Include="Semaphore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="replicatedWorkers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

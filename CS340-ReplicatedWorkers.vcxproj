@@ -146,6 +146,7 @@
     <ClCompile Include="Semaphore.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="replicatedWorkers.h" />
     <ClInclude Include="Semaphore.h" />
     <ClInclude Include="Sleep.h" />
   </ItemGroup>
