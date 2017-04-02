@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="counterFunctions.cpp" />
     <ClCompile Include="replicatedWorkers.cpp" />
     <ClCompile Include="Sleep.cpp" />
     <ClCompile Include="workerFunctions.cpp" />

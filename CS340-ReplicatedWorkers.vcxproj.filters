@@ -24,9 +24,6 @@
     <ClCompile Include="Sleep.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="counterFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Semaphore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

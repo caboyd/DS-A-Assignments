@@ -7,42 +7,41 @@
 #include "Sleep.h"
 
 
-
 #if defined(_WIN32) || defined(__WIN32__)
 
-	#include <windows.h>  // needed for Sleep(millisec)
+#include <windows.h>  // needed for Sleep(millisec)
 
-	void sleep (double seconds)
-	{
-		assert(seconds >= 0.0);
+void sleep(double seconds)
+{
+	assert(seconds >= 0.0);
 
-		int milliseconds = (int)(seconds * 1000.0);
+	int milliseconds = (int)(seconds * 1000.0);
 
-		if(milliseconds > 0)
-			Sleep(milliseconds);
-	}
+	if (milliseconds > 0)
+		Sleep(milliseconds);
+}
 
 #else	// Posix
 
-	#include <time.h>
+#include <time.h>
 
-	void sleep (double seconds)
+void sleep(double seconds)
+{
+	assert(seconds >= 0.0);
+
+	if (seconds > 0.0)
 	{
-		assert(seconds >= 0.0);
+		timespec spec;
+		spec.tv_sec = (int)(seconds);
+		spec.tv_nsec = (int)((seconds - spec.tv_sec) * 1000000000);
+		// beware rounding erros
+		if (spec.tv_nsec < 0)
+			spec.tv_nsec = 0;
+		else if (spec.tv_nsec > 999999999)
+			spec.tv_nsec = 999999999;
 
-		if(seconds > 0.0)
-		{
-			timespec spec;
-			spec.tv_sec  = (int)(seconds);
-			spec.tv_nsec = (int)((seconds - spec.tv_sec) * 1000000000);
-			// beware rounding erros
-			if(spec.tv_nsec < 0)
-				spec.tv_nsec = 0;
-			else if(spec.tv_nsec > 999999999)
-				spec.tv_nsec = 999999999;
-
-			nanosleep(&spec, NULL);
-		}
+		nanosleep(&spec, NULL);
 	}
+}
 
 #endif

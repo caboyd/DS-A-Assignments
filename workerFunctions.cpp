@@ -1,15 +1,16 @@
-/*
-Child thread function
-*/
+/**
+ *	Author: Robert Hilderman
+ *	Modified by: Chris Boyd
+ *	Date: April 1, 2017
+ *
+ *	Worker functions for replicatedWorker's algorithm
+ *
+ */
 
 #include <iostream>
-#include <string>
-#include <stdlib.h>
 #include "Sleep.h"
-#include <queue>
 #include "Semaphore.h"
 #include "replicatedWorkers.h"
-
 
 using namespace std;
 
@@ -38,7 +39,7 @@ void* worker(void* args)
 
 	//Do tasks until received null task
 	int task = getWork(workerID);
-	while(task != NULL_TASK)
+	while (task != NULL_TASK)
 	{
 		doWork(workerID, task);
 
@@ -141,7 +142,7 @@ void doWork(int workerID, int task)
 	cout << "Worker " << workerID << " has started task " << task;
 	cout << " in workPoolID " << ((workerID - 1) / NO_OF_WORKERS) + 1 << endl;
 	semUnlock(&output_lock);
-	if(newTasks[workerID] > 0)
+	if (newTasks[workerID] > 0)
 	{
 		newTasks[workerID]--;
 		int workPoolID = d[workerID];

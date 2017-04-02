@@ -18,5 +18,5 @@
 //  Side Effect: The curent thread sleeps for seconds seconds.
 //               If seconds == 0, execution is not stopped.
 //
-void sleep (double seconds);
+void sleep(double seconds);
 

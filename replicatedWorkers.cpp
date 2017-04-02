@@ -1,36 +1,37 @@
 /*
-This program creates child threads
+*	Author: Chris Boyd
+*	Date: April 1, 2017
+*	Assignment 6
+*
+*	Replicated Workers algorithm 
+*
 */
 
-#include <string>
 #include <iostream>
-#include <iomanip>
 #include <stdlib.h>
 #include "Semaphore.h"
 #include "replicatedWorkers.h"
+#include <time.h>
 
 using namespace  std;
 
-//globals
 int t[NO_OF_WORK_POOLS + 1];
-sem_t s[NO_OF_WORK_POOLS + 1]; //t's lock
+sem_t s[NO_OF_WORK_POOLS + 1];
 int d[n + 1];
 int head[NO_OF_WORK_POOLS + 1];
 int tail[NO_OF_WORK_POOLS + 1];
 int w[NO_OF_WORK_POOLS + 1][POOL_SIZE];
 int emptyWorkPools;
-sem_t e; //emptyWorkPools lock
-
+sem_t e;
 pthread_t *tids;
-//Cout output lock
 sem_t output_lock;
-
-//Random number of new tasks for threads to create
 int newTasks[n + 1];
-int taskCounter = 1;
-sem_t tc; //taskCounter lock
+int taskCounter;
+sem_t tc;
+
 
 //Prototypes
+//Performs Hilderman's replicated Workers algorithm
 void replicatedWorkers(int task);
 
 int main(int argc, char *argv[])
@@ -44,9 +45,6 @@ void replicatedWorkers(int task)
 {
 	cout << "Pid " << (long)getpid() << " has started" << endl;
 
-	//Initialzie random count of new tasks
-
-
 	//Initialize semaphores
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 		semInit(&s[i]);
@@ -57,27 +55,31 @@ void replicatedWorkers(int task)
 	//Allocated threads
 	tids = new pthread_t[NO_OF_WORK_POOLS * NO_OF_WORKERS + 1];
 
-	//initialize
+
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 	{
 		//initialzie workpools to empty
 		for (int j = 0; j < POOL_SIZE; j++)
 			w[i][j] = EMPTY;
 
+		//initialize globals
 		t[i] = 0;
 		head[i] = 0;
 		tail[i] = 0;
 		for (int j = (i - 1) * NO_OF_WORKERS + 1; j <= i * NO_OF_WORKERS; j++)
 		{
+			//Initialize which workpool a worker will insert to
 			d[j] = i % NO_OF_WORK_POOLS + 1;
+			//Initialzie random count of new tasks
 			//10 to 20 new tasks per thread
 			newTasks[j] = rand() % 20 + 10;
 		}
 	}
-
+	//worker 1 inserts into workpool 1
 	d[1] = 1;
 
 	emptyWorkPools = 0;
+	taskCounter = 1;
 
 	//Insert first task
 	putWork(1, task);
