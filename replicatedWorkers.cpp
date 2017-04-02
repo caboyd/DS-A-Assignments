@@ -52,6 +52,7 @@ void putWork(int workerId, int task);
 
 int main(int argc, char *argv[])
 {
+	srand(time(0));
 	replicatedWorkers(taskCounter);
 	return 0;
 }
