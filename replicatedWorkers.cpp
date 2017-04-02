@@ -32,12 +32,14 @@ sem_t tc;
 
 //Prototypes
 //Performs Hilderman's replicated Workers algorithm
-void* replicatedWorkers(int task);
+void* replicatedWorkers(void* args);
 
 int main(int argc, char *argv[])
 {
 	srand(time(0));
 	pthread_t parent;
+	int* firstTask = new int;
+	*firstTask = 0;
 
 	if (pthread_create(&parent, NULL, replicatedWorkers, NULL) > 0)
 	{
@@ -54,7 +56,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void* replicatedWorkers(int task)
+void* replicatedWorkers(void* args)
 {
 	cout << "Pid " << (long)getpid() << " has started" << endl;
 
@@ -130,5 +132,7 @@ void* replicatedWorkers(int task)
 	delete tids;
 
 	cout << "Pid " << (long)getpid() << " has terminated" << endl;
+
+	return NULL;
 }
 
