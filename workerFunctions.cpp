@@ -4,16 +4,12 @@ Child thread function
 
 #include <iostream>
 #include <string>
-#include <pthread.h>
 #include <stdlib.h>
-#include <semaphore.h>
 #include "Sleep.h"
 #include <queue>
 #include "Semaphore.h"
 #include "replicatedWorkers.h"
 
-const int EMPTY = 0;
-const int NULL_TASK = -1;
 
 using namespace std;
 
