@@ -21,8 +21,8 @@ extern pthread_t *tids;
 extern pthread_mutex_t output_lock;
 
 //Globals
-const int NO_OF_WORKERS = 15;
-const int NO_OF_WORK_POOLS = 10;
+const int NO_OF_WORKERS = 5;
+const int NO_OF_WORK_POOLS = 3;
 const int POOL_SIZE = 1000;
 //total threads
 const int n = NO_OF_WORK_POOLS * NO_OF_WORKERS;
@@ -193,7 +193,7 @@ void doWork(int workerID, int task)
 	if(newTasks[workerID] > 0)
 	{
 		newTasks[workerID]--;
-
+		int workPoolID = d[workerID];
 		semLock(&tc);
 		taskCounter++;
 		int tempTaskCounter = taskCounter;
@@ -203,7 +203,7 @@ void doWork(int workerID, int task)
 
 		lockOutput();
 		cout << "Worker " << workerID << " has inserted task " << tempTaskCounter;
-		cout << " in workPoolID " << ((workerID - 1) / NO_OF_WORKERS) + 1 << endl;
+		cout << " in workPoolID " << workPoolID << endl;
 		unlockOutput();
 	}
 
