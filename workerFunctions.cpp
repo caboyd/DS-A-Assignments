@@ -202,7 +202,7 @@ void doWork(int workerID, int task)
 		putWork(workerID, tempTaskCounter);
 
 		lockOutput();
-		cout << "Worker " << workerID << " has inserted task " << task;
+		cout << "Worker " << workerID << " has inserted task " << tempTaskCounter;
 		cout << " in workPoolID " << ((workerID - 1) / NO_OF_WORKERS) + 1 << endl;
 		unlockOutput();
 	}
