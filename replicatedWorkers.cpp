@@ -69,6 +69,7 @@ void replicatedWorkers(int task)
 		semInit(&s[i]);
 	semInit(&e);
 	semInit(&tc);
+	semInit(&output_lock);
 
 	//Allocated threads
 	tids = new pthread_t[NO_OF_WORK_POOLS * NO_OF_WORKERS + 1];
@@ -125,6 +126,7 @@ void replicatedWorkers(int task)
 		semDestroy(&s[i]);
 	semDestroy(&e);
 	semDestroy(&tc);
+	semDestroy(&output_lock);
 	
 	delete tids;
 
