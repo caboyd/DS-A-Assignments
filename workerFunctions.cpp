@@ -23,6 +23,7 @@ extern pthread_mutex_t output_lock;
 //Globals
 const int NO_OF_WORKERS = 5;
 const int NO_OF_WORK_POOLS = 3;
+const int POOL_SIZE = 100;
 //total threads
 const int n = NO_OF_WORK_POOLS * NO_OF_WORKERS;
 
@@ -36,7 +37,7 @@ extern int emptyWorkPools;
 extern sem_t e; //emptyWorkPools lock
 extern int newTasks[n + 1];
 extern int taskCounter;
-
+extern sem_t tc; //taskCounter lock
 
 //Prototype thread functions
 extern void* worker(void* args);
@@ -68,6 +69,7 @@ void* worker(void* args)
 		}
 	}
 	workerID = (int)i;
+	int workPoolID = ((workerID - 1) / NO_OF_WORKERS) + 1;
 
 	int task = getWork(workerID);
 	while(task != NULL_TASK)
@@ -76,7 +78,7 @@ void* worker(void* args)
 
 		lockOutput();
 		cout << "Worker " << workerID << " has finished task " << task;
-		cout << " in workPoolID " << d[workerID] << endl;
+		cout << " in workPoolID " << workPoolID << endl;
 		unlockOutput();
 
 		task = getWork(workerID);
@@ -185,18 +187,23 @@ void unlockOutput()
 void doWork(int workerID, int task)
 {
 	lockOutput();
-	cout << "Worker " << workerID << " has started " << task;
+	cout << "Worker " << workerID << " has started task " << task;
 	cout << " in workPoolID " << d[workerID] << endl;
 	unlockOutput();
 	if(newTasks[workerID] > 0)
 	{
-		int workPoolID = d[workerID];
-		taskCounter++;
 		newTasks[workerID]--;
-		putWork(workerID, taskCounter);
+
+		semLock(&tc);
+		taskCounter++;
+		int tempTaskCounter = taskCounter;
+		semUnlock(&tc);
+
+		putWork(workerID, tempTaskCounter);
+
 		lockOutput();
 		cout << "Worker " << workerID << " has inserted task " << task;
-		cout << " in workPoolID " << workPoolID << endl;
+		cout << " in workPoolID " << ((workerID - 1) / NO_OF_WORKERS) + 1 << endl;
 		unlockOutput();
 	}
 

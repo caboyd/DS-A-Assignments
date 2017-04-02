@@ -38,9 +38,11 @@ int w[NO_OF_WORK_POOLS + 1][POOL_SIZE];
 int emptyWorkPools;
 sem_t e; //emptyWorkPools lock
 
+
 //Random number of new tasks for threads to create
 int newTasks[n + 1];
 int taskCounter = 1;
+sem_t tc; //taskCounter lock
 
 //prototypes
 void replicatedWorkers(int task);
@@ -56,7 +58,7 @@ int main(int argc, char *argv[])
 
 void replicatedWorkers(int task)
 {
-	cout << "Pid" << (long)getpid() << "has started" << endl;
+	cout << "Pid " << (long)getpid() << " has started" << endl;
 
 	//Initialzie random count of new tasks
 
@@ -65,6 +67,7 @@ void replicatedWorkers(int task)
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 		semInit(&s[i]);
 	semInit(&e);
+	semInit(&tc);
 
 	//Allocated threads
 	tids = new pthread_t[NO_OF_WORK_POOLS * NO_OF_WORKERS + 1];
@@ -82,7 +85,8 @@ void replicatedWorkers(int task)
 		for (int j = (i - 1) * NO_OF_WORKERS + 1; j <= i * NO_OF_WORKERS; j++)
 		{
 			d[j] = i % NO_OF_WORK_POOLS + 1;
-			newTasks[j] = rand() % NO_OF_WORK_POOLS + 1;
+			//1 to 10 new tasks per thread
+			newTasks[j] = rand() % 10 + 1;
 		}
 	}
 
@@ -92,7 +96,7 @@ void replicatedWorkers(int task)
 
 	//Insert first task
 	putWork(1, task);
-	cout << "Pid" << (long)getpid() << "has created task " << task;
+	cout << "Pid " << (long)getpid() << " has created task " << task;
 	cout << " in workPoolID " << 1 << endl;
 
 	//create threads
@@ -119,6 +123,7 @@ void replicatedWorkers(int task)
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 		semDestroy(&s[i]);
 	semDestroy(&e);
+	semDestroy(&tc);
 	
 	delete tids;
 }
