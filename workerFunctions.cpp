@@ -34,12 +34,13 @@ extern int tail[NO_OF_WORK_POOLS + 1];
 extern int w[NO_OF_WORK_POOLS][100];
 extern int emptyWorkPools;
 extern sem_t e; //emptyWorkPools lock
-
+extern int newTasks[n + 1];
+extern int taskCounter;
 
 
 //Prototype thread functions
 extern void* worker(void* args);
-extern void putWork(int workerId, int task);
+extern void putWork(int workerID, int task);
 extern void insertTask(int workPoolID, int task);
 int getWork(int workerID);
 int removeTask(int workPoolID);
@@ -68,13 +69,6 @@ void* worker(void* args)
 	}
 	workerID = (int)i;
 
-	lockOutput();
-
-	/****************** Critical Section ****************************/
-	cout << "This is worker id " << workerID << " from pid " << (long)getpid() << endl;
-
-	unlockOutput();
-
 	int task = getWork(workerID);
 	while(task != NULL_TASK)
 	{
@@ -96,9 +90,9 @@ void* worker(void* args)
 }
 
 
-void putWork(int workerId, int task)
+void putWork(int workerID, int task)
 {
-	int workPoolID = d[workerId];
+	int workPoolID = d[workerID];
 	semLock(&s[workPoolID]);
 	semLock(&e);
 	t[workPoolID]++;
@@ -108,10 +102,10 @@ void putWork(int workerId, int task)
 	semUnlock(&s[workPoolID]);
 	insertTask(workPoolID, task);
 	lockOutput();
-	cout << "Worker " << workerId << " has inserted task " << task;
+	cout << "Worker " << workerID << " has inserted task " << task;
 	cout << " in workPoolID " << workPoolID << endl;
 	unlockOutput();
-	d[workerId] = workPoolID % NO_OF_WORK_POOLS + 1;
+	d[workerID] = workPoolID % NO_OF_WORK_POOLS + 1;
 }
 
 void insertTask(int workPoolID, int task)
@@ -197,5 +191,13 @@ void doWork(int workerID, int task)
 	cout << "Worker " << workerID << " has started " << task;
 	cout << " in workPoolID " << d[workerID] << endl;
 	unlockOutput();
-	sleep(0.1);
+	if(newTasks[workerID] > 0)
+	{
+		taskCounter++;
+		putWork(workerID, taskCounter);
+		newTasks[workerID]--;
+	}
+
+	//1 to 10ms sleep
+	sleep((double)(rand() % 10 + 1) / 1000);
 }
