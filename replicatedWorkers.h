@@ -27,7 +27,7 @@ extern sem_t output_lock;
 
 //Random number of new tasks for threads to create
 extern int newTasks[n + 1];
-extern int taskCounter = 1;
+extern int taskCounter;
 extern sem_t tc; //taskCounter lock
 
 
