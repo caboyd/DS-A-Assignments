@@ -32,7 +32,6 @@ extern sem_t tc; //taskCounter lock
 
 
 //Prototype thread functions
-void replicatedWorkers(int task);
 extern void* worker(void* args);
 extern void putWork(int workerID, int task);
 void insertTask(int workPoolID, int task);

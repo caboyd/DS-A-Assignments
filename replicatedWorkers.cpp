@@ -30,6 +30,9 @@ int newTasks[n + 1];
 int taskCounter = 1;
 sem_t tc; //taskCounter lock
 
+//Prototypes
+void replicatedWorkers(int task);
+
 int main(int argc, char *argv[])
 {
 	srand(time(0));
