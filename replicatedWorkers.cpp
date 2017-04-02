@@ -37,13 +37,17 @@ void replicatedWorkers(int task);
 int main(int argc, char *argv[])
 {
 	srand(time(0));
+
+	cout << "Pid " << (long)getpid() << " has started" << endl;
 	replicatedWorkers(taskCounter);
+	cout << "Pid " << (long)getpid() << " has terminated" << endl;
+
 	return 0;
 }
 
 void replicatedWorkers(int task)
 {
-	cout << "Pid " << (long)getpid() << " has started" << endl;
+
 
 	//Initialize semaphores
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
@@ -115,6 +119,6 @@ void replicatedWorkers(int task)
 
 	delete tids;
 
-	cout << "Pid " << (long)getpid() << " has terminated." << endl;
+
 }
 
