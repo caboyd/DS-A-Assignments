@@ -86,8 +86,8 @@ void replicatedWorkers(int task)
 		for (int j = (i - 1) * NO_OF_WORKERS + 1; j <= i * NO_OF_WORKERS; j++)
 		{
 			d[j] = i % NO_OF_WORK_POOLS + 1;
-			//1 to 10 new tasks per thread
-			newTasks[j] = rand() % 10 + 1;
+			//1 to 20 new tasks per thread
+			newTasks[j] = rand() % 20 + 1;
 		}
 	}
 
