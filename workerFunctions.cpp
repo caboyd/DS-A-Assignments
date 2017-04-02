@@ -18,7 +18,7 @@ using namespace std;
 
 extern pthread_t *tids;
 //Cout output lock
-extern pthread_mutex_t output_lock;
+extern sem_t output_lock;
 
 //Globals
 const int NO_OF_WORKERS = 5;
@@ -168,20 +168,12 @@ int removeTask(int workPoolID)
 
 void lockOutput()
 {
-	if (pthread_mutex_lock(&output_lock) != 0)
-	{
-		cerr << "Could not lock output: ";
-		exit(1);
-	}
+	semLock(&output_lock);
 }
 
 void unlockOutput()
 {
-	if (pthread_mutex_unlock(&output_lock) != 0)
-	{
-		cerr << "Could not unlock output: ";
-		exit(1);
-	}
+	semUnlock(&output_lock);
 }
 
 void doWork(int workerID, int task)

@@ -20,7 +20,7 @@ const int NULL_TASK = -1;
 
 pthread_t *tids;
 //Cout output lock
-pthread_mutex_t output_lock;
+sem_t output_lock;
 
 //Globals
 const int NO_OF_WORKERS = 5;
@@ -127,5 +127,7 @@ void replicatedWorkers(int task)
 	semDestroy(&tc);
 	
 	delete tids;
+
+	cout << "Pid " << (long)getpid() << " has terminated." << endl;
 }
 
