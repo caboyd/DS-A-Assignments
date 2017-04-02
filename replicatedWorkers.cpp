@@ -47,8 +47,6 @@ int main(int argc, char *argv[])
 
 void replicatedWorkers(int task)
 {
-
-
 	//Initialize semaphores
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 		semInit(&s[i]);
@@ -58,7 +56,6 @@ void replicatedWorkers(int task)
 
 	//Allocated threads
 	tids = new pthread_t[NO_OF_WORK_POOLS * NO_OF_WORKERS + 1];
-
 
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 	{

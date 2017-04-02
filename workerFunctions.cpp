@@ -8,6 +8,7 @@
  */
 
 #include <iostream>
+#include <stdlib.h>
 #include "Sleep.h"
 #include "Semaphore.h"
 #include "replicatedWorkers.h"
