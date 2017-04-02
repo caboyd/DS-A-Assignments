@@ -188,7 +188,7 @@ void doWork(int workerID, int task)
 {
 	lockOutput();
 	cout << "Worker " << workerID << " has started task " << task;
-	cout << " in workPoolID " << d[workerID] << endl;
+	cout << " in workPoolID " << ((workerID - 1) / NO_OF_WORKERS) + 1 << endl;
 	unlockOutput();
 	if(newTasks[workerID] > 0)
 	{
