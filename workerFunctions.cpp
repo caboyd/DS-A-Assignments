@@ -33,24 +33,26 @@ void* worker(void* args)
 		}
 	}
 	workerID = (int)i;
+	//calculate worker's workpool
 	int workPoolID = ((workerID - 1) / NO_OF_WORKERS) + 1;
 
+	//Do tasks until received null task
 	int task = getWork(workerID);
 	while(task != NULL_TASK)
 	{
 		doWork(workerID, task);
 
-		lockOutput();
+		semLock(&output_lock);
 		cout << "Worker " << workerID << " has finished task " << task;
 		cout << " in workPoolID " << workPoolID << endl;
-		unlockOutput();
+		semUnlock(&output_lock);
 
 		task = getWork(workerID);
 	}
 
-	lockOutput();
+	semLock(&output_lock);
 	cout << "Worker " << workerID << " has terminated" << endl;
-	unlockOutput();
+	semUnlock(&output_lock);
 
 	return NULL;
 }
@@ -68,6 +70,7 @@ void putWork(int workerID, int task)
 	semUnlock(&s[workPoolID]);
 	insertTask(workPoolID, task);
 
+	//increment workpool this worker will insert to next time
 	d[workerID] = workPoolID % NO_OF_WORK_POOLS + 1;
 }
 
@@ -82,6 +85,7 @@ void insertTask(int workPoolID, int task)
 
 int getWork(int workerID)
 {
+	//calculate worker's workpool id
 	int workPoolID = ((workerID - 1) / NO_OF_WORKERS) + 1;
 	semLock(&s[workPoolID]);
 	semLock(&e);
@@ -95,6 +99,7 @@ int getWork(int workerID)
 			semUnlock(&s[workPoolID]);
 			for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 			{
+				//fill workpool with null tasks to terminate workers
 				for (int j = 1; j <= NO_OF_WORKERS; j++)
 					insertTask(i, NULL_TASK);
 			}
@@ -130,22 +135,12 @@ int removeTask(int workPoolID)
 	return task;
 }
 
-void lockOutput()
-{
-	semLock(&output_lock);
-}
-
-void unlockOutput()
-{
-	semUnlock(&output_lock);
-}
-
 void doWork(int workerID, int task)
 {
-	lockOutput();
+	semLock(&output_lock);
 	cout << "Worker " << workerID << " has started task " << task;
 	cout << " in workPoolID " << ((workerID - 1) / NO_OF_WORKERS) + 1 << endl;
-	unlockOutput();
+	semUnlock(&output_lock);
 	if(newTasks[workerID] > 0)
 	{
 		newTasks[workerID]--;
@@ -157,10 +152,10 @@ void doWork(int workerID, int task)
 
 		putWork(workerID, tempTaskCounter);
 
-		lockOutput();
+		semLock(&output_lock);
 		cout << "Worker " << workerID << " has inserted task " << tempTaskCounter;
 		cout << " in workPoolID " << workPoolID << endl;
-		unlockOutput();
+		semUnlock(&output_lock);
 	}
 
 	//10 to 100ms sleep

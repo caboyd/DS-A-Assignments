@@ -42,6 +42,4 @@ void putWork(int workerID, int task);
 void insertTask(int workPoolID, int task);
 int getWork(int workerID);
 int removeTask(int workPoolID);
-void lockOutput();
-void unlockOutput();
 void doWork(int workerID, int task);
