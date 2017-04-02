@@ -80,11 +80,13 @@ void replicatedWorkers(int task)
 	d[1] = 1;
 
 	emptyWorkPools = 0;
+
+	//initializer global task counter
 	taskCounter = 1;
 
 	//Insert first task
-	putWork(1, task);
-	cout << "Pid " << (long)getpid() << " has created task " << task;
+	putWork(1, taskCounter);
+	cout << "Pid " << (long)getpid() << " has created task " << taskCounter;
 	cout << " in workPoolID " << 1 << endl;
 
 	//create threads
