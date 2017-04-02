@@ -101,10 +101,7 @@ void putWork(int workerID, int task)
 	semUnlock(&e);
 	semUnlock(&s[workPoolID]);
 	insertTask(workPoolID, task);
-	lockOutput();
-	cout << "Worker " << workerID << " has inserted task " << task;
-	cout << " in workPoolID " << workPoolID << endl;
-	unlockOutput();
+
 	d[workerID] = workPoolID % NO_OF_WORK_POOLS + 1;
 }
 
@@ -193,9 +190,14 @@ void doWork(int workerID, int task)
 	unlockOutput();
 	if(newTasks[workerID] > 0)
 	{
+		int workPoolID = d[workerID];
 		taskCounter++;
-		putWork(workerID, taskCounter);
 		newTasks[workerID]--;
+		putWork(workerID, taskCounter);
+		lockOutput();
+		cout << "Worker " << workerID << " has inserted task " << task;
+		cout << " in workPoolID " << workPoolID << endl;
+		unlockOutput();
 	}
 
 	//1 to 10ms sleep
