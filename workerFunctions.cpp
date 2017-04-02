@@ -207,6 +207,6 @@ void doWork(int workerID, int task)
 		unlockOutput();
 	}
 
-	//1 to 10ms sleep
-	sleep((double)(rand() % 10 + 1) / 1000);
+	//10 to 100ms sleep
+	sleep((double)(rand() % 10 + 1) / 100);
 }
