@@ -32,7 +32,7 @@ extern sem_t s[NO_OF_WORK_POOLS + 1]; //t's lock
 extern int d[NO_OF_WORK_POOLS * NO_OF_WORKERS + 1];
 extern int head[NO_OF_WORK_POOLS + 1];
 extern int tail[NO_OF_WORK_POOLS + 1];
-extern int w[NO_OF_WORK_POOLS][100];
+extern int w[NO_OF_WORK_POOLS][POOL_SIZE];
 extern int emptyWorkPools;
 extern sem_t e; //emptyWorkPools lock
 extern int newTasks[n + 1];
