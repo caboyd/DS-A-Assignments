@@ -32,21 +32,32 @@ sem_t tc;
 
 //Prototypes
 //Performs Hilderman's replicated Workers algorithm
-void replicatedWorkers(int task);
+void* replicatedWorkers(int task);
 
 int main(int argc, char *argv[])
 {
 	srand(time(0));
+	pthread_t parent;
 
-	cout << "Pid " << (long)getpid() << " has started" << endl;
-	replicatedWorkers(taskCounter);
-	cout << "Pid " << (long)getpid() << " has terminated" << endl;
+	if (pthread_create(&parent, NULL, replicatedWorkers, NULL) > 0)
+	{
+		cerr << "pthread_create failure" << endl;
+		exit(1);
+	}
+
+	if (pthread_join(parent, NULL) > 0)
+	{
+		cerr << "pthread_join failure" << endl;
+		exit(1);
+	}
 
 	return 0;
 }
 
-void replicatedWorkers(int task)
+void* replicatedWorkers(int task)
 {
+	cout << "Pid " << (long)getpid() << " has started" << endl;
+
 	//Initialize semaphores
 	for (int i = 1; i <= NO_OF_WORK_POOLS; i++)
 		semInit(&s[i]);
@@ -118,6 +129,6 @@ void replicatedWorkers(int task)
 
 	delete tids;
 
-
+	cout << "Pid " << (long)getpid() << " has terminated" << endl;
 }
 
