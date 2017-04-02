@@ -3,11 +3,13 @@
 #include <pthread.h>
 #include <semaphore.h>
 
+//Constants for replicated workers
 const int EMPTY = 0;
 const int NULL_TASK = -1;
 const int NO_OF_WORKERS = 5;
 const int NO_OF_WORK_POOLS = 3;
 const int POOL_SIZE = 1000;
+
 //total threads
 const int n = NO_OF_WORKERS * NO_OF_WORK_POOLS;
 
@@ -21,19 +23,22 @@ extern int w[NO_OF_WORK_POOLS + 1][POOL_SIZE];
 extern int emptyWorkPools;
 extern sem_t e; //emptyWorkPools lock
 
+//threads
 extern pthread_t *tids;
+
 //Cout output lock
 extern sem_t output_lock;
 
-//Random number of new tasks for threads to create
+//holds number of new tasks for threads to create
 extern int newTasks[n + 1];
+
+//counter for created tasks
 extern int taskCounter;
 extern sem_t tc; //taskCounter lock
 
-
 //Prototype thread functions
-extern void* worker(void* args);
-extern void putWork(int workerID, int task);
+void* worker(void* args);
+void putWork(int workerID, int task);
 void insertTask(int workPoolID, int task);
 int getWork(int workerID);
 int removeTask(int workPoolID);
