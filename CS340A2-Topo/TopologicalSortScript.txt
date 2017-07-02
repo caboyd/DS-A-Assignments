@@ -1,0 +1,77 @@
+Evidence program is working
+
+Leader 1
+        vertex = 1
+        inDegree = 0
+        nextLeader = 2
+        Follower 1 = 3
+        Follower 2 = 2
+
+Leader 2
+        vertex = 2
+        inDegree = 1
+        nextLeader = 4
+        Follower 1 = 10
+        Follower 2 = 4
+
+Leader 3
+        vertex = 4
+        inDegree = 2
+        nextLeader = 6
+        Follower 1 = 8
+        Follower 2 = 6
+
+Leader 4
+        vertex = 6
+        inDegree = 1
+        nextLeader = 10
+        Follower 1 = 3
+
+Leader 5
+        vertex = 10
+        inDegree = 2
+        nextLeader = 8
+
+Leader 6
+        vertex = 8
+        inDegree = 2
+        nextLeader = 3
+
+Leader 7
+        vertex = 3
+        inDegree = 2
+        nextLeader = 5
+        Follower 1 = 5
+
+Leader 8
+        vertex = 5
+        inDegree = 2
+        nextLeader = 7
+        Follower 1 = 8
+
+Leader 9
+        vertex = 7
+        inDegree = 0
+        nextLeader = 9
+        Follower 1 = 9
+        Follower 2 = 5
+
+Leader 10
+        vertex = 9
+        inDegree = 1
+        nextLeader = N/A
+        Follower 1 = 10
+        Follower 2 = 4
+
+
+Prerequisites Topological Sort
+
+CS100 C30 B30
+CS110
+CS280 CS261 CS270 CS115 CS207 CS205 CS201
+CS361 CS271 CS210 CS203 CS301
+CS461 CS350 CS340 CS335 CS330 CS320 CS315 CS310 CS215 CS401
+CS455 CS425 CS435 CS430 CS405 CS421 CS412 CS411 CS410 CS375 CS372 CS428
+CS475 CS476
+
+Press any key to continue . . .
