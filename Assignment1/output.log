@@ -1,0 +1,161 @@
+Script started on Sun Jan 22 01:03:36 2017
+
+Script on hercules[1]% ls
+AVLTree.cpp  BinarySearchTree.cpp  BinaryTree.cpp  TreeNode.h  main.cpp
+AVLTree.h    BinarySearchTree.h    BinaryTree.h    main*       output.log
+Script on hercules[2]% g++ main.cpp BinaryTreep.cpp BinarySearchTree.cpp AVLTree.cpp -o main
+Script on hercules[3]% main
+
+BINARY TREES:
+
+Enter number of nodes: 8
+Enter number of trees: 16
+Print progress frequency: 1
+................
+Total depth accumulator: 233
+Total number of nodes: 128
+Average depth: 1.82031
+Log 8: 3
+
+Enter number of nodes: 64
+Enter number of trees: 128
+Print progress frequency: 4
+................
+................
+Total depth accumulator: 35973
+Total number of nodes: 8192
+Average depth: 4.39124
+Log 64: 6
+
+Enter number of nodes: 512
+Enter number of trees: 1024
+Print progress frequency: 16
+................
+................
+................
+................
+Total depth accumulator: 3828890
+Total number of nodes: 524288
+Average depth: 7.30303
+Log 512: 9
+
+Enter number of nodes: 4096
+Enter number of trees: 8192
+Print progress frequency: 64
+................
+................
+................
+................
+................
+................
+................
+................
+Total depth accumulator: 345159846
+Total number of nodes: 33554432
+Average depth: 10.2866
+Log 4096: 12
+
+
+BINARY SEARCH TREES:
+
+Enter number of nodes: 8
+Enter number of trees: 16
+Print progress frequency: 1
+................
+Total depth accumulator: 281
+Total number of nodes: 128
+Average depth: 2.19531
+Log 8: 3
+
+Enter number of nodes: 64
+Enter number of trees: 128
+Print progress frequency: 4
+................
+................
+Total depth accumulator: 45945
+Total number of nodes: 8192
+Average depth: 5.60852
+Log 64: 6
+
+Enter number of nodes: 512
+Enter number of trees: 1024
+Print progress frequency: 16
+................
+................
+................
+................
+Total depth accumulator: 5074165
+Total number of nodes: 524288
+Average depth: 9.6782
+Log 512: 9
+
+Enter number of nodes: 4096
+Enter number of trees: 8192
+Print progress frequency: 64
+................
+................
+................
+................
+................
+................
+................
+................
+Total depth accumulator: 463145306
+Total number of nodes: 33554432
+Average depth: 13.8028
+Log 4096: 12
+
+
+AVL TREES:
+
+Enter number of nodes: 8
+Enter number of trees: 16
+Print progress frequency: 1
+................
+Total depth accumulator: 213
+Total number of nodes: 128
+Average depth: 1.66406
+Log 8: 3
+
+Enter number of nodes: 64
+Enter number of trees: 128
+Print progress frequency: 4
+................
+................
+Total depth accumulator: 35280
+Total number of nodes: 8192
+Average depth: 4.30664
+Log 64: 6
+
+Enter number of nodes: 512
+Enter number of trees: 1024
+Print progress frequency: 16
+................
+................
+................
+................
+Total depth accumulator: 3819898
+Total number of nodes: 524288
+Average depth: 7.28588
+Log 512: 9
+
+Enter number of nodes: 4096
+Enter number of trees: 8192
+Print progress frequency: 64
+................
+................
+................
+................
+................
+................
+................
+................
+Total depth accumulator: 346513260
+Total number of nodes: 33554432
+Average depth: 10.3269
+Log 4096: 12
+
+Script on hercules[4]% exit
+exit
+
+Script done on Sun Jan 22 01:05:32 2017
